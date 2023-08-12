@@ -5,7 +5,10 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 class User {
   dynamic statusCode;
   dynamic accountNumber;
-  dynamic customerName;
+  dynamic firstName;
+  dynamic secondName;
+  dynamic thirdName;
+  dynamic fullName;
   dynamic balance;
   dynamic profilePic;
   dynamic token;
@@ -16,7 +19,10 @@ class User {
     this.statusCode,
     this.token,
     this.message,
-    this.customerName,
+    this.firstName,
+    this.secondName,
+    this.thirdName,
+    this.fullName,
     this.accountNumber,
     this.error,
     this.balance,
@@ -26,7 +32,10 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         statusCode: json['status_code'],
         accountNumber: json['account_number'],
-        customerName: json['customer_name'],
+        firstName: json['first_name'],
+        secondName: json['second_name'],
+        thirdName: json['third_name'],
+        fullName: json['full_name'],
         balance: json['balance'],
         profilePic: json['profile_pic'],
         token: json['token'],

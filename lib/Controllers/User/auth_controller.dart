@@ -17,7 +17,9 @@ class AuthController extends GetxController with BaseController {
   var passLength = 8;
   var otpPhone = "";
 
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController secondNameController = TextEditingController();
+  TextEditingController thirdNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -29,7 +31,7 @@ class AuthController extends GetxController with BaseController {
     debugPrint('$loginData');
     var response = await Api.login(loginData: loginData);
     user.value = User.fromJson(response.data);
-    debugPrint(user.value.customerName);
+    debugPrint(user.value.fullName);
     if (user.value.statusCode == 0) {
       await SaveUserData(user);
       isLoggedIn.value = true;
@@ -88,10 +90,15 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     try {
       var response = await Api.profileShow();
-      debugPrint("${response.data['data']['id']}");
+      debugPrint("${response.data['data']}");
       if (response.data['data']['id'] != null) {
         hideLoading();
-        usernameController.text = response.data['data']['name'].toString();
+        firstNameController.text =
+            response.data['data']['first_name'].toString();
+        secondNameController.text =
+            response.data['data']['second_name'].toString();
+        thirdNameController.text =
+            response.data['data']['third_name'].toString();
         phoneController.text = response.data['data']['phone'].toString();
         addressController.text = response.data['data']['address'].toString();
         emailController.text = response.data['data']['email'].toString();
@@ -135,6 +142,7 @@ class AuthController extends GetxController with BaseController {
           ),
           AppColors.success,
           SnackPosition.TOP);
+      Get.offAll(() => const LoginScreen(), transition: Transition.fadeIn);
     }
     if (response.data['status_code'] == 1) {
       hideLoading();
@@ -204,7 +212,9 @@ class AuthController extends GetxController with BaseController {
     Future.wait(
       [
         GetStorage().remove('id'),
-        GetStorage().remove('name'),
+        GetStorage().remove('full_name'),
+        GetStorage().remove('first_name'),
+        GetStorage().remove('second_name'),
         GetStorage().remove('balance'),
         GetStorage().remove('login_token'),
         GetStorage().write("walletIsShow", true),
@@ -221,7 +231,9 @@ class AuthController extends GetxController with BaseController {
     Future.wait(
       [
         GetStorage().write('id', user.value.accountNumber),
-        GetStorage().write('name', user.value.customerName),
+        GetStorage().write('full_name', user.value.fullName),
+        GetStorage().write('first_name', user.value.firstName),
+        GetStorage().write('second_name', user.value.secondName),
         GetStorage().write('balance', user.value.balance),
         GetStorage().write('profilePic', user.value.profilePic),
         GetStorage().write('login_token', user.value.token),

@@ -28,7 +28,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final authController = Get.find<AuthController>();
 
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _secondNameController = TextEditingController();
+  final _thirdNameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -125,10 +127,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Row(
                         children: [
                           FadeAnimation2(
-                            1.4,
+                            1,
                             InkWell(
                               onTap: () {
-                                _usernameController.text = "moesaif";
+                                _firstNameController.text = "moesaif";
+                                _secondNameController.text = "moesaif";
+                                _thirdNameController.text = "moesaif";
                                 _phoneController.text = "989876546";
                                 _addressController.text = "Khartoum";
                                 _passwordController.text = "12345678";
@@ -150,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Gap(getProportionateScreenHeight(5)),
                       FadeAnimation2(
-                        1.5,
+                        1.1,
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: BodyText(
@@ -162,36 +166,106 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Gap(getProportionateScreenHeight(30)),
                       FadeAnimation(
-                        1.6,
+                        1.2,
                         InputField(
-                          controller: _usernameController,
-                          hint: "User name".tr,
+                          controller: _firstNameController,
+                          hint: "First name".tr,
                           icon: "assets/icons/Person.svg",
                           obscureText: false,
-                          maxLength: 20,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) => username = newValue,
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
                               removeError(
-                                  error: "Please Enter your user name".tr);
+                                  error:
+                                      "Please Enter your user First name".tr);
                             }
                             if (value == null || value.isEmpty) {
-                              addError(error: "Please Enter your user name".tr);
+                              addError(
+                                  error:
+                                      "Please Enter your user First name".tr);
                             }
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              addError(error: "Please Enter your user name".tr);
+                              addError(
+                                  error:
+                                      "Please Enter your user First name".tr);
                               return "";
                             }
                             return null;
                           },
                         ),
                       ),
-                      Gap(getProportionateScreenHeight(5)),
+                      Gap(getProportionateScreenHeight(20)),
                       FadeAnimation(
-                        1.6,
+                        1.3,
+                        InputField(
+                          controller: _secondNameController,
+                          hint: "Second name".tr,
+                          icon: "assets/icons/Person.svg",
+                          obscureText: false,
+                          keyboardType: TextInputType.text,
+                          onSaved: (newValue) => username = newValue,
+                          onChanged: (value) {
+                            if (value == null || value.isNotEmpty) {
+                              removeError(
+                                  error:
+                                      "Please Enter your user Second name".tr);
+                            }
+                            if (value == null || value.isEmpty) {
+                              addError(
+                                  error:
+                                      "Please Enter your user Second name".tr);
+                            }
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              addError(
+                                  error:
+                                      "Please Enter your user Second name".tr);
+                              return "";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Gap(getProportionateScreenHeight(20)),
+                      FadeAnimation(
+                        1.4,
+                        InputField(
+                          controller: _thirdNameController,
+                          hint: "Third name".tr,
+                          icon: "assets/icons/Person.svg",
+                          obscureText: false,
+                          keyboardType: TextInputType.text,
+                          onSaved: (newValue) => username = newValue,
+                          onChanged: (value) {
+                            if (value == null || value.isNotEmpty) {
+                              removeError(
+                                  error:
+                                      "Please Enter your user Third name".tr);
+                            }
+                            if (value == null || value.isEmpty) {
+                              addError(
+                                  error:
+                                      "Please Enter your user Third name".tr);
+                            }
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              addError(
+                                  error:
+                                      "Please Enter your user Third name".tr);
+                              return "";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Gap(getProportionateScreenHeight(20)),
+                      FadeAnimation(
+                        1.5,
                         InputField(
                           controller: _phoneController,
                           hint: "Phone".tr,
@@ -420,7 +494,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       FadeAnimation(
-                        1.7,
+                        2,
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 5),
@@ -429,12 +503,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Gap(getProportionateScreenHeight(20)),
                       FadeAnimation(
-                        2,
+                        2.1,
                         PrimaryButton(
                           text: "Register2".tr,
                           press: (() {
                             if (_formKey.currentState!.validate()) {
-                              _registerData['name'] = _usernameController.text;
+                              _registerData['first_name'] =
+                                  _firstNameController.text;
+                              _registerData['second_name'] =
+                                  _secondNameController.text;
+                              _registerData['third_name'] =
+                                  _thirdNameController.text;
                               _registerData['phone'] = _phoneController.text;
                               _registerData['address'] =
                                   _addressController.text;
@@ -450,7 +529,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Gap(getProportionateScreenHeight(20)),
                       FadeAnimation(
-                        2.1,
+                        2.2,
                         BodyText(
                           text: "By continuing".tr,
                           maxLines: 2,
