@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Controllers/User/auth_controller.dart';
-import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/form_error.dart';
 import '../../../Util/Widgets/inputField.dart';
 import '../../../Util/Widgets/intro.dart';
@@ -69,32 +68,83 @@ class _EditScreenScreenState extends State<EditScreen> {
                 FadeAnimation(
                   1,
                   InputField(
-                    controller: authController.usernameController,
-                    hint: "User name".tr,
+                    controller: authController.firstNameController,
+                    hint: "First name".tr,
                     icon: "assets/icons/Person.svg",
                     obscureText: false,
-                    maxLength: 20,
                     keyboardType: TextInputType.text,
                     onChanged: (value) {
                       if (value == null || value.isNotEmpty) {
-                        removeError(error: "Please Enter your user name".tr);
+                        removeError(error: "Please Enter your First name".tr);
                       }
                       if (value == null || value.isEmpty) {
-                        addError(error: "Please Enter your user name".tr);
+                        addError(error: "Please Enter your First name".tr);
                       }
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        addError(error: "Please Enter your user name".tr);
+                        addError(error: "Please Enter your First name".tr);
                         return "";
                       }
                       return null;
                     },
                   ),
                 ),
-                Gap(getProportionateScreenHeight(5)),
+                Gap(getProportionateScreenHeight(20)),
+                FadeAnimation(
+                  1.1,
+                  InputField(
+                    controller: authController.secondNameController,
+                    hint: "Second name".tr,
+                    icon: "assets/icons/Person.svg",
+                    obscureText: false,
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      if (value == null || value.isNotEmpty) {
+                        removeError(error: "Please Enter your Second name".tr);
+                      }
+                      if (value == null || value.isEmpty) {
+                        addError(error: "Please Enter your Second name".tr);
+                      }
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        addError(error: "Please Enter your Second name".tr);
+                        return "";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Gap(getProportionateScreenHeight(20)),
                 FadeAnimation(
                   1.2,
+                  InputField(
+                    controller: authController.thirdNameController,
+                    hint: "Third name".tr,
+                    icon: "assets/icons/Person.svg",
+                    obscureText: false,
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      if (value == null || value.isNotEmpty) {
+                        removeError(error: "Please Enter your Third name".tr);
+                      }
+                      if (value == null || value.isEmpty) {
+                        addError(error: "Please Enter your Third name".tr);
+                      }
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        addError(error: "Please Enter your Third name".tr);
+                        return "";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Gap(getProportionateScreenHeight(20)),
+                FadeAnimation(
+                  1.3,
                   InputField(
                     controller: authController.phoneController,
                     hint: "Phone".tr,
@@ -131,7 +181,7 @@ class _EditScreenScreenState extends State<EditScreen> {
                 ),
                 Gap(getProportionateScreenHeight(5)),
                 FadeAnimation(
-                  1.3,
+                  1.4,
                   InputField(
                     controller: authController.addressController,
                     hint: "Address".tr,
@@ -157,7 +207,7 @@ class _EditScreenScreenState extends State<EditScreen> {
                 ),
                 Gap(getProportionateScreenHeight(20)),
                 FadeAnimation(
-                  1.4,
+                  1.5,
                   InputField(
                     controller: authController.emailController,
                     label: "Email".tr,
@@ -167,31 +217,6 @@ class _EditScreenScreenState extends State<EditScreen> {
                     height: getProportionateScreenHeight(18),
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
-                    // onChanged: (value) {
-                    //   if (value == null || value.isNotEmpty) {
-                    //     removeError(error: "Enter your email".tr);
-                    //   }
-                    //   if (emailValidatorRegExp.hasMatch(value!)) {
-                    //     removeError(error: "Please Enter Valid Email".tr);
-                    //   }
-                    //   if (value.isEmpty) {
-                    //     addError(error: "Enter your email".tr);
-                    //   }
-                    //   if (!emailValidatorRegExp.hasMatch(value)) {
-                    //     addError(error: "Please Enter Valid Email".tr);
-                    //   }
-                    //   return;
-                    // },
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     addError(error: "Enter your email".tr);
-                    //     return "";
-                    //   } else if (!emailValidatorRegExp.hasMatch(value)) {
-                    //     addError(error: "Please Enter Valid Email".tr);
-                    //     return "";
-                    //   }
-                    //   return null;
-                    // },
                   ),
                 ),
                 Gap(getProportionateScreenHeight(20)),
@@ -200,7 +225,7 @@ class _EditScreenScreenState extends State<EditScreen> {
                     _selectDate(context);
                   },
                   child: FadeAnimation(
-                    1.5,
+                    1.6,
                     Container(
                       padding: EdgeInsets.all(getProportionateScreenHeight(5)),
                       height: getProportionateScreenHeight(52),
@@ -243,7 +268,7 @@ class _EditScreenScreenState extends State<EditScreen> {
                   ),
                 ),
                 FadeAnimation(
-                  1.6,
+                  1.7,
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -252,13 +277,17 @@ class _EditScreenScreenState extends State<EditScreen> {
                 ),
                 Gap(getProportionateScreenHeight(20)),
                 FadeAnimation(
-                  1.7,
+                  1.8,
                   PrimaryButton(
                     text: "Save".tr,
                     press: (() {
                       if (_formKey.currentState!.validate()) {
-                        _profileUpdateData['name'] =
-                            authController.usernameController.text;
+                        _profileUpdateData['first_name'] =
+                            authController.firstNameController.text;
+                        _profileUpdateData['second_name'] =
+                            authController.secondNameController.text;
+                        _profileUpdateData['third_name'] =
+                            authController.thirdNameController.text;
                         _profileUpdateData['phone'] =
                             authController.phoneController.text;
                         _profileUpdateData['address'] =

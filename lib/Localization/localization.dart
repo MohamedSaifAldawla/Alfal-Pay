@@ -10,7 +10,9 @@ class Localization implements Translations {
           "Welcome": "Welcome",
           "WelcomeText":
               "Welcome to Alfal Payment App for \n for money transactions",
-          "Please Enter your user name": "Please Enter your user name",
+          "Please Enter your First name": "Please Enter your First name",
+          "Please Enter your Second name": "Please Enter your Second name",
+          "Please Enter your Third name": "Please Enter your Third name",
           "Please Enter your Phone": "Please enter your Phone",
           "Please Enter your address": "Please Enter your address",
           "Phone number is too short": "Phone number is too short from 9",
@@ -58,7 +60,9 @@ class Localization implements Translations {
           "Register2": "Register",
           "Enter the data below":
               "Enter the data below and agree to the conditions for creating an account",
-          "User name": "User name",
+          "First name": "First name",
+          "Second name": "Second name",
+          "Third name": "Third name",
           "Address": "Address",
           "Date of birth": "Date of birth",
           "Re-Enter password": "Re-Enter password",
@@ -112,6 +116,12 @@ class Localization implements Translations {
           "Delete account": "Delete account",
           "Log out": "Log out",
           "Save": "Save data",
+          "Confirm Logout": "Are you sure \nyou wan't to Logout ?",
+          "Confirm Deleting":
+              "Are you sure you wan't to delete \nyour account ?",
+          "Yes": "Yes",
+          "No": "No",
+          "Cancel": "Cancel",
 
           //----------------------------------- Wallet -------------------------//
 
@@ -143,7 +153,9 @@ class Localization implements Translations {
           "AppName": "الفال باي",
           "Welcome": "مرحبا بك",
           "WelcomeText": "مرحبا بك في تطبيق الفال باي \n للتحاويل الماليه",
-          "Please Enter your user name": "الرجاء إدخال إسم المستخدم",
+          "Please Enter your First name": "الرجاء إدخال الإسم الأول",
+          "Please Enter your Second name": "الرجاء إدخال الإسم الثاني",
+          "Please Enter your Third name": "الرجاء إدخال الإسم الثالث",
           "Please Enter your Phone": "الرجاء قم بإدخال رقم هاتفك",
           "Phone number is too short": "رقم الهاتف اقل من 9",
           "Please Enter your address": "الرجاء إدخال العنوان",
@@ -189,7 +201,9 @@ class Localization implements Translations {
           "Register2": "انشاء حساب",
           "Enter the data below":
               "قم بإدخال البيانات ادناه والموافقه على الشروط لإنشاء الحساب",
-          "User name": "اسم المستخدم",
+          "First name": "الإسم الأول",
+          "Second name": "الإسم الثاني",
+          "Third name": "الإسم الثالث",
           "Address": "ألعنوان",
           "Date of birth": "تاريخ الميلاد",
           "Re-Enter password": "إعادة كلمة المرور",
@@ -244,6 +258,11 @@ class Localization implements Translations {
           "Delete account": "حذف الحساب",
           "Log out": "خروج من التطبيق",
           "Save": "حفظ التعديلات",
+          "Confirm Logout": "تأكيد تسجيل الخروج ؟",
+          "Confirm Deleting": "تأكيد مسح الحساب الحالي ؟",
+          "Yes": "نعم",
+          "No": "لا",
+          "Cancel": "إلغاء",
 
           //----------------------------------- Wallet -------------------------//
 

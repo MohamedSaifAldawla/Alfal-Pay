@@ -21,7 +21,7 @@ logOutDialog({required context}) {
               left: getProportionateScreenHeight(16),
               right: getProportionateScreenHeight(16)),
           width: double.infinity,
-          height: getProportionateScreenHeight(170),
+          height: getProportionateScreenHeight(190),
           child: Column(
             children: [
               Gap(getProportionateScreenHeight(15)),

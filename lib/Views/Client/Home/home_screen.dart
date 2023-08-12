@@ -64,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         FadeAnimation(
                           1,
                           BodyText(
-                            text: GetStorage().read('name'),
+                            text: GetStorage().read('first_name') +
+                                ' ' +
+                                GetStorage().read('second_name'),
                             weight: FontWeight.bold,
                             fontSize: getProportionateScreenHeight(25),
                           ),

@@ -54,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: Column(
             children: [
-              Gap(getProportionateScreenHeight(30)),
+              Gap(getProportionateScreenHeight(50)),
               Center(
                 child: Column(
                   children: [
@@ -86,7 +86,9 @@ class ProfileScreen extends StatelessWidget {
                     FadeAnimation(
                       1.1,
                       BodyText(
-                        text: GetStorage().read('name'),
+                        text: GetStorage().read('first_name') +
+                            ' ' +
+                            GetStorage().read('second_name'),
                         weight: FontWeight.bold,
                         fontSize: getProportionateScreenHeight(20),
                       ),
@@ -101,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Gap(getProportionateScreenHeight(80)),
+              Gap(getProportionateScreenHeight(150)),
               FadeAnimation(
                 1.3,
                 ProfileItem(
@@ -149,20 +151,20 @@ class ProfileScreen extends StatelessWidget {
                       )),
                 ),
               ),
-              FadeAnimation(
-                1.6,
-                ProfileItem(
-                  firstIcon: "assets/icons/Info.svg",
-                  title: "Help center".tr,
-                ),
-              ),
-              FadeAnimation(
-                1.7,
-                ProfileItem(
-                  firstIcon: "assets/icons/delete.svg",
-                  title: "Delete account".tr,
-                ),
-              ),
+              // FadeAnimation(
+              //   1.6,
+              //   ProfileItem(
+              //     firstIcon: "assets/icons/Info.svg",
+              //     title: "Help center".tr,
+              //   ),
+              // ),
+              // FadeAnimation(
+              //   1.7,
+              //   ProfileItem(
+              //     firstIcon: "assets/icons/delete.svg",
+              //     title: "Delete account".tr,
+              //   ),
+              // ),
               FadeAnimation(
                 1.8,
                 ProfileItem(
