@@ -1,5 +1,6 @@
 import 'package:alfalPay/Controllers/User/base_controller.dart';
 import 'package:alfalPay/Util/Globals/globals.dart';
+import 'package:alfalPay/Views/Client/Home/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,36 @@ import '../../Views/Client/Home/home_screen.dart';
 class WalletController extends GetxController with BaseController {
   bool showDialog = false;
   bool successShowDialog = false;
+  final TextEditingController accountNumber = TextEditingController();
+  final TextEditingController receiverName = TextEditingController();
+  final TextEditingController amount = TextEditingController();
+  final Map<String, dynamic> accountData = {};
 
+//--------------------- Get Account --------------------------//
+  Future<void> getAccount({required Map<String, dynamic> accountData}) async {
+    showLoading();
+    debugPrint('$accountData');
+    var response = await Api.getAccount(accountData: accountData);
+    debugPrint("${response.data}");
+    if (response.data['status_code'] == 0) {
+      hideLoading();
+      accountNumber.text = response.data['account_number'];
+      receiverName.text = response.data['receiver_name'];
+      Get.to(() => TransferScreen(), transition: Transition.fadeIn);
+    } else if (response.data['status_code'] == 1) {
+      hideLoading();
+      mainController.SnackBar(
+          "Error".tr,
+          '${response.data['message']}',
+          SvgPicture.asset(
+            "assets/icons/Close.svg",
+            color: Colors.white,
+          ),
+          AppColors.error,
+          SnackPosition.TOP,
+          5);
+    }
+  } //end of Get Account
   //--------------------- Recharge --------------------------//
 
   Future<void> Recharge({required String serialNumber}) async {
@@ -51,7 +81,7 @@ class WalletController extends GetxController with BaseController {
     }
   } //end of Recharge
 
-  Future<void> Transfer(
+  Future<void> transfer(
       {required String accountNumber, required String amount}) async {
     debugPrint('AccountNumber :$accountNumber');
     debugPrint('Amount :$amount');

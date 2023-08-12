@@ -177,7 +177,8 @@ class _TransferQRState extends State<TransferQR> {
 
                                 if (_accountNumber.text.isNotEmpty &&
                                     _amount.text.isNotEmpty) {
-                                  walletController.Transfer(
+                                  walletController
+                                      .transfer(
                                           accountNumber: _accountNumber.text,
                                           amount: _amount.text)
                                       .then(

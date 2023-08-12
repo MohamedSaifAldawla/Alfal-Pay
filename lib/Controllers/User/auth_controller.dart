@@ -8,7 +8,6 @@ import '../../Models/user.dart';
 import '../../Services/api.dart';
 import '../../Views/Auth/login_screen.dart';
 import '../../Views/Client/Home/home_screen.dart';
-import '../../routes.dart';
 import 'base_controller.dart';
 
 class AuthController extends GetxController with BaseController {

@@ -33,10 +33,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _accountNumber = TextEditingController();
-  final TextEditingController _amount = TextEditingController();
   final TextEditingController _serialNumber = TextEditingController();
   String? accountNumber;
-  String? amount;
   String? serialNumber;
 
   @override
@@ -177,8 +175,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: "assets/icons/Clipboard.svg",
                         service: "History".tr,
                         onTap: () {
-                          Get.to(() => const HistoryScreen(),
-                              transition: Transition.fadeIn);
+                          // Get.to(() => const HistoryScreen(),
+                          //     transition: Transition.fadeIn);
+                          transController.getTransactions();
                         },
                       ),
                       ServicesItem(
@@ -374,7 +373,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : AppColors.kPrimaryDarkColor,
             child: SizedBox(
               width: double.infinity,
-              height: getProportionateScreenHeight(350),
+              height: getProportionateScreenHeight(300),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -386,7 +385,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             Get.back();
                             _accountNumber.text = '';
-                            _amount.text = '';
                           },
                           icon: SvgPicture.asset(
                             "assets/icons/Close.svg",
@@ -423,20 +421,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               onSaved: (newValue) => accountNumber = newValue,
                             ),
                           ),
-                          Gap(getProportionateScreenHeight(30)),
-                          FadeAnimation2(
-                            1.1,
-                            InputField(
-                              controller: _amount,
-                              label: "Enter your Amount".tr,
-                              hint: "Ex:".tr,
-                              type: "Amount",
-                              icon: "assets/icons/top-up.svg",
-                              obscureText: false,
-                              keyboardType: TextInputType.number,
-                              onSaved: (newValue) => amount = newValue,
-                            ),
-                          ),
                           Gap(getProportionateScreenHeight(40)),
                           FadeAnimation(
                             1.2,
@@ -455,24 +439,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       SnackPosition.TOP,
                                       2);
                                 }
-                                if (_amount.text.isEmpty) {
-                                  mainController.SnackBar(
-                                      "Error".tr,
-                                      'Please Enter amount'.tr,
-                                      SvgPicture.asset(
-                                        "assets/icons/Close.svg",
-                                        color: Colors.white,
-                                      ),
-                                      AppColors.error,
-                                      SnackPosition.TOP,
-                                      2);
-                                }
 
-                                if (_accountNumber.text.isNotEmpty &&
-                                    _amount.text.isNotEmpty) {
-                                  walletController.Transfer(
-                                      accountNumber: _accountNumber.text,
-                                      amount: _amount.text);
+                                if (_accountNumber.text.isNotEmpty) {
+                                  walletController
+                                          .accountData['account_number'] =
+                                      _accountNumber.text;
+                                  walletController.getAccount(
+                                      accountData:
+                                          walletController.accountData);
                                 }
                               },
                             ),

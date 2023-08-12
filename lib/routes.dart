@@ -57,7 +57,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: Routes.login,
     page: () => const LoginScreen(),
-    middlewares: [LoginMiddleWare()],
+    //middlewares: [LoginMiddleWare()],
   ),
   GetPage(name: Routes.register, page: () => const RegisterScreen()),
   GetPage(name: Routes.edit, page: () => const EditScreen()),
@@ -69,7 +69,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: Routes.profile, page: () => const ProfileScreen()),
   GetPage(name: Routes.history, page: () => const HistoryScreen()),
   GetPage(name: Routes.ticket, page: () => TicketScreen()),
-  GetPage(name: Routes.transfer, page: () => const TransferScreen()),
+  GetPage(name: Routes.transfer, page: () => TransferScreen()),
   GetPage(name: Routes.qrScanner, page: () => const TransferQR()),
   GetPage(name: Routes.agents, page: () => const AgentsScreen()),
   GetPage(name: Routes.currency, page: () => const CurrencyRates()),

@@ -28,6 +28,7 @@ class Api {
           request.headers.addAll(headers);
           debugPrint('${request.method} ${request.path}');
           debugPrint('${request.headers}');
+
           return handler.next(request); //continue
         },
         onResponse: (response, handler) {
@@ -142,6 +143,13 @@ class Api {
   } //end of Password Update
 
 //-------------------------- Wallet Operations --------------------------//
+
+  //--------------------- Get Account --------------------------//
+  static Future<Response> getAccount({accountData}) async {
+    FormData formData = FormData.fromMap(accountData);
+    return dio.post('/balance-transfer-check', data: formData);
+  } //end of Get Account
+
   //--------------------- Recharge --------------------------//
   static Future<Response> recharge({
     required String serialNumber,
@@ -165,11 +173,18 @@ class Api {
         'account_number': accountNumber,
       },
     );
-    return dio.post('/balance-transfer', data: formData);
+    return dio.post('/balance-transfer-confirm', data: formData);
   } //end of Transfer
 
   //--------------------- Get Agents --------------------------//
   static Future<Response> getAgents() async {
     return dio.get('/agent-list');
   } //end of Get Agents
+
+  //-------------------------- Transactions Operations --------------------------//
+
+  //--------------------- Get Transactions --------------------------//
+  static Future<Response> getTransactions() async {
+    return dio.get('/my-transactions');
+  } //end of Get Transactions
 } //end of api

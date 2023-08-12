@@ -1,8 +1,8 @@
+import 'package:alfalPay/Models/transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:jiffy/jiffy.dart';
 import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
@@ -10,15 +10,12 @@ import 'intro.dart';
 class TransCard extends StatelessWidget {
   TransCard({
     super.key,
+    required this.transactions,
     required this.icon1,
-    required this.icon2,
-    required this.title,
-    required this.amount,
-    required this.color,
   });
 
-  String icon1, icon2, title, amount;
-  Color color;
+  String icon1;
+  TransactionList transactions;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,14 +52,37 @@ class TransCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(getProportionateScreenHeight(5)),
-              child: SvgPicture.asset(
-                icon1,
-                width: getProportionateScreenWidth(45),
-                height: getProportionateScreenHeight(45),
-                color: Theme.of(context).brightness == Brightness.light
-                    ? AppColors.kPrimary2Color
-                    : Colors.white,
-              ),
+              child: (() {
+                if (transactions.type == "money_transfer") {
+                  return SvgPicture.asset(
+                    'assets/icons/Wallet.svg',
+                    width: getProportionateScreenWidth(45),
+                    height: getProportionateScreenHeight(45),
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? AppColors.kPrimary2Color
+                        : Colors.white,
+                  );
+                }
+                if (transactions.type == "scratch_recharge") {
+                  return SvgPicture.asset(
+                    'assets/icons/Wad-Of-Money.svg',
+                    width: getProportionateScreenWidth(45),
+                    height: getProportionateScreenHeight(45),
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? AppColors.kPrimary2Color
+                        : Colors.white,
+                  );
+                } else {
+                  return SvgPicture.asset(
+                    'assets/icons/Wallet.svg',
+                    width: getProportionateScreenWidth(45),
+                    height: getProportionateScreenHeight(45),
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? AppColors.kPrimary2Color
+                        : Colors.white,
+                  );
+                }
+              }()),
             ),
             Gap(getProportionateScreenHeight(10)),
             Flexible(
@@ -73,7 +93,7 @@ class TransCard extends StatelessWidget {
                   Row(
                     children: [
                       BodyText(
-                        text: title,
+                        text: transactions.type,
                         weight: FontWeight.w500,
                       ),
                     ],
@@ -82,7 +102,7 @@ class TransCard extends StatelessWidget {
                   Row(
                     children: [
                       BodyText(
-                        text: "08 Mar 2023",
+                        text: transactions.createdAt,
                         fontSize: getProportionateScreenHeight(13),
                         color: Theme.of(context).brightness == Brightness.light
                             ? AppColors.kSecondaryColor
@@ -102,15 +122,22 @@ class TransCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: BodyText(
-                          text: amount + ' ' + 'SDG'.tr,
+                          text: '${transactions.amount} ${'SDG'.tr}',
                           weight: FontWeight.bold,
-                          color: color,
+                          color: transactions.isPositive == true
+                              ? AppColors.success
+                              : AppColors.error,
                         ),
                       ),
-                      SvgPicture.asset(icon2,
+                      SvgPicture.asset(
+                          transactions.isPositive == true
+                              ? 'assets/icons/Arrow_Down_MD.svg'
+                              : 'assets/icons/Arrow_Up_MD.svg',
                           width: getProportionateScreenWidth(15),
                           height: getProportionateScreenHeight(15),
-                          color: color),
+                          color: transactions.isPositive == true
+                              ? AppColors.success
+                              : AppColors.error),
                     ],
                   ),
                 ],

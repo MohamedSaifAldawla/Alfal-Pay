@@ -1,14 +1,12 @@
 import 'package:alfalPay/Util/colors.dart';
 import 'package:alfalPay/Util/size_config.dart';
-import 'package:alfalPay/Util/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../Animations/FadeAnimation.dart';
-import '../../../Util/Widgets/sections.title.dart';
+import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/trans_card.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -37,111 +35,32 @@ class HistoryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
-          child: Column(
-            children: [
-              Gap(getProportionateScreenWidth(10)),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Wallet.svg',
-                  title: 'Money transfer',
-                  amount: '8989',
-                  color: AppColors.success,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
+      body: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(15)),
+        child: Column(
+          children: [
+            Gap(getProportionateScreenWidth(10)),
+            Expanded(
+              child: ListView.separated(
+                padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenWidth(25),
+                    horizontal: getProportionateScreenWidth(5)),
+                physics: const BouncingScrollPhysics(),
+                itemCount: transController.transactions.length,
+                itemBuilder: (context, index) => FadeAnimation(
+                  1,
+                  TransCard(
+                    icon1: 'assets/icons/Wallet.svg',
+                    transactions: transController.transactions[index],
+                  ),
+                ),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 20,
                 ),
               ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Devices.svg',
-                  title: 'Phone top up',
-                  amount: '454',
-                  color: AppColors.error,
-                  icon2: 'assets/icons/Arrow_Up_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Wallet.svg',
-                  title: 'Money transfer',
-                  amount: '4445',
-                  color: AppColors.error,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Devices.svg',
-                  title: 'Phone top up',
-                  amount: '75757',
-                  color: AppColors.success,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Wallet.svg',
-                  title: 'Money transfer',
-                  amount: '88989',
-                  color: AppColors.success,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Devices.svg',
-                  title: 'Phone top up',
-                  amount: '2334',
-                  color: AppColors.error,
-                  icon2: 'assets/icons/Arrow_Up_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Wallet.svg',
-                  title: 'Money transfer',
-                  amount: '4445',
-                  color: AppColors.error,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
-                ),
-              ),
-              FadeAnimation(
-                1,
-                TransCard(
-                  icon1: 'assets/icons/Devices.svg',
-                  title: 'Phone top up',
-                  amount: '75757',
-                  color: AppColors.success,
-                  icon2: 'assets/icons/Arrow_Down_MD.svg',
-                ),
-              ),
-              // Expanded(
-              //   child: ListView.separated(
-              //     padding: EdgeInsets.symmetric(
-              //         vertical: getProportionateScreenWidth(25),
-              //         horizontal: getProportionateScreenWidth(5)),
-              //     physics: BouncingScrollPhysics(),
-              //     itemCount: transController.trans.length,
-              //     itemBuilder: (context, index) => FadeAnimation(
-              //       1,
-              //       TransCard2(transController.trans[index], context),
-              //     ),
-              //     separatorBuilder: (context, index) => SizedBox(
-              //       height: 20,
-              //     ),
-              //   ),
-              // ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       // body: Obx(
