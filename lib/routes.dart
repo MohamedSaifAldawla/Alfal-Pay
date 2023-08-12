@@ -5,6 +5,7 @@ import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
 import 'package:alfalPay/Views/Client/Home/home_screen.dart';
 import 'package:alfalPay/Views/Client/Home/trans_qr_scanner.dart';
+import 'package:alfalPay/Views/Client/Home/transfer_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/edit_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/password_update_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
@@ -37,6 +38,7 @@ class Routes {
   static String profile = '/profile';
   static String history = '/history';
   static String ticket = '/ticket';
+  static String transfer = '/transfer';
   static String qrScanner = '/qr';
   static String agents = '/agents';
   static String currency = '/currency';
@@ -67,6 +69,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: Routes.profile, page: () => const ProfileScreen()),
   GetPage(name: Routes.history, page: () => const HistoryScreen()),
   GetPage(name: Routes.ticket, page: () => TicketScreen()),
+  GetPage(name: Routes.transfer, page: () => const TransferScreen()),
   GetPage(name: Routes.qrScanner, page: () => const TransferQR()),
   GetPage(name: Routes.agents, page: () => const AgentsScreen()),
   GetPage(name: Routes.currency, page: () => const CurrencyRates()),
