@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Controllers/User/auth_controller.dart';
-import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/form_error.dart';
 import '../../../Util/Widgets/inputField.dart';
 import '../../../Util/Widgets/intro.dart';
@@ -167,31 +166,6 @@ class _EditScreenScreenState extends State<EditScreen> {
                     height: getProportionateScreenHeight(18),
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
-                    // onChanged: (value) {
-                    //   if (value == null || value.isNotEmpty) {
-                    //     removeError(error: "Enter your email".tr);
-                    //   }
-                    //   if (emailValidatorRegExp.hasMatch(value!)) {
-                    //     removeError(error: "Please Enter Valid Email".tr);
-                    //   }
-                    //   if (value.isEmpty) {
-                    //     addError(error: "Enter your email".tr);
-                    //   }
-                    //   if (!emailValidatorRegExp.hasMatch(value)) {
-                    //     addError(error: "Please Enter Valid Email".tr);
-                    //   }
-                    //   return;
-                    // },
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     addError(error: "Enter your email".tr);
-                    //     return "";
-                    //   } else if (!emailValidatorRegExp.hasMatch(value)) {
-                    //     addError(error: "Please Enter Valid Email".tr);
-                    //     return "";
-                    //   }
-                    //   return null;
-                    // },
                   ),
                 ),
                 Gap(getProportionateScreenHeight(20)),
