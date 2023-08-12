@@ -1,4 +1,4 @@
-# cashat
+# Alfal Pay
 
 A new Flutter project.
 
