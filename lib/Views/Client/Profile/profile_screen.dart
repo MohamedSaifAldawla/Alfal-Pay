@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/intro.dart';
@@ -18,7 +17,6 @@ import '../../../Util/Widgets/profile_item.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
 import '../../../Util/theme.dart';
-import '../../../routes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
