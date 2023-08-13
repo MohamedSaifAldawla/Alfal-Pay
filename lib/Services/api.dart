@@ -163,16 +163,8 @@ class Api {
   } //end of Recharge
 
   //--------------------- Transfer --------------------------//
-  static Future<Response> transfer({
-    required String amount,
-    required String accountNumber,
-  }) async {
-    FormData formData = FormData.fromMap(
-      {
-        'amount': amount,
-        'account_number': accountNumber,
-      },
-    );
+  static Future<Response> transfer({required transferData}) async {
+    FormData formData = FormData.fromMap(transferData);
     return dio.post('/balance-transfer-confirm', data: formData);
   } //end of Transfer
 

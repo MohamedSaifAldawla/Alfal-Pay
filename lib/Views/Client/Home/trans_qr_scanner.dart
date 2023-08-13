@@ -6,15 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Util/Globals/globals.dart';
-import '../../../Util/Widgets/form_error.dart';
 import '../../../Util/Widgets/inputField.dart';
 import '../../../Util/Widgets/intro.dart';
 import '../../../Util/Widgets/primary_button.dart';
 import '../../../Util/size_config.dart';
-import 'home_screen.dart';
 
 class TransferQR extends StatefulWidget {
   const TransferQR({Key? key}) : super(key: key);
@@ -27,9 +24,8 @@ class _TransferQRState extends State<TransferQR> {
   final formKey = GlobalKey<FormState>();
   final _accountNumber = TextEditingController();
   final _amount = TextEditingController();
-  String? accountNumber;
+  final _comment = TextEditingController();
   String? scannedQR;
-  String? amount;
   Barcode? barcode;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -81,7 +77,7 @@ class _TransferQRState extends State<TransferQR> {
                 : AppColors.kPrimaryDarkColor,
             child: SizedBox(
               width: double.infinity,
-              height: getProportionateScreenHeight(390),
+              height: getProportionateScreenHeight(450),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -93,6 +89,8 @@ class _TransferQRState extends State<TransferQR> {
                           onPressed: () {
                             Get.back();
                             reassemble();
+                            _amount.text = "";
+                            _comment.text = "";
                           },
                           icon: SvgPicture.asset(
                             "assets/icons/Close.svg",
@@ -127,12 +125,24 @@ class _TransferQRState extends State<TransferQR> {
                               obscureText: false,
                               enabled: true,
                               keyboardType: TextInputType.number,
-                              onSaved: (newValue) => accountNumber = newValue,
                             ),
                           ),
                           Gap(getProportionateScreenHeight(30)),
                           FadeAnimation2(
                             1.1,
+                            InputField(
+                              controller: _comment,
+                              label: "Comment".tr,
+                              hint: "Enter your comment".tr,
+                              type: "Comment",
+                              icon: "assets/icons/Person.svg",
+                              obscureText: false,
+                              keyboardType: TextInputType.text,
+                            ),
+                          ),
+                          Gap(getProportionateScreenHeight(30)),
+                          FadeAnimation2(
+                            1.2,
                             InputField(
                               controller: _amount,
                               label: "Enter your Amount".tr,
@@ -141,12 +151,11 @@ class _TransferQRState extends State<TransferQR> {
                               icon: "assets/icons/top-up.svg",
                               obscureText: false,
                               keyboardType: TextInputType.number,
-                              onSaved: (newValue) => amount = newValue,
                             ),
                           ),
                           Gap(getProportionateScreenHeight(40)),
                           FadeAnimation(
-                            1.2,
+                            1.3,
                             PrimaryButton(
                               text: "Continue".tr,
                               press: () {
@@ -178,9 +187,16 @@ class _TransferQRState extends State<TransferQR> {
                                 if (_accountNumber.text.isNotEmpty &&
                                     _amount.text.isNotEmpty) {
                                   walletController
+                                          .transferData['account_number'] =
+                                      _accountNumber.text;
+                                  walletController.transferData['amount'] =
+                                      _amount.text;
+                                  walletController.transferData['comment'] =
+                                      _comment.text;
+                                  walletController
                                       .transfer(
-                                          accountNumber: _accountNumber.text,
-                                          amount: _amount.text)
+                                          transferData:
+                                              walletController.transferData)
                                       .then(
                                     (value) {
                                       if (walletController.successShowDialog ==

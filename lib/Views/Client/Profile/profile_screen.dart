@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                     FadeAnimation(
                       1.2,
                       BodyText(
-                        text: '+249${GetStorage().read('phone')}',
+                        text: '+249${GetStorage().read('phone_number')}',
                         fontSize: getProportionateScreenHeight(14),
                       ),
                     ),

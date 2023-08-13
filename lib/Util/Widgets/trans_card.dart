@@ -1,4 +1,5 @@
 import 'package:alfalPay/Models/transactions.dart';
+import 'package:alfalPay/Views/Client/History/ticket_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -46,7 +47,11 @@ class TransCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed('ticket');
+          Get.to(
+              () => TicketScreen(
+                    transactions: transactions,
+                  ),
+              transition: Transition.fadeIn);
         },
         child: Row(
           children: [
@@ -93,7 +98,7 @@ class TransCard extends StatelessWidget {
                   Row(
                     children: [
                       BodyText(
-                        text: transactions.type,
+                        text: transactions.typeLabel,
                         weight: FontWeight.w500,
                       ),
                     ],
@@ -114,7 +119,7 @@ class TransCard extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 3,
               child: Column(
                 children: [
                   Row(

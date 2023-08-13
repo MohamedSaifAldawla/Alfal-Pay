@@ -50,8 +50,21 @@ class TransferScreen extends StatelessWidget {
                 type: "Account",
                 icon: "assets/icons/Person.svg",
                 obscureText: false,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 enabled: true,
+              ),
+            ),
+            Gap(getProportionateScreenHeight(30)),
+            FadeAnimation2(
+              1,
+              InputField(
+                controller: walletController.comment,
+                label: "Comment".tr,
+                hint: "Enter your comment".tr,
+                type: "Comment",
+                icon: "assets/icons/Person.svg",
+                obscureText: false,
+                keyboardType: TextInputType.text,
               ),
             ),
             Gap(getProportionateScreenHeight(30)),
@@ -73,18 +86,6 @@ class TransferScreen extends StatelessWidget {
               PrimaryButton(
                 text: "Continue".tr,
                 press: () {
-                  if (walletController.accountNumber.text.isEmpty) {
-                    mainController.SnackBar(
-                        "Error".tr,
-                        'Please Enter account'.tr,
-                        SvgPicture.asset(
-                          "assets/icons/Close.svg",
-                          color: Colors.white,
-                        ),
-                        AppColors.error,
-                        SnackPosition.TOP,
-                        2);
-                  }
                   if (walletController.amount.text.isEmpty) {
                     mainController.SnackBar(
                         "Error".tr,
@@ -98,13 +99,19 @@ class TransferScreen extends StatelessWidget {
                         2);
                   }
 
-                  if (walletController.accountNumber.text.isNotEmpty &&
-                      walletController.amount.text.isNotEmpty) {
+                  if (walletController.amount.text.isNotEmpty) {
+                    walletController.transferData['account_number'] =
+                        walletController.accountNumber.text;
+                    walletController.transferData['amount'] =
+                        walletController.amount.text;
+                    walletController.transferData['comment'] =
+                        walletController.comment.text;
                     walletController
-                        .transfer(
-                            accountNumber: walletController.accountNumber.text,
-                            amount: walletController.amount.text)
-                        .then((value) => walletController.amount.text = "");
+                        .transfer(transferData: walletController.transferData)
+                        .then((value) => {
+                              walletController.amount.text = "",
+                              walletController.comment.text = "",
+                            });
                   }
                 },
               ),

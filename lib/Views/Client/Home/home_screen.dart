@@ -148,11 +148,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/Devices.svg",
-                        service: "Bills".tr,
+                        icon: "assets/icons/bag-dollar.svg",
+                        service: "Charge Wallet".tr,
                         onTap: () {
-                          Get.to(() => const BillsScreen(),
-                              transition: Transition.fadeIn);
+                          rechargeDialog(context);
                         },
                       ),
                     ],
@@ -165,27 +164,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ServicesItem(
-                        icon: "assets/icons/qr-code-scan.svg",
-                        service: "QR".tr,
+                        icon: "assets/icons/Devices.svg",
+                        service: "Bills".tr,
                         onTap: () {
-                          Get.toNamed(Routes.qrScanner);
+                          Get.to(() => const BillsScreen(),
+                              transition: Transition.fadeIn);
                         },
                       ),
                       ServicesItem(
                         icon: "assets/icons/Clipboard.svg",
                         service: "History".tr,
                         onTap: () {
-                          // Get.to(() => const HistoryScreen(),
-                          //     transition: Transition.fadeIn);
                           transController.getTransactions();
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/Map.svg",
-                        service: "Agents".tr,
+                        icon: "assets/icons/qr-code-scan.svg",
+                        service: "QR".tr,
                         onTap: () {
-                          // Get.toNamed(Routes.history);
-                          agentsController.getAgents();
+                          Get.toNamed(Routes.qrScanner);
                         },
                       ),
 
@@ -201,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 FadeAnimation2(
                   1.8,
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ServicesItem(
                         icon: "assets/icons/Money-Bag.svg",
@@ -222,7 +219,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       //   service: "Other".tr,
                       //   onTap: () {},
                       // ),
-                      Gap(getProportionateScreenHeight(35)),
+                      ServicesItem(
+                        icon: "assets/icons/Map.svg",
+                        service: "Agents".tr,
+                        onTap: () {
+                          // Get.toNamed(Routes.history);
+                          agentsController.getAgents();
+                        },
+                      ),
                       ServicesItem(
                         icon: "assets/icons/Settings.svg",
                         service: "Settings".tr,

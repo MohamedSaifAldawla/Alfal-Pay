@@ -102,7 +102,7 @@ class Wallet extends StatelessWidget {
                           height: getProportionateScreenHeight(20),
                           color: AppColors.kPrimaryLightColor),
                     ),
-                    const Gap(10),
+                    Gap(getProportionateScreenHeight(10)),
                     InkWell(
                       onTap: onTap,
                       child: Padding(

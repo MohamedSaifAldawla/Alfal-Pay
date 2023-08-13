@@ -49,9 +49,11 @@ class MainController extends GetxController {
         .replaceAll('.', '_')
         .replaceAll(':', '_');
     final name = "screenshot_$time";
-    final result = await ImageGallerySaver.saveImage(image, name: name);
+    final result =
+        await ImageGallerySaver.saveImage(image, name: name, quality: 100);
+    //debugPrint(result['isSuccess'].toString());
     if (result['isSuccess'] == true) {
-      debugPrint(result);
+      debugPrint(result['isSuccess'].toString());
       SnackBar(
           "Success".tr,
           "Saved successfully".tr,

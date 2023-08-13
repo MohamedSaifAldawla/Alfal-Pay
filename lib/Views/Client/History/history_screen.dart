@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/trans_card.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({Key? key}) : super(key: key);
-  //final transController = Get.find<HistoryScreen>();
 
   @override
   Widget build(BuildContext context) {

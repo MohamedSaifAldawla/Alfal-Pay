@@ -137,6 +137,16 @@ class Localization implements Translations {
           "Receiver name": "Receiver name",
           "Enter account number": "Enter account number",
           "Please Enter account": "Please Enter account number",
+          "Comment": "Comment",
+          "Enter your comment": "Enter your comment",
+          "Amount Successfully": "Operation Successfully",
+          "Amount Error": "Operation Failure",
+          "Transferred amount": "Transferred amount",
+          "Transaction id": "Transaction id",
+          "Type": "Type",
+          "From": "From",
+          "To": "To",
+          "Date": "Date",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "Sorry the app is under maintenance",
@@ -240,7 +250,7 @@ class Localization implements Translations {
           "Currency": "أسعار الصرف",
           "Profile": "حسابي",
           "Settings": "الإعدادات",
-          "SDG": "جنيه",
+          "SDG": "ج",
 
           //--------------------------- Profile --------------//
           "Account": "الحساب",
@@ -280,6 +290,16 @@ class Localization implements Translations {
           "Receiver name": "إسم الحساب",
           "Enter account number": "أدخل رقم الحساب",
           "Please Enter account": "الرجاء إدخال رقم الحساب",
+          "Comment": "التعليق",
+          "Enter your comment": "الرجاء إدخال التعليق",
+          "Amount Successfully": "نجحت العمليه",
+          "Amount Error": "فشلت العمليه",
+          "Transferred amount": "القيمه المرسله",
+          "Transaction id": "رقم المعامله",
+          "Type": "نوع المعامله",
+          "From": "من",
+          "To": "إلى",
+          "Date": "التاريخ",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "عذرآ التطبيق في وضع الصيانه",

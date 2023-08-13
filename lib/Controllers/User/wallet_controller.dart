@@ -14,8 +14,10 @@ class WalletController extends GetxController with BaseController {
   bool successShowDialog = false;
   final TextEditingController accountNumber = TextEditingController();
   final TextEditingController receiverName = TextEditingController();
+  final TextEditingController comment = TextEditingController();
   final TextEditingController amount = TextEditingController();
   final Map<String, dynamic> accountData = {};
+  final Map<String, dynamic> transferData = {};
 
 //--------------------- Get Account --------------------------//
   Future<void> getAccount({required Map<String, dynamic> accountData}) async {
@@ -81,13 +83,10 @@ class WalletController extends GetxController with BaseController {
     }
   } //end of Recharge
 
-  Future<void> transfer(
-      {required String accountNumber, required String amount}) async {
-    debugPrint('AccountNumber :$accountNumber');
-    debugPrint('Amount :$amount');
+  Future<void> transfer({required Map<String, dynamic> transferData}) async {
+    debugPrint('Transfer Data :$transferData');
     showLoading();
-    var response =
-        await Api.transfer(accountNumber: accountNumber, amount: amount);
+    var response = await Api.transfer(transferData: transferData);
     debugPrint("${response.data['status_code']}");
     if (response.data['status_code'] == 0) {
       hideLoading();
