@@ -10,11 +10,16 @@ import '../../Views/Client/History/history_screen.dart';
 
 class TransactionsController extends GetxController with BaseController {
   List<TransactionList> transactions = <TransactionList>[].obs;
+  var isLoading = false.obs;
 
   //--------------------- Get Transactions --------------------------//
-  Future<void> getTransactions() async {
+  Future<void> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
     showLoading();
-    var response = await Api.getTransactions();
+    var response =
+        await Api.getTransactions(startDate: startDate, endDate: endDate);
     final res = Transactions.fromJson(response.data);
     // debugPrint("${res.data.data}");
     //debugPrint("${response.data['data']['data']}");
@@ -23,9 +28,38 @@ class TransactionsController extends GetxController with BaseController {
       transactions.clear();
       transactions.addAll(res.data.data);
       debugPrint("$transactions");
-      Get.to(() => const HistoryScreen(), transition: Transition.fadeIn);
+      Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
     } else if (response.data['status_code'] == 1) {
       hideLoading();
+      debugPrint("${response.data}");
+      mainController.SnackBar(
+          "Error".tr,
+          "${response.data['message']}",
+          SvgPicture.asset(
+            "assets/icons/Close.svg",
+            color: Colors.white,
+          ),
+          AppColors.error,
+          SnackPosition.TOP,
+          3);
+    }
+  } //end of Get Transactions
+
+  //--------------------- Get Transactions --------------------------//
+  Future<void> getTransactions2({
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    isLoading.value = true;
+    var response =
+        await Api.getTransactions(startDate: startDate, endDate: endDate);
+    final res = Transactions.fromJson(response.data);
+    if (response.data['status_code'] == 0) {
+      transactions.clear();
+      transactions.addAll(res.data.data);
+      debugPrint("$transactions");
+      isLoading.value = false;
+    } else if (response.data['status_code'] == 1) {
       debugPrint("${response.data}");
       mainController.SnackBar(
           "Error".tr,

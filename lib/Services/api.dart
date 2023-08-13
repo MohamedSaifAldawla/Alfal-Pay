@@ -25,6 +25,7 @@ class Api {
             'App-Language': GetStorage().read("lang"),
             'Authorization': 'Bearer ${GetStorage().read("login_token")}',
           };
+
           request.headers.addAll(headers);
           debugPrint('${request.method} ${request.path}');
           debugPrint('${request.headers}');
@@ -176,7 +177,13 @@ class Api {
   //-------------------------- Transactions Operations --------------------------//
 
   //--------------------- Get Transactions --------------------------//
-  static Future<Response> getTransactions() async {
-    return dio.get('/my-transactions');
+  static Future<Response> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    return dio.get('/my-transactions', queryParameters: {
+      'start_date': startDate,
+      'end_date': endDate,
+    });
   } //end of Get Transactions
 } //end of api
