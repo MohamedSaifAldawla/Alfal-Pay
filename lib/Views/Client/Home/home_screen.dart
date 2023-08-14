@@ -150,6 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ServicesItem(
                         icon: "assets/icons/bag-dollar.svg",
                         service: "Charge Wallet".tr,
+                        size: getProportionateScreenHeight(33),
                         onTap: () {
                           rechargeDialog(context);
                         },
@@ -181,6 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ServicesItem(
                         icon: "assets/icons/qr-code-scan.svg",
                         service: "QR".tr,
+                        size: getProportionateScreenHeight(35),
                         onTap: () {
                           Get.toNamed(Routes.qrScanner);
                         },

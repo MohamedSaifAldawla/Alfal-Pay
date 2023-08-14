@@ -11,11 +11,13 @@ class ServicesItem extends StatelessWidget {
     this.iconcolor,
     required this.service,
     this.onTap,
+    this.size,
     Key? key,
   }) : super(key: key);
   String icon;
   Color? iconcolor;
   String service;
+  double? size;
   void Function()? onTap;
 
   @override
@@ -51,8 +53,8 @@ class ServicesItem extends StatelessWidget {
                     SvgPicture.asset(
                       icon,
                       color: iconcolor ?? AppColors.kPrimaryColor,
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(40),
+                      width: size ?? getProportionateScreenWidth(40),
+                      height: size ?? getProportionateScreenHeight(40),
                     ),
                   ],
                 ),
