@@ -159,6 +159,7 @@ class Localization implements Translations {
           "Error": "Error",
           "Success": "Success",
           'Coming soon': 'Coming soon',
+          "Save ticket": "Save",
         },
         'ar': {
           //----------------------------------- Auth Pages -------------------------//
@@ -313,6 +314,7 @@ class Localization implements Translations {
           "Error": "خطأ",
           "Success": "نجحت العملية",
           'Coming soon': 'سوف تتوفر هذه الخدمه قريبآ',
+          "Save ticket": "حفظ",
         },
       };
 }

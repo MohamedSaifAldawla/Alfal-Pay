@@ -163,6 +163,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   refresh() {
+    startDate = DateTime.now();
+    endDate = DateTime.now();
     transController.getTransactions2();
   }
 

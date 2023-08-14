@@ -27,7 +27,7 @@ class TicketScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenHeight(horizontalPadding),
+            horizontal: getProportionateScreenHeight(20),
           ),
           child: Screenshot(
             controller: screenshotController,
@@ -104,7 +104,7 @@ class TicketScreen extends StatelessWidget {
                         ),
                         const Spacer(),
                         BodyText(
-                          text: transactions.id.toString(),
+                          text: transactions.refNumber.toString(),
                           weight: FontWeight.bold,
                         ),
                       ],
@@ -194,6 +194,7 @@ class TicketScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SmallButtons(
+                          title: "Save ticket".tr,
                           icon: "assets/icons/Save2.svg",
                           color: AppColors.kPrimaryColor,
                           press: () async {
@@ -203,6 +204,7 @@ class TicketScreen extends StatelessWidget {
                           },
                         ),
                         SmallButtons(
+                          title: "Home".tr,
                           icon: "assets/icons/home.svg",
                           color: AppColors.kPrimaryColor,
                           press: () {

@@ -20,15 +20,22 @@ class TransactionsController extends GetxController with BaseController {
     showLoading();
     var response =
         await Api.getTransactions(startDate: startDate, endDate: endDate);
-    final res = Transactions.fromJson(response.data);
-    // debugPrint("${res.data.data}");
-    //debugPrint("${response.data['data']['data']}");
+    debugPrint("${response.data['data']['data']}");
     if (response.data['status_code'] == 0) {
-      hideLoading();
-      transactions.clear();
-      transactions.addAll(res.data.data);
-      debugPrint("$transactions");
-      Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
+      if (response.data['data']['total'] != 0) {
+        final res = Transactions.fromJson(response.data);
+        hideLoading();
+        isLoading.value = false;
+        transactions.clear();
+        transactions.addAll(res.data.data);
+        debugPrint("$transactions");
+        Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
+      }
+      if (response.data['data']['total'] == 0) {
+        transactions.clear();
+        isLoading.value = false;
+        Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
+      }
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       debugPrint("${response.data}");
@@ -53,11 +60,19 @@ class TransactionsController extends GetxController with BaseController {
     isLoading.value = true;
     var response =
         await Api.getTransactions(startDate: startDate, endDate: endDate);
-    final res = Transactions.fromJson(response.data);
+    debugPrint("${response.data['data']['data']}");
     if (response.data['status_code'] == 0) {
-      transactions.clear();
-      transactions.addAll(res.data.data);
-      debugPrint("$transactions");
+      if (response.data['data']['total'] != 0) {
+        final res = Transactions.fromJson(response.data);
+        transactions.clear();
+        transactions.addAll(res.data.data);
+        debugPrint("$transactions");
+        isLoading.value = false;
+      }
+      if (response.data['data']['total'] == 0) {
+        transactions.clear();
+        isLoading.value = false;
+      }
       isLoading.value = false;
     } else if (response.data['status_code'] == 1) {
       debugPrint("${response.data}");
