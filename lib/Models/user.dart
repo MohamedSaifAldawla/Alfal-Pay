@@ -9,6 +9,7 @@ class User {
   dynamic secondName;
   dynamic thirdName;
   dynamic fullName;
+  dynamic phoneNumber;
   dynamic balance;
   dynamic profilePic;
   dynamic token;
@@ -23,6 +24,7 @@ class User {
     this.secondName,
     this.thirdName,
     this.fullName,
+    this.phoneNumber,
     this.accountNumber,
     this.error,
     this.balance,
@@ -36,6 +38,7 @@ class User {
         secondName: json['second_name'],
         thirdName: json['third_name'],
         fullName: json['full_name'],
+        phoneNumber: json['phone'],
         balance: json['balance'],
         profilePic: json['profile_pic'],
         token: json['token'],

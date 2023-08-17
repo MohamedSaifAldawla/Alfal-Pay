@@ -25,9 +25,11 @@ class Api {
             'App-Language': GetStorage().read("lang"),
             'Authorization': 'Bearer ${GetStorage().read("login_token")}',
           };
+
           request.headers.addAll(headers);
           debugPrint('${request.method} ${request.path}');
           debugPrint('${request.headers}');
+
           return handler.next(request); //continue
         },
         onResponse: (response, handler) {
@@ -142,6 +144,13 @@ class Api {
   } //end of Password Update
 
 //-------------------------- Wallet Operations --------------------------//
+
+  //--------------------- Get Account --------------------------//
+  static Future<Response> getAccount({accountData}) async {
+    FormData formData = FormData.fromMap(accountData);
+    return dio.post('/balance-transfer-check', data: formData);
+  } //end of Get Account
+
   //--------------------- Recharge --------------------------//
   static Future<Response> recharge({
     required String serialNumber,
@@ -155,21 +164,26 @@ class Api {
   } //end of Recharge
 
   //--------------------- Transfer --------------------------//
-  static Future<Response> transfer({
-    required String amount,
-    required String accountNumber,
-  }) async {
-    FormData formData = FormData.fromMap(
-      {
-        'amount': amount,
-        'account_number': accountNumber,
-      },
-    );
-    return dio.post('/balance-transfer', data: formData);
+  static Future<Response> transfer({required transferData}) async {
+    FormData formData = FormData.fromMap(transferData);
+    return dio.post('/balance-transfer-confirm', data: formData);
   } //end of Transfer
 
   //--------------------- Get Agents --------------------------//
   static Future<Response> getAgents() async {
     return dio.get('/agent-list');
   } //end of Get Agents
+
+  //-------------------------- Transactions Operations --------------------------//
+
+  //--------------------- Get Transactions --------------------------//
+  static Future<Response> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    return dio.get('/my-transactions', queryParameters: {
+      'start_date': startDate,
+      'end_date': endDate,
+    });
+  } //end of Get Transactions
 } //end of api

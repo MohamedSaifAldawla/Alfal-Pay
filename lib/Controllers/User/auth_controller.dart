@@ -8,7 +8,6 @@ import '../../Models/user.dart';
 import '../../Services/api.dart';
 import '../../Views/Auth/login_screen.dart';
 import '../../Views/Client/Home/home_screen.dart';
-import '../../routes.dart';
 import 'base_controller.dart';
 
 class AuthController extends GetxController with BaseController {
@@ -215,6 +214,7 @@ class AuthController extends GetxController with BaseController {
         GetStorage().remove('full_name'),
         GetStorage().remove('first_name'),
         GetStorage().remove('second_name'),
+        GetStorage().remove('phone_number'),
         GetStorage().remove('balance'),
         GetStorage().remove('login_token'),
         GetStorage().write("walletIsShow", true),
@@ -234,6 +234,7 @@ class AuthController extends GetxController with BaseController {
         GetStorage().write('full_name', user.value.fullName),
         GetStorage().write('first_name', user.value.firstName),
         GetStorage().write('second_name', user.value.secondName),
+        GetStorage().write('phone_number', user.value.phoneNumber),
         GetStorage().write('balance', user.value.balance),
         GetStorage().write('profilePic', user.value.profilePic),
         GetStorage().write('login_token', user.value.token),

@@ -167,42 +167,41 @@ class _LoginScreenState extends State<LoginScreen> {
                           1.6,
                           InputField(
                             controller: _phoneController,
-                            hint: "Phone".tr,
+                            hint: "Phone or Account".tr,
                             icon: "assets/icons/Phone.svg",
                             obscureText: false,
-                            maxLength: 9,
                             keyboardType: TextInputType.number,
                             onSaved: (newValue) => phone = newValue,
-                            onChanged: (value) {
-                              if (value == null || value.isNotEmpty) {
-                                removeError(
-                                    error: "Please Enter your Phone".tr);
-                              }
-                              if (value!.length >= 9) {
-                                removeError(
-                                    error: "Phone number is too short".tr);
-                              }
-                              if (value.isEmpty) {
-                                addError(error: "Please Enter your Phone".tr);
-                              }
+                            // onChanged: (value) {
+                            //   if (value == null || value.isNotEmpty) {
+                            //     removeError(
+                            //         error: "Please Enter your Phone".tr);
+                            //   }
+                            //   if (value!.length >= 9) {
+                            //     removeError(
+                            //         error: "Phone number is too short".tr);
+                            //   }
+                            //   if (value.isEmpty) {
+                            //     addError(error: "Please Enter your Phone".tr);
+                            //   }
 
-                              if (value.length < 9) {
-                                addError(error: "Phone number is too short".tr);
-                              }
-                            },
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                addError(error: "Please Enter your Phone".tr);
-                                return "";
-                              } else if (value.length < 9) {
-                                addError(error: "Phone number is too short".tr);
-                                return "";
-                              }
-                              return null;
-                            },
+                            //   if (value.length < 9) {
+                            //     addError(error: "Phone number is too short".tr);
+                            //   }
+                            // },
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     addError(error: "Please Enter your Phone".tr);
+                            //     return "";
+                            //   } else if (value.length < 9) {
+                            //     addError(error: "Phone number is too short".tr);
+                            //     return "";
+                            //   }
+                            //   return null;
+                            // },
                           ),
                         ),
-                        Gap(getProportionateScreenHeight(5)),
+                        Gap(getProportionateScreenHeight(15)),
                         FadeAnimation(
                           1.6,
                           SuffixInputField(

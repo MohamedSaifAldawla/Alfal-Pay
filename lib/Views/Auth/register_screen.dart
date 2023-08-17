@@ -177,20 +177,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
                               removeError(
-                                  error:
-                                      "Please Enter your user First name".tr);
+                                  error: "Please Enter your First name".tr);
                             }
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user First name".tr);
+                                  error: "Please Enter your First name".tr);
                             }
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user First name".tr);
+                                  error: "Please Enter your First name".tr);
                               return "";
                             }
                             return null;
@@ -210,20 +207,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
                               removeError(
-                                  error:
-                                      "Please Enter your user Second name".tr);
+                                  error: "Please Enter your Second name".tr);
                             }
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user Second name".tr);
+                                  error: "Please Enter your Second name".tr);
                             }
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user Second name".tr);
+                                  error: "Please Enter your Second name".tr);
                               return "";
                             }
                             return null;
@@ -243,20 +237,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
                               removeError(
-                                  error:
-                                      "Please Enter your user Third name".tr);
+                                  error: "Please Enter your Third name".tr);
                             }
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user Third name".tr);
+                                  error: "Please Enter your Third name".tr);
                             }
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               addError(
-                                  error:
-                                      "Please Enter your user Third name".tr);
+                                  error: "Please Enter your Third name".tr);
                               return "";
                             }
                             return null;

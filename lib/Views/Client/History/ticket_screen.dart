@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
+import '../../../Models/transactions.dart';
+import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/intro.dart';
 import '../../../Util/Widgets/social_item.dart';
 import '../../../Util/colors.dart';
@@ -12,7 +14,11 @@ import '../../../Util/size_config.dart';
 import '../../../Util/theme.dart';
 
 class TicketScreen extends StatelessWidget {
-  TicketScreen({super.key});
+  TicketScreen({
+    super.key,
+    required this.transactions,
+  });
+  final TransactionList transactions;
   ScreenshotController screenshotController = ScreenshotController();
   @override
   Widget build(BuildContext context) {
@@ -21,8 +27,8 @@ class TicketScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenHeight(horizontalPadding),
-              vertical: getProportionateScreenHeight(20)),
+            horizontal: getProportionateScreenHeight(20),
+          ),
           child: Screenshot(
             controller: screenshotController,
             child: Container(
@@ -60,7 +66,7 @@ class TicketScreen extends StatelessWidget {
                       height: getProportionateScreenHeight(250),
                     ),
                     BodyText(
-                      text: "Amount Transferred Successfully",
+                      text: "Amount Successfully".tr,
                       weight: FontWeight.bold,
                       fontSize: getProportionateScreenHeight(20),
                       color: AppColors.success,
@@ -78,8 +84,7 @@ class TicketScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           BodyText(
-                            text: "544646"
-                                " SDG",
+                            text: "${transactions.amount} ${"SDG".tr}",
                             weight: FontWeight.bold,
                             fontSize: getProportionateScreenHeight(20),
                           ),
@@ -98,9 +103,23 @@ class TicketScreen extends StatelessWidget {
                           weight: FontWeight.bold,
                         ),
                         const Spacer(),
-                        const BodyText(
-                          text: "5656",
+                        BodyText(
+                          text: transactions.refNumber.toString(),
                           weight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                    Gap(getProportionateScreenHeight(10)),
+                    Row(
+                      children: [
+                        BodyText(
+                          text: "Type".tr,
+                          weight: FontWeight.bold,
+                        ),
+                        const Spacer(),
+                        BodyText(
+                          text: transactions.typeLabel,
+                          weight: FontWeight.w500,
                         ),
                       ],
                     ),
@@ -112,8 +131,8 @@ class TicketScreen extends StatelessWidget {
                           weight: FontWeight.bold,
                         ),
                         const Spacer(),
-                        const BodyText(
-                          text: "Moe saif",
+                        BodyText(
+                          text: transactions.accountFromNumber,
                           weight: FontWeight.w500,
                         ),
                       ],
@@ -126,9 +145,28 @@ class TicketScreen extends StatelessWidget {
                           weight: FontWeight.bold,
                         ),
                         const Spacer(),
-                        const BodyText(
-                          text: "Mustafa",
+                        BodyText(
+                          text: transactions.accountToNumber,
                           weight: FontWeight.w500,
+                        ),
+                      ],
+                    ),
+                    Gap(getProportionateScreenHeight(10)),
+                    Row(
+                      children: [
+                        BodyText(
+                          text: "Comment".tr,
+                          weight: FontWeight.bold,
+                        ),
+                        const Spacer(),
+                        Expanded(
+                          flex: 3,
+                          child: BodyText(
+                            text: transactions.comment,
+                            weight: FontWeight.w500,
+                            textAlign: TextAlign.end,
+                            maxLines: 2,
+                          ),
                         ),
                       ],
                     ),
@@ -140,8 +178,8 @@ class TicketScreen extends StatelessWidget {
                           weight: FontWeight.bold,
                         ),
                         const Spacer(),
-                        const BodyText(
-                          text: '08 Mar 2023',
+                        BodyText(
+                          text: transactions.createdAt,
                           weight: FontWeight.w500,
                         ),
                       ],
@@ -156,15 +194,17 @@ class TicketScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SmallButtons(
+                          title: "Save ticket".tr,
                           icon: "assets/icons/Save2.svg",
                           color: AppColors.kPrimaryColor,
                           press: () async {
                             final image = await screenshotController.capture();
                             if (image == null) return;
-                            // mainController.saveImage(image);
+                            mainController.saveImage(image);
                           },
                         ),
                         SmallButtons(
+                          title: "Home".tr,
                           icon: "assets/icons/home.svg",
                           color: AppColors.kPrimaryColor,
                           press: () {

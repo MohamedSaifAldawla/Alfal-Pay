@@ -1,6 +1,6 @@
 import 'dart:typed_data';
-
 import 'package:alfalPay/Controllers/User/agents_controller.dart';
+import 'package:alfalPay/Controllers/User/transactions_controller.dart';
 import 'package:alfalPay/Controllers/User/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +14,7 @@ import '../../Util/colors.dart';
 class MainController extends GetxController {
   WalletController walletController = Get.put(WalletController());
   AgentsController agentsController = Get.put(AgentsController());
+  TransactionsController transController = Get.put(TransactionsController());
 
   Locale? language;
   bool darkMode = false;
@@ -48,9 +49,11 @@ class MainController extends GetxController {
         .replaceAll('.', '_')
         .replaceAll(':', '_');
     final name = "screenshot_$time";
-    final result = await ImageGallerySaver.saveImage(image, name: name);
+    final result =
+        await ImageGallerySaver.saveImage(image, name: name, quality: 100);
+    //debugPrint(result['isSuccess'].toString());
     if (result['isSuccess'] == true) {
-      debugPrint(result);
+      debugPrint(result['isSuccess'].toString());
       SnackBar(
           "Success".tr,
           "Saved successfully".tr,

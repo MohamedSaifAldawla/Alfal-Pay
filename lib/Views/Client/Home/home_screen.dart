@@ -3,6 +3,7 @@ import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
+import 'package:alfalPay/Views/Client/Home/beneficiaries_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -33,10 +34,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _accountNumber = TextEditingController();
-  final TextEditingController _amount = TextEditingController();
   final TextEditingController _serialNumber = TextEditingController();
   String? accountNumber;
-  String? amount;
   String? serialNumber;
 
   @override
@@ -150,11 +149,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/Devices.svg",
-                        service: "Bills".tr,
+                        icon: "assets/icons/bag-dollar.svg",
+                        service: "Charge Wallet".tr,
+                        size: getProportionateScreenHeight(33),
                         onTap: () {
-                          Get.to(() => const BillsScreen(),
-                              transition: Transition.fadeIn);
+                          rechargeDialog(context);
                         },
                       ),
                     ],
@@ -167,26 +166,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ServicesItem(
-                        icon: "assets/icons/qr-code-scan.svg",
-                        service: "QR".tr,
+                        icon: "assets/icons/Devices.svg",
+                        service: "Bills".tr,
                         onTap: () {
-                          Get.toNamed(Routes.qrScanner);
+                          Get.to(() => const BillsScreen(),
+                              transition: Transition.fadeIn);
                         },
                       ),
                       ServicesItem(
                         icon: "assets/icons/Clipboard.svg",
                         service: "History".tr,
                         onTap: () {
-                          Get.to(() => const HistoryScreen(),
-                              transition: Transition.fadeIn);
+                          transController.getTransactions();
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/Map.svg",
-                        service: "Agents".tr,
+                        icon: "assets/icons/qr-code-scan.svg",
+                        service: "QR".tr,
+                        size: getProportionateScreenHeight(35),
                         onTap: () {
-                          // Get.toNamed(Routes.history);
-                          agentsController.getAgents();
+                          Get.toNamed(Routes.qrScanner);
                         },
                       ),
 
@@ -202,16 +201,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 FadeAnimation2(
                   1.8,
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ServicesItem(
-                        icon: "assets/icons/Money-Bag.svg",
-                        service: "Currency".tr,
-                        onTap: () {
-                          Get.to(() => const CurrencyRates(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
                       // ServicesItem(
                       //   icon: "assets/icons/DebitCard.svg",
                       //   iconcolor: AppColors.kPrimaryColor,
@@ -223,7 +214,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       //   service: "Other".tr,
                       //   onTap: () {},
                       // ),
-                      Gap(getProportionateScreenHeight(35)),
+                      ServicesItem(
+                        icon: "assets/icons/Map.svg",
+                        service: "Agents".tr,
+                        onTap: () {
+                          agentsController.getAgents();
+                        },
+                      ),
+                      ServicesItem(
+                        icon: "assets/icons/UsersGroup.svg",
+                        service: "Beneficiaries".tr,
+                        onTap: () {
+                          Get.to(() => const BeneficiariesScreen(),
+                              transition: Transition.fadeIn);
+                        },
+                      ),
+                      ServicesItem(
+                        icon: "assets/icons/Money-Bag.svg",
+                        service: "Currency".tr,
+                        onTap: () {
+                          Get.to(() => const CurrencyRates(),
+                              transition: Transition.fadeIn);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(getProportionateScreenHeight(20)),
+                FadeAnimation2(
+                  1.9,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       ServicesItem(
                         icon: "assets/icons/Settings.svg",
                         service: "Settings".tr,
@@ -374,7 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : AppColors.kPrimaryDarkColor,
             child: SizedBox(
               width: double.infinity,
-              height: getProportionateScreenHeight(350),
+              height: getProportionateScreenHeight(300),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -386,7 +408,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             Get.back();
                             _accountNumber.text = '';
-                            _amount.text = '';
                           },
                           icon: SvgPicture.asset(
                             "assets/icons/Close.svg",
@@ -423,20 +444,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               onSaved: (newValue) => accountNumber = newValue,
                             ),
                           ),
-                          Gap(getProportionateScreenHeight(30)),
-                          FadeAnimation2(
-                            1.1,
-                            InputField(
-                              controller: _amount,
-                              label: "Enter your Amount".tr,
-                              hint: "Ex:".tr,
-                              type: "Amount",
-                              icon: "assets/icons/top-up.svg",
-                              obscureText: false,
-                              keyboardType: TextInputType.number,
-                              onSaved: (newValue) => amount = newValue,
-                            ),
-                          ),
                           Gap(getProportionateScreenHeight(40)),
                           FadeAnimation(
                             1.2,
@@ -455,24 +462,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       SnackPosition.TOP,
                                       2);
                                 }
-                                if (_amount.text.isEmpty) {
-                                  mainController.SnackBar(
-                                      "Error".tr,
-                                      'Please Enter amount'.tr,
-                                      SvgPicture.asset(
-                                        "assets/icons/Close.svg",
-                                        color: Colors.white,
-                                      ),
-                                      AppColors.error,
-                                      SnackPosition.TOP,
-                                      2);
-                                }
 
-                                if (_accountNumber.text.isNotEmpty &&
-                                    _amount.text.isNotEmpty) {
-                                  walletController.Transfer(
-                                      accountNumber: _accountNumber.text,
-                                      amount: _amount.text);
+                                if (_accountNumber.text.isNotEmpty) {
+                                  walletController
+                                          .accountData['account_number'] =
+                                      _accountNumber.text;
+                                  walletController.getAccount(
+                                      accountData:
+                                          walletController.accountData);
                                 }
                               },
                             ),
