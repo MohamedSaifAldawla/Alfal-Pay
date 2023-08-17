@@ -12,12 +12,14 @@ class ServicesItem extends StatelessWidget {
     required this.service,
     this.onTap,
     this.size,
+    this.cWidth,
+    this.cHeight,
     Key? key,
   }) : super(key: key);
   String icon;
   Color? iconcolor;
   String service;
-  double? size;
+  double? size, cWidth, cHeight;
   void Function()? onTap;
 
   @override
@@ -29,8 +31,8 @@ class ServicesItem extends StatelessWidget {
             GestureDetector(
               onTap: onTap,
               child: Container(
-                width: getProportionateScreenWidth(70),
-                height: getProportionateScreenHeight(70),
+                width: cWidth ?? getProportionateScreenWidth(70),
+                height: cHeight ?? (70),
                 decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.light
                       ? AppColors.kPrimaryLightColor

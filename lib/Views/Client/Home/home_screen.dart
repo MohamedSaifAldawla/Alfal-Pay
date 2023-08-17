@@ -3,6 +3,7 @@ import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
+import 'package:alfalPay/Views/Client/Home/beneficiaries_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -202,14 +203,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ServicesItem(
-                        icon: "assets/icons/Money-Bag.svg",
-                        service: "Currency".tr,
-                        onTap: () {
-                          Get.to(() => const CurrencyRates(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
                       // ServicesItem(
                       //   icon: "assets/icons/DebitCard.svg",
                       //   iconcolor: AppColors.kPrimaryColor,
@@ -225,10 +218,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: "assets/icons/Map.svg",
                         service: "Agents".tr,
                         onTap: () {
-                          // Get.toNamed(Routes.history);
                           agentsController.getAgents();
                         },
                       ),
+                      ServicesItem(
+                        icon: "assets/icons/UsersGroup.svg",
+                        service: "Beneficiaries".tr,
+                        onTap: () {
+                          Get.to(() => const BeneficiariesScreen(),
+                              transition: Transition.fadeIn);
+                        },
+                      ),
+                      ServicesItem(
+                        icon: "assets/icons/Money-Bag.svg",
+                        service: "Currency".tr,
+                        onTap: () {
+                          Get.to(() => const CurrencyRates(),
+                              transition: Transition.fadeIn);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(getProportionateScreenHeight(20)),
+                FadeAnimation2(
+                  1.9,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       ServicesItem(
                         icon: "assets/icons/Settings.svg",
                         service: "Settings".tr,
