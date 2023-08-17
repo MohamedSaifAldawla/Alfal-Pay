@@ -2,7 +2,6 @@ import 'package:alfalPay/Util/Widgets/intro.dart';
 import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
-import 'package:alfalPay/Views/Client/History/history_screen.dart';
 import 'package:alfalPay/Views/Client/Home/beneficiaries_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
@@ -188,12 +187,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           Get.toNamed(Routes.qrScanner);
                         },
                       ),
-
-                      // ServicesItem(
-                      //   icon: "assets/icons/Buildings.svg",
-                      //   service: "E-government".tr,
-                      //   onTap: () {},
-                      // ),
                     ],
                   ),
                 ),
@@ -203,6 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // ServicesItem(
+                      //   icon: "assets/icons/Buildings.svg",
+                      //   service: "E-government".tr,
+                      //   onTap: () {},
+                      // ),
                       // ServicesItem(
                       //   icon: "assets/icons/DebitCard.svg",
                       //   iconcolor: AppColors.kPrimaryColor,

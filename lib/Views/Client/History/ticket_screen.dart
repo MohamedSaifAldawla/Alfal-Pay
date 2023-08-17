@@ -2,7 +2,6 @@ import 'package:alfalPay/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
 import '../../../Models/transactions.dart';
@@ -11,7 +10,6 @@ import '../../../Util/Widgets/intro.dart';
 import '../../../Util/Widgets/social_item.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
-import '../../../Util/theme.dart';
 
 class TicketScreen extends StatelessWidget {
   TicketScreen({
@@ -27,7 +25,7 @@ class TicketScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenHeight(20),
+            horizontal: getProportionateScreenHeight(15),
           ),
           child: Screenshot(
             controller: screenshotController,
@@ -55,8 +53,8 @@ class TicketScreen extends StatelessWidget {
                   ]),
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: getProportionateScreenHeight(35),
-                    right: getProportionateScreenHeight(35),
+                    left: getProportionateScreenHeight(15),
+                    right: getProportionateScreenHeight(15),
                     bottom: getProportionateScreenHeight(30)),
                 child: Column(
                   children: [
@@ -191,7 +189,7 @@ class TicketScreen extends StatelessWidget {
                     ),
                     Gap(getProportionateScreenHeight(30)),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SmallButtons(
                           title: "Save ticket".tr,
@@ -209,6 +207,16 @@ class TicketScreen extends StatelessWidget {
                           color: AppColors.kPrimaryColor,
                           press: () {
                             Get.offAllNamed(Routes.home);
+                          },
+                        ),
+                        SmallButtons(
+                          title: "Share".tr,
+                          icon: "assets/icons/Share.svg",
+                          color: AppColors.kPrimaryColor,
+                          press: () async {
+                            final image = await screenshotController.capture();
+                            if (image == null) return;
+                            mainController.saveAndShare(image);
                           },
                         ),
                       ],

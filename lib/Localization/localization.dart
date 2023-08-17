@@ -149,6 +149,7 @@ class Localization implements Translations {
           "From": "From",
           "To": "To",
           "Date": "Date",
+          "Share": "Share",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "Sorry the app is under maintenance",
@@ -305,6 +306,7 @@ class Localization implements Translations {
           "From": "من",
           "To": "إلى",
           "Date": "التاريخ",
+          "Share": "مشاركه",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "عذرآ التطبيق في وضع الصيانه",
