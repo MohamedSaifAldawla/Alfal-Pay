@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../colors.dart';
-import '../theme.dart';
 
 Stack waveClipper() {
   return Stack(

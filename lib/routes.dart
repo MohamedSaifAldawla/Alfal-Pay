@@ -1,4 +1,3 @@
-import 'package:alfalPay/Util/Middlewares/login_middlleware.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
 import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
@@ -10,7 +9,6 @@ import 'package:alfalPay/Views/Client/Profile/edit_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/password_update_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:get/get.dart';
-
 import 'Util/Middlewares/middleware.dart';
 import 'Views/Auth/intro_screen.dart';
 import 'Views/Auth/login_screen.dart';
@@ -20,7 +18,6 @@ import 'Views/Auth/register_screen.dart';
 import 'Views/Auth/resetpass_screen.dart';
 import 'Views/Auth/splash_screen.dart.dart';
 import 'Views/Auth/welcome_screen.dart';
-import 'Views/Client/History/ticket_screen.dart';
 
 /// Routes name to directly navigate the route by its name
 class Routes {

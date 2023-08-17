@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import '../../../Util/size_config.dart';
 import '../../Util/Globals/globals.dart';
-import '../../Util/colors.dart';
 import '../../routes.dart';
 
 class SplashScreen extends StatefulWidget {

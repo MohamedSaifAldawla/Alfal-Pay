@@ -1,11 +1,7 @@
-import 'package:alfalPay/Util/Globals/globals.dart';
-import 'package:alfalPay/Util/Widgets/agents_card.dart';
 import 'package:alfalPay/Util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import '../../../Animations/FadeAnimation.dart';
 import '../../../Util/colors.dart';
 
 class BeneficiariesScreen extends StatelessWidget {

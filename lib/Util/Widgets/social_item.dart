@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-
 import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
@@ -50,6 +48,7 @@ class SocialCard extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class SmallButtons extends StatelessWidget {
   SmallButtons({
     Key? key,

@@ -11,6 +11,7 @@ import '../../../Util/Widgets/social_item.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
 
+// ignore: must_be_immutable
 class TicketScreen extends StatelessWidget {
   TicketScreen({
     super.key,

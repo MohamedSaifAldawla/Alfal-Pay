@@ -11,6 +11,7 @@ import '../intro.dart';
 
 cardDialog({
   required context,
+  required accountId,
 }) {
   return Get.dialog(
     FadeAnimation2(
@@ -49,7 +50,7 @@ cardDialog({
               ),
               Center(
                 child: QrImage(
-                  data: GetStorage().read('id'),
+                  data: accountId,
                   backgroundColor: AppColors.kPrimaryLightColor,
                   version: QrVersions.auto,
                   size: getProportionateScreenHeight(200),

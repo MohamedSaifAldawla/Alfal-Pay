@@ -100,7 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              onTap: () => cardDialog(context: context),
+                              onTap: () => cardDialog(
+                                  accountId: GetStorage().read('id'),
+                                  context: context),
                             ),
                           ),
                         ),

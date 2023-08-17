@@ -8,6 +8,7 @@ import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
 
+// ignore: must_be_immutable
 class TransCard extends StatelessWidget {
   TransCard({
     super.key,

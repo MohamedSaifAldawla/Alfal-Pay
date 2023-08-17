@@ -5,6 +5,7 @@ import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
 
+// ignore: must_be_immutable
 class ServicesItem extends StatelessWidget {
   ServicesItem({
     required this.icon,
@@ -73,6 +74,7 @@ class ServicesItem extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ServicesItem2 extends StatelessWidget {
   ServicesItem2({
     required this.icon,
