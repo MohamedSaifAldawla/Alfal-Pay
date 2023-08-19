@@ -32,7 +32,7 @@ class WalletController extends GetxController with BaseController {
       Get.to(() => TransferScreen(), transition: Transition.fadeIn);
     } else if (response.data['status_code'] == 1) {
       hideLoading();
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           '${response.data['message']}',
           SvgPicture.asset(
@@ -54,7 +54,7 @@ class WalletController extends GetxController with BaseController {
       hideLoading();
       debugPrint("${response.data}");
       Get.offAll(() => const HomeScreen(), transition: Transition.fadeIn);
-      mainController.SnackBar(
+      mainController.snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -70,7 +70,7 @@ class WalletController extends GetxController with BaseController {
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       debugPrint("${response.data}");
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -92,7 +92,7 @@ class WalletController extends GetxController with BaseController {
       hideLoading();
       debugPrint("${response.data}");
       Get.offAll(() => const HomeScreen(), transition: Transition.fadeIn);
-      mainController.SnackBar(
+      mainController.snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -109,7 +109,7 @@ class WalletController extends GetxController with BaseController {
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       debugPrint("${response.data}");
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           "${response.data['message']}",
           SvgPicture.asset(

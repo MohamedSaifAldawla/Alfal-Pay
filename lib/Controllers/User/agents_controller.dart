@@ -27,7 +27,7 @@ class AgentsController extends GetxController with BaseController {
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       debugPrint("${response.data}");
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           "${response.data['message']}",
           SvgPicture.asset(

@@ -160,7 +160,7 @@ class _TransferQRState extends State<TransferQR> {
                               text: "Continue".tr,
                               press: () {
                                 if (_accountNumber.text.isEmpty) {
-                                  mainController.SnackBar(
+                                  mainController.snackBar(
                                       "Error".tr,
                                       'Please Enter account'.tr,
                                       SvgPicture.asset(
@@ -172,7 +172,7 @@ class _TransferQRState extends State<TransferQR> {
                                       2);
                                 }
                                 if (_amount.text.isEmpty) {
-                                  mainController.SnackBar(
+                                  mainController.snackBar(
                                       "Error".tr,
                                       'Please Enter amount'.tr,
                                       SvgPicture.asset(

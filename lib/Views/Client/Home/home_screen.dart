@@ -2,7 +2,6 @@ import 'package:alfalPay/Util/Widgets/intro.dart';
 import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
-import 'package:alfalPay/Views/Client/Home/beneficiaries_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -225,8 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: "assets/icons/UsersGroup.svg",
                         service: "Beneficiaries".tr,
                         onTap: () {
-                          Get.to(() => const BeneficiariesScreen(),
-                              transition: Transition.fadeIn);
+                          beneficiaryController.getBeneficiaries();
                         },
                       ),
                       ServicesItem(
@@ -347,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               text: "Continue".tr,
                               press: () {
                                 if (_serialNumber.text.isEmpty) {
-                                  mainController.SnackBar(
+                                  mainController.snackBar(
                                       "Error".tr,
                                       'Please Enter card'.tr,
                                       SvgPicture.asset(
@@ -451,7 +449,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               text: "Continue".tr,
                               press: () {
                                 if (_accountNumber.text.isEmpty) {
-                                  mainController.SnackBar(
+                                  mainController.snackBar(
                                       "Error".tr,
                                       'Please Enter account'.tr,
                                       SvgPicture.asset(

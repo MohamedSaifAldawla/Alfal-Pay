@@ -29,18 +29,19 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     debugPrint('$loginData');
     var response = await Api.login(loginData: loginData);
+    debugPrint('$response');
     user.value = User.fromJson(response.data);
     debugPrint(user.value.fullName);
     if (user.value.statusCode == 0) {
-      await SaveUserData(user);
+      await saveUserData(user);
       isLoggedIn.value = true;
       hideLoading();
       Get.off(() => const HomeScreen(), transition: Transition.fadeIn);
     } else if (user.value.statusCode == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
-          '${user.value.error}',
+          '${user.value.message}',
           SvgPicture.asset(
             "assets/icons/Close.svg",
             color: Colors.white,
@@ -58,7 +59,7 @@ class AuthController extends GetxController with BaseController {
     user.value = User.fromJson(response.data);
     if (user.value.statusCode == 0) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Success".tr,
           "${user.value.message}",
           SvgPicture.asset(
@@ -67,14 +68,14 @@ class AuthController extends GetxController with BaseController {
           ),
           AppColors.success,
           SnackPosition.TOP);
-      await SaveUserData(user);
+      await saveUserData(user);
       isLoggedIn.value = true;
     }
     if (user.value.statusCode == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
-          '${user.value.error}',
+          '${user.value.message}',
           SvgPicture.asset(
             "assets/icons/Close.svg",
             color: Colors.white,
@@ -110,7 +111,7 @@ class AuthController extends GetxController with BaseController {
     } catch (e) {
       hideLoading();
       debugPrint("$e");
-      SnackBar(
+      snackBar(
           "Error".tr,
           '$e',
           SvgPicture.asset(
@@ -132,7 +133,7 @@ class AuthController extends GetxController with BaseController {
     debugPrint("${response.data['status_code']}");
     if (response.data['status_code'] == 0) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -145,7 +146,7 @@ class AuthController extends GetxController with BaseController {
     }
     if (response.data['status_code'] == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
           '${response.data['message']}',
           SvgPicture.asset(
@@ -167,7 +168,7 @@ class AuthController extends GetxController with BaseController {
     debugPrint("${response.data['status_code']}");
     if (response.data['status_code'] == 0) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -179,7 +180,7 @@ class AuthController extends GetxController with BaseController {
     }
     if (response.data['status_code'] == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
           '${response.data['message']}',
           SvgPicture.asset(
@@ -227,7 +228,7 @@ class AuthController extends GetxController with BaseController {
 
 //--------------------- User Local Storage Saving --------------------------//
 
-  SaveUserData(Rx<User> user) async {
+  saveUserData(Rx<User> user) async {
     Future.wait(
       [
         GetStorage().write('id', user.value.accountNumber),
@@ -243,7 +244,7 @@ class AuthController extends GetxController with BaseController {
   }
 
 //--------------------- Snack Bar --------------------------//
-  SnackbarController SnackBar(String title, String message, Widget icon,
+  SnackbarController snackBar(String title, String message, Widget icon,
       Color backgroundColor, SnackPosition? snackPosition) {
     return Get.snackbar(
       title,

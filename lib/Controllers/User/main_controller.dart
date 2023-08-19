@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:alfalPay/Controllers/User/agents_controller.dart';
+import 'package:alfalPay/Controllers/User/beneficiaries_controller.dart';
 import 'package:alfalPay/Controllers/User/transactions_controller.dart';
 import 'package:alfalPay/Controllers/User/wallet_controller.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class MainController extends GetxController {
   WalletController walletController = Get.put(WalletController());
   AgentsController agentsController = Get.put(AgentsController());
   TransactionsController transController = Get.put(TransactionsController());
+  BeneficiariesController beneficiaryController =
+      Get.put(BeneficiariesController());
 
   Locale? language;
   bool darkMode = false;
@@ -57,7 +60,7 @@ class MainController extends GetxController {
     //debugPrint(result['isSuccess'].toString());
     if (result['isSuccess'] == true) {
       debugPrint(result['isSuccess'].toString());
-      SnackBar(
+      snackBar(
           "Success".tr,
           "Saved successfully".tr,
           SvgPicture.asset(
@@ -68,7 +71,7 @@ class MainController extends GetxController {
           SnackPosition.TOP,
           3);
     } else {
-      SnackBar(
+      snackBar(
           "Error".tr,
           '$result',
           SvgPicture.asset(
@@ -93,7 +96,7 @@ class MainController extends GetxController {
         await ImageGallerySaver.saveImage(image, name: name, quality: 100);
     if (result['isSuccess'] == true) {
       debugPrint(result['isSuccess'].toString());
-      SnackBar(
+      snackBar(
           "Success".tr,
           "Saved successfully".tr,
           SvgPicture.asset(
@@ -108,7 +111,7 @@ class MainController extends GetxController {
       sharedImage.writeAsBytesSync(image);
       await Share.shareXFiles([XFile(sharedImage.path)]);
     } else {
-      SnackBar(
+      snackBar(
           "Error".tr,
           '$result',
           SvgPicture.asset(
@@ -145,8 +148,8 @@ class MainController extends GetxController {
   }
 
   //--------------------- Snack Bar --------------------------//
-  // ignore: non_constant_identifier_names
-  SnackbarController SnackBar(String title, String message, Widget icon,
+
+  SnackbarController snackBar(String title, String message, Widget icon,
       Color backgroundColor, SnackPosition? snackPosition, int duration) {
     return Get.snackbar(
       title,
