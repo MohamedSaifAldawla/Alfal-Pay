@@ -54,15 +54,15 @@ class TicketScreen extends StatelessWidget {
                   ]),
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: getProportionateScreenHeight(15),
-                    right: getProportionateScreenHeight(15),
+                    left: getProportionateScreenHeight(5),
+                    right: getProportionateScreenHeight(5),
                     bottom: getProportionateScreenHeight(30)),
                 child: Column(
                   children: [
                     Lottie.asset(
                       'assets/icons/transfer.json',
-                      width: getProportionateScreenWidth(250),
-                      height: getProportionateScreenHeight(250),
+                      width: getProportionateScreenWidth(200),
+                      height: getProportionateScreenHeight(200),
                     ),
                     BodyText(
                       text: "Amount Successfully".tr,
@@ -71,7 +71,7 @@ class TicketScreen extends StatelessWidget {
                       color: AppColors.success,
                       maxLines: 2,
                     ),
-                    Gap(getProportionateScreenHeight(20)),
+                    Gap(getProportionateScreenHeight(10)),
                     Container(
                       padding: EdgeInsets.all(getProportionateScreenHeight(15)),
                       width: double.infinity,
@@ -95,99 +95,38 @@ class TicketScreen extends StatelessWidget {
                       ),
                     ),
                     Gap(getProportionateScreenHeight(20)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "Transaction id".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        BodyText(
-                          text: transactions.refNumber.toString(),
-                          weight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "Type".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        BodyText(
-                          text: transactions.typeLabel,
-                          weight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "From".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        BodyText(
-                          text: transactions.accountFromNumber,
-                          weight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "To".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        BodyText(
-                          text: transactions.accountToNumber,
-                          weight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "Comment".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        Expanded(
-                          flex: 3,
-                          child: BodyText(
-                            text: transactions.comment,
-                            weight: FontWeight.w500,
-                            textAlign: TextAlign.end,
-                            maxLines: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Row(
-                      children: [
-                        BodyText(
-                          text: "Date".tr,
-                          weight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        BodyText(
-                          text: transactions.createdAt,
-                          weight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    const Divider(
-                      color: AppColors.kSecondaryColor,
-                      thickness: 0.1,
-                    ),
+                    TransactionField(
+                        title: "Transaction id".tr,
+                        info: transactions.refNumber.toString()),
+                    TransactionField(
+                        title: "Type".tr, info: transactions.typeLabel),
+                    TransactionField(
+                        title: "From".tr, info: transactions.accountFromNumber),
+                    TransactionField(
+                        title: "To".tr, info: transactions.accountToNumber),
+                    TransactionField(
+                        title: "Receiver name".tr,
+                        info: transactions.receiverName),
+                    TransactionField(
+                        title: "Comment".tr, info: transactions.comment),
+                    // Row(
+                    //   children: [
+                    //     BodyText(
+                    //       text: "Date".tr,
+                    //       weight: FontWeight.bold,
+                    //     ),
+                    //     const Spacer(),
+                    //     BodyText(
+                    //       text: transactions.createdAt,
+                    //       weight: FontWeight.w500,
+                    //     ),
+                    //   ],
+                    // ),
+                    // Gap(getProportionateScreenHeight(10)),
+                    // const Divider(
+                    //   color: AppColors.kSecondaryColor,
+                    //   thickness: 0.1,
+                    // ),
                     Gap(getProportionateScreenHeight(30)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -210,16 +149,16 @@ class TicketScreen extends StatelessWidget {
                             Get.offAllNamed(Routes.home);
                           },
                         ),
-                        SmallButtons(
-                          title: "Share".tr,
-                          icon: "assets/icons/Share.svg",
-                          color: AppColors.kPrimaryColor,
-                          press: () async {
-                            final image = await screenshotController.capture();
-                            if (image == null) return;
-                            mainController.saveAndShare(image);
-                          },
-                        ),
+                        // SmallButtons(
+                        //   title: "Share".tr,
+                        //   icon: "assets/icons/Share.svg",
+                        //   color: AppColors.kPrimaryColor,
+                        //   press: () async {
+                        //     final image = await screenshotController.capture();
+                        //     if (image == null) return;
+                        //     mainController.saveAndShare(image);
+                        //   },
+                        // ),
                       ],
                     ),
                   ],
@@ -228,6 +167,44 @@ class TicketScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class TransactionField extends StatelessWidget {
+  const TransactionField({
+    super.key,
+    required this.title,
+    required this.info,
+  });
+
+  final String title, info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(getProportionateScreenHeight(10)),
+      margin: EdgeInsets.only(bottom: getProportionateScreenHeight(0)),
+      decoration: BoxDecoration(
+          border: Border.all(color: const Color.fromARGB(65, 158, 158, 158))),
+      child: Row(
+        children: [
+          BodyText(
+            text: title,
+            weight: FontWeight.bold,
+          ),
+          const Spacer(),
+          Expanded(
+            flex: 3,
+            child: BodyText(
+              text: info,
+              textAlign: TextAlign.end,
+              weight: FontWeight.w500,
+              maxLines: 2,
+            ),
+          ),
+        ],
       ),
     );
   }

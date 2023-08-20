@@ -58,14 +58,14 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           waveClipper(),
-          Container(
-            padding: EdgeInsets.only(
-              right: horizontalPadding,
-              left: horizontalPadding,
-              top: 100,
-              bottom: 100,
-            ),
-            child: Center(
+          Center(
+            child: Container(
+              padding: EdgeInsets.only(
+                right: horizontalPadding,
+                left: horizontalPadding,
+                top: getProportionateScreenHeight(100),
+                bottom: getProportionateScreenHeight(60),
+              ),
               child: Column(
                 children: [
                   FadeAnimation(

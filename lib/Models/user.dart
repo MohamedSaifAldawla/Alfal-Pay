@@ -13,6 +13,8 @@ class User {
   dynamic balance;
   dynamic profilePic;
   dynamic token;
+  dynamic type;
+  dynamic referralCode;
   dynamic message;
   dynamic error;
 
@@ -29,6 +31,8 @@ class User {
     this.error,
     this.balance,
     this.profilePic,
+    this.type,
+    this.referralCode,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -42,6 +46,8 @@ class User {
         balance: json['balance'],
         profilePic: json['profile_pic'],
         token: json['token'],
+        type: json['type'],
+        referralCode: json['referral_code'],
         message: json['message'],
         error: json['error'],
       );

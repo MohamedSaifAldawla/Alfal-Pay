@@ -91,7 +91,7 @@ class BeneficiariesCard extends StatelessWidget {
                   "assets/icons/Transfer.svg",
                   height: getProportionateScreenHeight(30),
                   width: getProportionateScreenHeight(30),
-                  color: AppColors.error,
+                  color: AppColors.success,
                 ),
               ),
               IconButton(

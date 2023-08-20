@@ -73,9 +73,9 @@ class TransferScreen extends StatelessWidget {
               InputField(
                 controller: walletController.amount,
                 label: "Enter your Amount".tr,
-                hint: "Ex:".tr,
+                hint: "",
                 type: "Amount",
-                icon: "assets/icons/top-up.svg",
+                icon: "assets/icons/bag-dollar.svg",
                 obscureText: false,
                 keyboardType: TextInputType.number,
               ),

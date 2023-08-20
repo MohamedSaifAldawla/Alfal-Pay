@@ -218,6 +218,8 @@ class AuthController extends GetxController with BaseController {
         GetStorage().remove('phone_number'),
         GetStorage().remove('balance'),
         GetStorage().remove('login_token'),
+        GetStorage().remove('type'),
+        GetStorage().remove('referralCode'),
         GetStorage().write("walletIsShow", true),
       ],
     );
@@ -238,6 +240,8 @@ class AuthController extends GetxController with BaseController {
         GetStorage().write('phone_number', user.value.phoneNumber),
         GetStorage().write('balance', user.value.balance),
         GetStorage().write('profilePic', user.value.profilePic),
+        GetStorage().write('type', user.value.type),
+        GetStorage().write('referralCode', user.value.referralCode),
         GetStorage().write('login_token', user.value.token),
       ],
     );

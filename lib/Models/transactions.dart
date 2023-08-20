@@ -79,6 +79,8 @@ class TransactionList {
   String typeLabel;
   String accountFromNumber;
   String accountToNumber;
+  String receiverName;
+  String senderName;
   String comment;
   bool isSuccess;
   bool isPositive;
@@ -92,6 +94,8 @@ class TransactionList {
     required this.typeLabel,
     required this.accountFromNumber,
     required this.accountToNumber,
+    required this.receiverName,
+    required this.senderName,
     required this.comment,
     required this.isSuccess,
     required this.isPositive,
@@ -107,6 +111,8 @@ class TransactionList {
         typeLabel: json["type_label"],
         accountFromNumber: json["account_from_number"] ?? "",
         accountToNumber: json["account_to_number"] ?? "",
+        receiverName: json["receiver_name"] ?? "",
+        senderName: json["sender_name"] ?? "",
         comment: json["comment"] ?? "",
         isSuccess: json["is_success"],
         isPositive: json["is_positive"],

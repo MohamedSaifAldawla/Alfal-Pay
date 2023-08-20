@@ -22,16 +22,17 @@ class TransactionsController extends GetxController with BaseController {
         await Api.getTransactions(startDate: startDate, endDate: endDate);
     debugPrint("${response.data['data']['data']}");
     if (response.data['status_code'] == 0) {
-      if (response.data['data'].isNotEmpty) {
-        final res = Transactions.fromJson(response.data);
+      if (response.data['data']['data'].isNotEmpty) {
         hideLoading();
+        final res = Transactions.fromJson(response.data);
         isLoading.value = false;
         transactions.clear();
         transactions.addAll(res.data.data);
         debugPrint("$transactions");
         Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
       }
-      if (response.data['data'].isEmpty) {
+      if (response.data['data']['data'].isEmpty) {
+        hideLoading();
         transactions.clear();
         isLoading.value = false;
         Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
