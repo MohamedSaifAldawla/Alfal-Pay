@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(25),
+              horizontal: getProportionateScreenWidth(15),
               vertical: horizontalPadding,
             ),
             child: Column(

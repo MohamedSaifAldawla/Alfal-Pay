@@ -45,9 +45,6 @@ class Localization implements Translations {
           //--------------------------- Welcome --------------//
           "Login": "Login",
           "Register": "Register",
-          "Delivery account": "Delivery account",
-          "Extra income":
-              "Or make extra income and start delivery and register now",
 
           //--------------------------- Login --------------//
           "Login2": "Login",
@@ -67,6 +64,7 @@ class Localization implements Translations {
           "Second name": "Second name",
           "Third name": "Third name",
           "Referral code": "Referral code",
+          "Please Enter Referral code": "Please Enter Referral code",
           "Address": "Address",
           "Date of birth": "Date of birth",
           "Re-Enter password": "Re-Enter password",
@@ -152,6 +150,7 @@ class Localization implements Translations {
           "Type": "Type",
           "From": "From account",
           "To": "To account",
+          "To2": "To",
           "Date": "Date",
           "Share": "Share",
 
@@ -214,9 +213,7 @@ class Localization implements Translations {
 
           //--------------------------- Welcome --------------//
           "Login": "تسجيل دخول",
-          "Register": "إنشاء حساب جديد",
-          "Delivery account": "حساب توصيل",
-          "Extra income": "او حقق دخل اضافي وابدا التوصيل وسجل الأن",
+          "Register": "إنشاء حساب",
 
           //--------------------------- Login --------------//
           "Login2": "دخول",
@@ -235,6 +232,7 @@ class Localization implements Translations {
           "Second name": "الإسم الثاني",
           "Third name": "الإسم الثالث",
           "Referral code": "رمز الإحاله",
+          "Please Enter Referral code": "الرجاء إدخال رمز الإحاله",
           "Address": "ألعنوان",
           "Date of birth": "تاريخ الميلاد",
           "Re-Enter password": "إعادة كلمة المرور",
@@ -320,13 +318,14 @@ class Localization implements Translations {
           "Type": "نوع المعامله",
           "From": "من حساب",
           "To": "إلى حساب",
+          "To2": "إلى",
           "Date": "التاريخ",
           "Share": "مشاركه",
 
           //----------------------------------- Beneficiaries Page -------------------------//
           "Add Beneficiary": "إضافه مستفيد",
           "No Beneficiaries yet": "لا يوجد لديك مستفيدين حاليا",
-          "Nick name": "Nick name",
+          "Nick name": "إسم المستفيد",
           "Enter nick name": "أدخل إسم المستفيد",
           "Please Enter nick name": "الرجاء إدخال إسم المستفيد",
 

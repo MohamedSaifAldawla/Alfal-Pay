@@ -1,3 +1,4 @@
+import 'package:alfalPay/Util/Globals/globals.dart';
 import 'package:alfalPay/Util/colors.dart';
 import 'package:alfalPay/Views/Client/Profile/edit_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     debugPrint('$loginData');
     var response = await Api.login(loginData: loginData);
-    debugPrint('$response');
+    debugPrint('LoginData :$response');
     user.value = User.fromJson(response.data);
     debugPrint(user.value.fullName);
     if (user.value.statusCode == 0) {
@@ -56,10 +57,11 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     debugPrint('$registerData');
     var response = await Api.register(registerData: registerData);
+    debugPrint('RegisterData :$response');
     user.value = User.fromJson(response.data);
     if (user.value.statusCode == 0) {
       hideLoading();
-      snackBar(
+      mainController.snackBar(
           "Success".tr,
           "${user.value.message}",
           SvgPicture.asset(
@@ -67,9 +69,11 @@ class AuthController extends GetxController with BaseController {
             color: Colors.white,
           ),
           AppColors.success,
-          SnackPosition.TOP);
+          SnackPosition.TOP,
+          20);
       await saveUserData(user);
       isLoggedIn.value = true;
+      Get.offAll(() => const LoginScreen(), transition: Transition.fadeIn);
     }
     if (user.value.statusCode == 1) {
       hideLoading();

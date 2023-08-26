@@ -83,12 +83,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             height: getProportionateScreenHeight(52),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColors.kSecondaryColor,
-                                width: getProportionateScreenWidth(1.0),
-                              ),
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? AppColors.kPrimaryLightColor
+                                  : AppColors.kPrimaryDark3Color,
                               borderRadius: BorderRadius.circular(
-                                  getProportionateScreenHeight(25)),
+                                  getProportionateScreenHeight(15)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? AppColors.shadow
+                                      : AppColors.shadow2,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -100,9 +110,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   SvgPicture.asset(
                                     "assets/icons/Calendar.svg",
                                     height: getProportionateScreenHeight(30),
-                                    color: AppColors.kSecondaryColor,
+                                    color: AppColors.kPrimaryColor,
                                   ),
-                                  Gap(getProportionateScreenHeight(50)),
+                                  Gap(getProportionateScreenHeight(40)),
                                   InkWell(
                                     onTap: () {
                                       _selectDate(context);
@@ -115,7 +125,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   ),
                                   Gap(getProportionateScreenHeight(10)),
                                   BodyText(
-                                    text: "To".tr,
+                                    text: "To2".tr,
                                     color: AppColors.kSecondaryColor,
                                   ),
                                   Gap(getProportionateScreenHeight(10)),

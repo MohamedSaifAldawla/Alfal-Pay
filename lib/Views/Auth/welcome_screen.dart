@@ -64,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
                 right: horizontalPadding,
                 left: horizontalPadding,
                 top: getProportionateScreenHeight(100),
-                bottom: getProportionateScreenHeight(60),
+                bottom: getProportionateScreenHeight(50),
               ),
               child: Column(
                 children: [
@@ -88,8 +88,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Login.svg",
                           service: "Login".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const LoginScreen(),
                                 transition: Transition.fadeIn);
@@ -98,8 +96,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/UserPlus.svg",
                           service: "Register".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const RegisterScreen(),
                                 transition: Transition.fadeIn);
@@ -117,8 +113,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Map.svg",
                           service: "Agents".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             agentsController.getAgents();
                           },
@@ -126,8 +120,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Money-Bag.svg",
                           service: "Currency".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const CurrencyRates(),
                                 transition: Transition.fadeIn);

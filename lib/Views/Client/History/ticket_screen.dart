@@ -109,19 +109,8 @@ class TicketScreen extends StatelessWidget {
                         info: transactions.receiverName),
                     TransactionField(
                         title: "Comment".tr, info: transactions.comment),
-                    // Row(
-                    //   children: [
-                    //     BodyText(
-                    //       text: "Date".tr,
-                    //       weight: FontWeight.bold,
-                    //     ),
-                    //     const Spacer(),
-                    //     BodyText(
-                    //       text: transactions.createdAt,
-                    //       weight: FontWeight.w500,
-                    //     ),
-                    //   ],
-                    // ),
+                    TransactionField(
+                        title: "Date".tr, info: transactions.createdAt),
                     // Gap(getProportionateScreenHeight(10)),
                     // const Divider(
                     //   color: AppColors.kSecondaryColor,

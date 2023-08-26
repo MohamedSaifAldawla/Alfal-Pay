@@ -5,9 +5,8 @@ import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
 
-// ignore: must_be_immutable
 class ServicesItem extends StatelessWidget {
-  ServicesItem({
+  const ServicesItem({
     required this.icon,
     this.iconcolor,
     required this.service,
@@ -17,11 +16,71 @@ class ServicesItem extends StatelessWidget {
     this.cHeight,
     Key? key,
   }) : super(key: key);
-  String icon;
-  Color? iconcolor;
-  String service;
-  double? size, cWidth, cHeight;
-  void Function()? onTap;
+  final String icon;
+  final Color? iconcolor;
+  final String service;
+  final double? size, cWidth, cHeight;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(getProportionateScreenHeight(5)),
+        width: cWidth ?? getProportionateScreenWidth(110),
+        height: cHeight ?? getProportionateScreenHeight(110),
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.light
+              ? AppColors.kPrimaryLightColor
+              : AppColors.kPrimaryDark3Color,
+          borderRadius: BorderRadius.circular(getProportionateScreenHeight(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).brightness == Brightness.light
+                  ? AppColors.shadow
+                  : AppColors.shadow2,
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              color: iconcolor ?? AppColors.kPrimaryColor,
+              width: size ?? getProportionateScreenWidth(40),
+              height: size ?? getProportionateScreenHeight(40),
+            ),
+            Gap(getProportionateScreenHeight(15)),
+            BodyText(
+              text: service,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ServicesItem2 extends StatelessWidget {
+  const ServicesItem2({
+    required this.icon,
+    this.iconcolor,
+    required this.service,
+    this.onTap,
+    this.size,
+    this.cWidth,
+    this.cHeight,
+    Key? key,
+  }) : super(key: key);
+  final String icon;
+  final Color? iconcolor;
+  final String service;
+  final double? size, cWidth, cHeight;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +134,8 @@ class ServicesItem extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class ServicesItem2 extends StatelessWidget {
-  ServicesItem2({
+class ServicesItem3 extends StatelessWidget {
+  ServicesItem3({
     required this.icon,
     required this.containercolor,
     required this.iconcolor,

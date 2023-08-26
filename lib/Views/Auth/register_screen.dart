@@ -303,6 +303,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           icon: "assets/icons/ShieldUser.svg",
                           obscureText: false,
                           keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            if (value == null || value.isNotEmpty) {
+                              removeError(
+                                  error: "Please Enter Referral code".tr);
+                            }
+                            if (value == null || value.isEmpty) {
+                              addError(error: "Please Enter Referral code".tr);
+                            }
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              addError(error: "Please Enter Referral code".tr);
+                              return "";
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Gap(getProportionateScreenHeight(20)),
