@@ -73,11 +73,11 @@ class Data {
 }
 
 class Beneficiaries {
-  int id;
+  dynamic id;
   String name;
   String nickName;
   String accountNumber;
-  String customerId;
+  dynamic customerId;
   DateTime createdAt;
   DateTime updatedAt;
 

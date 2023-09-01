@@ -21,7 +21,7 @@ class BeneficiariesController extends GetxController with BaseController {
   Future<void> getBeneficiaries() async {
     showLoading();
     var response = await Api.getBeneficiaries();
-    //debugPrint("${response.data}");
+    debugPrint("${response.data}");
     if (response.data['status_code'] == 0) {
       if (response.data['data'].isNotEmpty) {
         hideLoading();

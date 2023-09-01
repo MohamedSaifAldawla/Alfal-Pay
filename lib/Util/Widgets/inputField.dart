@@ -44,12 +44,12 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final lang = GetStorage().read("lang");
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(170, 170, 170, .05),
-            blurRadius: 20.0,
-            offset: Offset(0, 10),
+            color: const Color.fromRGBO(170, 170, 170, .05),
+            blurRadius: getProportionateScreenHeight(20.0),
+            offset: const Offset(0, 10),
             blurStyle: BlurStyle.normal,
           ),
         ],
@@ -64,6 +64,7 @@ class InputField extends StatelessWidget {
         validator: validator,
         controller: controller,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(getProportionateScreenHeight(18)),
           labelText: label,
           labelStyle: TextStyle(
             fontSize: getProportionateScreenHeight(17),
@@ -136,12 +137,12 @@ class SuffixInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final lang = GetStorage().read("lang");
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(170, 170, 170, .05),
-            blurRadius: 20.0,
-            offset: Offset(0, 10),
+            color: const Color.fromRGBO(170, 170, 170, .05),
+            blurRadius: getProportionateScreenHeight(20.0),
+            offset: const Offset(0, 10),
             blurStyle: BlurStyle.normal,
           ),
         ],
@@ -156,6 +157,7 @@ class SuffixInputField extends StatelessWidget {
         validator: validator,
         controller: controller,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(getProportionateScreenHeight(18)),
           labelText: label,
           labelStyle: TextStyle(
             fontSize: getProportionateScreenHeight(17),

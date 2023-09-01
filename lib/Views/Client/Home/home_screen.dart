@@ -277,99 +277,97 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Theme.of(context).brightness == Brightness.light
                 ? AppColors.kPrimaryLightColor
                 : AppColors.kPrimaryDarkColor,
-            child: SizedBox(
-              width: double.infinity,
-              height: getProportionateScreenHeight(300),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                          _serialNumber.text = '';
+                        },
+                        icon: SvgPicture.asset(
+                          "assets/icons/Close.svg",
+                          color: AppColors.error,
+                          width: getProportionateScreenWidth(20),
+                          height: getProportionateScreenHeight(20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  FadeAnimation(
+                    0.5,
+                    BodyText(
+                      text: "Charge Wallet".tr,
+                      weight: FontWeight.bold,
+                    ),
+                  ),
+                  Gap(getProportionateScreenHeight(10)),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: getProportionateScreenHeight(15),
+                      right: getProportionateScreenHeight(15),
+                      bottom: getProportionateScreenHeight(10),
+                    ),
+                    child: Column(
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.back();
-                            _serialNumber.text = '';
-                          },
-                          icon: SvgPicture.asset(
-                            "assets/icons/Close.svg",
-                            color: AppColors.error,
-                            width: getProportionateScreenWidth(20),
-                            height: getProportionateScreenHeight(20),
+                        FadeAnimation(
+                          1,
+                          BodyText(
+                            text: "Enter card".tr,
+                            maxLines: 2,
                           ),
                         ),
+                        Gap(getProportionateScreenHeight(20)),
+                        FadeAnimation(
+                          1.1,
+                          InputField(
+                            controller: _serialNumber,
+                            label: "Enter card number".tr,
+                            hint: "Ex:".tr,
+                            type: "Amount",
+                            icon: "assets/icons/top-up.svg",
+                            obscureText: false,
+                            keyboardType: TextInputType.number,
+                            onSaved: (newValue) => serialNumber = newValue,
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(30)),
+                        FadeAnimation(
+                          1.2,
+                          PrimaryButton(
+                            text: "Continue".tr,
+                            press: () {
+                              if (_serialNumber.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    'Please Enter card'.tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    5);
+                              }
+                              if (_serialNumber.text.isNotEmpty) {
+                                walletController.Recharge(
+                                    serialNumber: _serialNumber.text);
+
+                                debugPrint(_serialNumber.text);
+                              }
+                            },
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(30)),
                       ],
                     ),
-                    FadeAnimation(
-                      0.5,
-                      BodyText(
-                        text: "Charge Wallet".tr,
-                        weight: FontWeight.bold,
-                      ),
-                    ),
-                    Gap(getProportionateScreenHeight(10)),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: getProportionateScreenHeight(15),
-                        right: getProportionateScreenHeight(15),
-                        bottom: getProportionateScreenHeight(10),
-                      ),
-                      child: Column(
-                        children: [
-                          FadeAnimation(
-                            1,
-                            BodyText(
-                              text: "Enter card".tr,
-                              maxLines: 2,
-                            ),
-                          ),
-                          Gap(getProportionateScreenHeight(20)),
-                          FadeAnimation(
-                            1.1,
-                            InputField(
-                              controller: _serialNumber,
-                              label: "Enter card number".tr,
-                              hint: "Ex:".tr,
-                              type: "Amount",
-                              icon: "assets/icons/top-up.svg",
-                              obscureText: false,
-                              keyboardType: TextInputType.number,
-                              onSaved: (newValue) => serialNumber = newValue,
-                            ),
-                          ),
-                          Gap(getProportionateScreenHeight(30)),
-                          FadeAnimation(
-                            1.2,
-                            PrimaryButton(
-                              text: "Continue".tr,
-                              press: () {
-                                if (_serialNumber.text.isEmpty) {
-                                  mainController.snackBar(
-                                      "Error".tr,
-                                      'Please Enter card'.tr,
-                                      SvgPicture.asset(
-                                        "assets/icons/Close.svg",
-                                        color: Colors.white,
-                                      ),
-                                      AppColors.error,
-                                      SnackPosition.TOP,
-                                      5);
-                                }
-                                if (_serialNumber.text.isNotEmpty) {
-                                  walletController.Recharge(
-                                      serialNumber: _serialNumber.text);
-
-                                  debugPrint(_serialNumber.text);
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -392,91 +390,87 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Theme.of(context).brightness == Brightness.light
                 ? AppColors.kPrimaryLightColor
                 : AppColors.kPrimaryDarkColor,
-            child: SizedBox(
-              width: double.infinity,
-              height: getProportionateScreenHeight(300),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                          _accountNumber.text = '';
+                        },
+                        icon: SvgPicture.asset(
+                          "assets/icons/Close.svg",
+                          color: AppColors.error,
+                          width: getProportionateScreenWidth(20),
+                          height: getProportionateScreenHeight(20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  BodyText(
+                    text: "Transfer".tr,
+                    weight: FontWeight.bold,
+                  ),
+                  Gap(getProportionateScreenHeight(30)),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: getProportionateScreenHeight(15),
+                      right: getProportionateScreenHeight(15),
+                      bottom: getProportionateScreenHeight(10),
+                    ),
+                    child: Column(
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.back();
-                            _accountNumber.text = '';
-                          },
-                          icon: SvgPicture.asset(
-                            "assets/icons/Close.svg",
-                            color: AppColors.error,
-                            width: getProportionateScreenWidth(20),
-                            height: getProportionateScreenHeight(20),
+                        FadeAnimation2(
+                          1,
+                          InputField(
+                            controller: _accountNumber,
+                            label: "Account number".tr,
+                            hint: "Enter account number".tr,
+                            type: "Account",
+                            icon: "assets/icons/Person.svg",
+                            obscureText: false,
+                            keyboardType: TextInputType.number,
+                            onSaved: (newValue) => accountNumber = newValue,
                           ),
                         ),
+                        Gap(getProportionateScreenHeight(40)),
+                        FadeAnimation(
+                          1.2,
+                          PrimaryButton(
+                            text: "Continue".tr,
+                            press: () {
+                              if (_accountNumber.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    'Please Enter account'.tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
+
+                              if (_accountNumber.text.isNotEmpty) {
+                                walletController.accountData['account_number'] =
+                                    _accountNumber.text;
+                                walletController.getAccount(
+                                    accountData: walletController.accountData);
+                              }
+                            },
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(30)),
                       ],
                     ),
-                    BodyText(
-                      text: "Transfer".tr,
-                      weight: FontWeight.bold,
-                    ),
-                    Gap(getProportionateScreenHeight(30)),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: getProportionateScreenHeight(15),
-                        right: getProportionateScreenHeight(15),
-                        bottom: getProportionateScreenHeight(10),
-                      ),
-                      child: Column(
-                        children: [
-                          FadeAnimation2(
-                            1,
-                            InputField(
-                              controller: _accountNumber,
-                              label: "Account number".tr,
-                              hint: "Enter account number".tr,
-                              type: "Account",
-                              icon: "assets/icons/Person.svg",
-                              obscureText: false,
-                              keyboardType: TextInputType.number,
-                              onSaved: (newValue) => accountNumber = newValue,
-                            ),
-                          ),
-                          Gap(getProportionateScreenHeight(40)),
-                          FadeAnimation(
-                            1.2,
-                            PrimaryButton(
-                              text: "Continue".tr,
-                              press: () {
-                                if (_accountNumber.text.isEmpty) {
-                                  mainController.snackBar(
-                                      "Error".tr,
-                                      'Please Enter account'.tr,
-                                      SvgPicture.asset(
-                                        "assets/icons/Close.svg",
-                                        color: Colors.white,
-                                      ),
-                                      AppColors.error,
-                                      SnackPosition.TOP,
-                                      2);
-                                }
-
-                                if (_accountNumber.text.isNotEmpty) {
-                                  walletController
-                                          .accountData['account_number'] =
-                                      _accountNumber.text;
-                                  walletController.getAccount(
-                                      accountData:
-                                          walletController.accountData);
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

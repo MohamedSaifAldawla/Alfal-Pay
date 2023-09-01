@@ -16,7 +16,6 @@ import '../../../Util/Widgets/loader.dart';
 import '../../../Util/Widgets/profile_item.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
-import '../../../Util/theme.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

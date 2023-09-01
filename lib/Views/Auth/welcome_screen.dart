@@ -47,8 +47,8 @@ class WelcomeScreen extends StatelessWidget {
                   horizontal: getProportionateScreenHeight(15)),
               child: SvgPicture.asset(
                 "assets/icons/lang.svg",
-                height: getProportionateScreenHeight(20),
-                width: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(25),
+                width: getProportionateScreenHeight(25),
                 color: AppColors.kPrimaryLightColor,
               ),
             ),
@@ -63,11 +63,12 @@ class WelcomeScreen extends StatelessWidget {
               padding: EdgeInsets.only(
                 right: horizontalPadding,
                 left: horizontalPadding,
-                top: getProportionateScreenHeight(100),
+                // top: getProportionateScreenHeight(100),
                 bottom: getProportionateScreenHeight(50),
               ),
               child: Column(
                 children: [
+                  const Spacer(),
                   FadeAnimation(
                     1.1,
                     Hero(

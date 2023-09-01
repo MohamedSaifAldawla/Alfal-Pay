@@ -100,8 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   horizontal: getProportionateScreenHeight(15)),
               child: SvgPicture.asset(
                 "assets/icons/lang.svg",
-                height: getProportionateScreenHeight(20),
-                width: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(25),
+                width: getProportionateScreenHeight(25),
                 color: AppColors.kPrimaryLightColor,
               ),
             ),
@@ -358,16 +358,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           1.7,
                           Container(
                             padding:
-                                EdgeInsets.all(getProportionateScreenHeight(5)),
-                            height: getProportionateScreenHeight(52),
+                                EdgeInsets.all(getProportionateScreenHeight(9)),
+                            //height: getProportionateScreenHeight(20),
                             width: double.infinity,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: AppColors.kSecondaryColor,
-                                width: getProportionateScreenWidth(1.0),
                               ),
                               borderRadius: BorderRadius.circular(
-                                  getProportionateScreenHeight(25)),
+                                  getProportionateScreenHeight(20)),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(

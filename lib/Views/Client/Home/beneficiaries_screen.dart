@@ -114,90 +114,88 @@ class BeneficiariesScreen extends StatelessWidget {
             backgroundColor: Theme.of(context).brightness == Brightness.light
                 ? AppColors.kPrimaryLightColor
                 : AppColors.kPrimaryDarkColor,
-            child: SizedBox(
-              width: double.infinity,
-              height: getProportionateScreenHeight(300),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                          _accountNumber.text = '';
+                        },
+                        icon: SvgPicture.asset(
+                          "assets/icons/Close.svg",
+                          color: AppColors.error,
+                          width: getProportionateScreenWidth(20),
+                          height: getProportionateScreenHeight(20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  BodyText(
+                    text: "Add Beneficiary".tr,
+                    weight: FontWeight.bold,
+                  ),
+                  Gap(getProportionateScreenHeight(30)),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: getProportionateScreenHeight(15),
+                      right: getProportionateScreenHeight(15),
+                      bottom: getProportionateScreenHeight(10),
+                    ),
+                    child: Column(
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.back();
-                            _accountNumber.text = '';
-                          },
-                          icon: SvgPicture.asset(
-                            "assets/icons/Close.svg",
-                            color: AppColors.error,
-                            width: getProportionateScreenWidth(20),
-                            height: getProportionateScreenHeight(20),
+                        FadeAnimation2(
+                          1,
+                          InputField(
+                            controller: _accountNumber,
+                            label: "Account number".tr,
+                            hint: "Enter account number".tr,
+                            type: "Account",
+                            icon: "assets/icons/Person.svg",
+                            obscureText: false,
+                            keyboardType: TextInputType.number,
                           ),
                         ),
+                        Gap(getProportionateScreenHeight(40)),
+                        FadeAnimation(
+                          1.2,
+                          PrimaryButton(
+                            text: "Continue".tr,
+                            press: () {
+                              if (_accountNumber.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    'Please Enter account'.tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
+
+                              if (_accountNumber.text.isNotEmpty) {
+                                beneficiaryController
+                                        .accountData['account_number'] =
+                                    _accountNumber.text;
+                                beneficiaryController.checkBeneficiary(
+                                    accountData:
+                                        beneficiaryController.accountData);
+                              }
+                            },
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(30)),
                       ],
                     ),
-                    BodyText(
-                      text: "Add Beneficiary".tr,
-                      weight: FontWeight.bold,
-                    ),
-                    Gap(getProportionateScreenHeight(30)),
-                    Container(
-                      padding: EdgeInsets.only(
-                        left: getProportionateScreenHeight(15),
-                        right: getProportionateScreenHeight(15),
-                        bottom: getProportionateScreenHeight(10),
-                      ),
-                      child: Column(
-                        children: [
-                          FadeAnimation2(
-                            1,
-                            InputField(
-                              controller: _accountNumber,
-                              label: "Account number".tr,
-                              hint: "Enter account number".tr,
-                              type: "Account",
-                              icon: "assets/icons/Person.svg",
-                              obscureText: false,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          Gap(getProportionateScreenHeight(40)),
-                          FadeAnimation(
-                            1.2,
-                            PrimaryButton(
-                              text: "Continue".tr,
-                              press: () {
-                                if (_accountNumber.text.isEmpty) {
-                                  mainController.snackBar(
-                                      "Error".tr,
-                                      'Please Enter account'.tr,
-                                      SvgPicture.asset(
-                                        "assets/icons/Close.svg",
-                                        color: Colors.white,
-                                      ),
-                                      AppColors.error,
-                                      SnackPosition.TOP,
-                                      2);
-                                }
-
-                                if (_accountNumber.text.isNotEmpty) {
-                                  beneficiaryController
-                                          .accountData['account_number'] =
-                                      _accountNumber.text;
-                                  beneficiaryController.checkBeneficiary(
-                                      accountData:
-                                          beneficiaryController.accountData);
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

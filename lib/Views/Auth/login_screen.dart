@@ -97,8 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: getProportionateScreenHeight(15)),
                 child: SvgPicture.asset(
                   "assets/icons/lang.svg",
-                  height: getProportionateScreenHeight(20),
-                  width: getProportionateScreenHeight(20),
+                  height: getProportionateScreenHeight(25),
+                  width: getProportionateScreenHeight(25),
                   color: AppColors.kPrimaryLightColor,
                 ),
               ),
@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.only(
                   right: horizontalPadding,
                   left: horizontalPadding,
-                  top: getProportionateScreenHeight(110),
+                  top: getProportionateScreenHeight(120),
                   bottom: getProportionateScreenHeight(20),
                 ),
                 child: Center(
@@ -156,10 +156,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Gap(getProportionateScreenHeight(5)),
                         FadeAnimation2(
                           1.2,
-                          BodyText(
-                            text: "Log in to your account".tr,
-                            textAlign: TextAlign.start,
-                            maxLines: 2,
+                          Row(
+                            children: [
+                              BodyText(
+                                text: "Log in to your account".tr,
+                                textAlign: TextAlign.start,
+                                maxLines: 2,
+                              ),
+                            ],
                           ),
                         ),
                         Gap(getProportionateScreenHeight(30)),

@@ -1,3 +1,4 @@
+import 'package:alfalPay/Util/size_config.dart';
 import 'package:flutter/material.dart';
 import '../colors.dart';
 
@@ -9,7 +10,7 @@ Stack waveClipper() {
         child: ClipPath(
           clipper: WaveClipper(),
           child: Container(
-            height: 500,
+            height: getProportionateScreenHeight(470),
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -26,7 +27,7 @@ Stack waveClipper() {
         clipper: WaveClipper(),
         child: Container(
           color: AppColors.kPrimaryColor,
-          height: 490,
+          height: getProportionateScreenHeight(460),
         ),
       ),
     ],
@@ -41,7 +42,7 @@ Stack waveClipper2() {
         child: ClipPath(
           clipper: WaveClipper(),
           child: Container(
-            height: 190,
+            height: getProportionateScreenHeight(180),
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -58,7 +59,7 @@ Stack waveClipper2() {
         clipper: WaveClipper(),
         child: Container(
           color: AppColors.kPrimaryColor,
-          height: 180,
+          height: getProportionateScreenHeight(170),
         ),
       ),
     ],
@@ -73,7 +74,7 @@ Stack waveClipper3() {
         child: ClipPath(
           clipper: WaveClipper(),
           child: Container(
-            height: 350,
+            height: getProportionateScreenHeight(350),
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -90,7 +91,7 @@ Stack waveClipper3() {
         clipper: WaveClipper(),
         child: Container(
           color: AppColors.kPrimaryColor,
-          height: 340,
+          height: getProportionateScreenHeight(340),
         ),
       ),
     ],

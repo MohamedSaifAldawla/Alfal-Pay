@@ -35,7 +35,7 @@ class agentsCard extends StatelessWidget {
         ],
       ),
       width: double.infinity,
-      height: getProportionateScreenHeight(90),
+      height: getProportionateScreenHeight(95),
       child: Row(
         children: [
           Image.asset(
@@ -44,30 +44,34 @@ class agentsCard extends StatelessWidget {
             width: getProportionateScreenHeight(60),
           ),
           Gap(getProportionateScreenHeight(10)),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BodyText(
-                text: agent.name,
-                weight: FontWeight.bold,
-              ),
-              Gap(getProportionateScreenHeight(6)),
-              BodyText(
-                text: agent.phone,
-                fontSize: getProportionateScreenHeight(13),
-                color: Theme.of(context).brightness == Brightness.light
-                    ? AppColors.kSecondaryColor
-                    : Colors.white70,
-              ),
-              BodyText(
-                text: agent.address,
-                fontSize: getProportionateScreenHeight(13),
-                color: Theme.of(context).brightness == Brightness.light
-                    ? AppColors.kSecondaryColor
-                    : Colors.white70,
-              ),
-            ],
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BodyText(
+                  text: agent.name,
+                  weight: FontWeight.bold,
+                  textAlign: TextAlign.start,
+                  maxLines: 2,
+                ),
+                Gap(getProportionateScreenHeight(6)),
+                BodyText(
+                  text: agent.phone,
+                  fontSize: getProportionateScreenHeight(13),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.kSecondaryColor
+                      : Colors.white70,
+                ),
+                BodyText(
+                  text: agent.address,
+                  fontSize: getProportionateScreenHeight(13),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.kSecondaryColor
+                      : Colors.white70,
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -1,3 +1,5 @@
+import 'package:alfalPay/Util/Widgets/intro.dart';
+import 'package:alfalPay/Util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -13,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  int splashtime = 3;
+  int splashtime = 2;
   @override
   void initState() {
     Future.delayed(
@@ -53,6 +55,12 @@ class _SplashScreenState extends State<SplashScreen> {
               width: getProportionateScreenWidth(100),
               height: getProportionateScreenHeight(100),
               fit: BoxFit.fill,
+            ),
+            const Spacer(),
+            NormalBodyText(
+              text: version,
+              fontSize: 15,
+              color: AppColors.kSecondaryColor,
             ),
             const Spacer(),
           ],
