@@ -51,7 +51,8 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          padding: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenHeight(20)),
           child: Column(
             children: [
               Gap(getProportionateScreenHeight(50)),

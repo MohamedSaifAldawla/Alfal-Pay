@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(15),
+              horizontal: getProportionateScreenWidth(20),
               vertical: horizontalPadding,
             ),
             child: Column(
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                Gap(getProportionateScreenHeight(50)),
+                Gap(getProportionateScreenHeight(40)),
                 FadeAnimation(
                   1.5,
                   SectionsTitle(

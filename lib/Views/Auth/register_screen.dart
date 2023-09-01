@@ -131,13 +131,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             1,
                             InkWell(
                               onTap: () {
-                                _firstNameController.text = "moesaif";
-                                _secondNameController.text = "moesaif";
-                                _thirdNameController.text = "moesaif";
-                                _phoneController.text = "989876546";
-                                _addressController.text = "Khartoum";
-                                _passwordController.text = "12345678";
-                                _confirmPasswordController.text = "12345678";
+                                // _firstNameController.text = "moesaif";
+                                // _secondNameController.text = "moesaif";
+                                // _thirdNameController.text = "moesaif";
+                                // _phoneController.text = "989876546";
+                                // _addressController.text = "Khartoum";
+                                // _passwordController.text = "12345678";
+                                // _confirmPasswordController.text = "12345678";
                               },
                               child: Padding(
                                 padding:

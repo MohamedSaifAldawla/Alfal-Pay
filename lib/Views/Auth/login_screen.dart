@@ -140,8 +140,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               1.1,
                               InkWell(
                                 onTap: () {
-                                  _phoneController.text = "123588984";
-                                  _passwordController.text = "12345678";
+                                  // _phoneController.text = "123588984";
+                                  // _passwordController.text = "12345678";
                                 },
                                 child: BodyText(
                                   text: "Login2".tr,
@@ -292,15 +292,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               const Spacer(),
-                              GestureDetector(
-                                onTap: (() => Get.to(
-                                    () => const ResetPassScreen(),
-                                    transition: Transition.fadeIn)),
-                                child: BodyText(
-                                  text: "Forgot Password".tr,
-                                  color: AppColors.kPrimaryColor,
-                                ),
-                              ),
+                              // GestureDetector(
+                              //   onTap: (() => Get.to(
+                              //       () => const ResetPassScreen(),
+                              //       transition: Transition.fadeIn)),
+                              //   child: BodyText(
+                              //     text: "Forgot Password".tr,
+                              //     color: AppColors.kPrimaryColor,
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

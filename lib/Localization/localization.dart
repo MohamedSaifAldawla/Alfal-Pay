@@ -50,7 +50,7 @@ class Localization implements Translations {
           "Login2": "Login",
           "Log in to your account":
               "Log in to your account and make your transactions",
-          "Phone": "Phone number",
+          "Phone": "Phone number without 0",
           "Phone or Account": "Phone or account number",
           "Password": "Password",
           "Remember me": "Remember me",
@@ -218,7 +218,7 @@ class Localization implements Translations {
           //--------------------------- Login --------------//
           "Login2": "دخول",
           "Log in to your account": "قم بالدخول لحسابك لإجراء معاملاتك",
-          "Phone": "رقم الهاتف ",
+          "Phone": " رقم الهاتف بدون 0 ",
           "Phone or Account": "أدخل رقم الهاتف او الحساب",
           "Password": "كلمة المرور",
           "Remember me": "حفظ بيانات الدخول",
