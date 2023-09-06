@@ -7,6 +7,7 @@ class Localization implements Translations {
           //----------------------------------- Auth Pages -------------------------//
           "Select Language": "Select Language",
           "AppName": "Alfal Pay",
+          "Alfal Payments": "Alfal Payments",
           "Welcome": "Welcome",
           "WelcomeText":
               "Welcome to Alfal Payment App for \n for money transactions",
@@ -187,6 +188,7 @@ class Localization implements Translations {
           //----------------------------------- Auth Pages -------------------------//
           "Select Language": "أختيار اللغة",
           "AppName": "الفال باي",
+          "Alfal Payments": "الفال للتحاويل الماليه",
           "Welcome": "مرحبا بك",
           "WelcomeText": "مرحبا بك في تطبيق الفال باي \n للتحاويل الماليه",
           "Please Enter your First name": "الرجاء إدخال الإسم الأول",

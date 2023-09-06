@@ -119,6 +119,14 @@ class HewalaCard extends StatelessWidget {
                         color: AppColors.error),
                   ],
                 ),
+                Gap(getProportionateScreenHeight(5)),
+                BodyText(
+                  text: hewalas.serialNumber,
+                  fontSize: getProportionateScreenHeight(13),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.kSecondaryColor
+                      : Colors.white70,
+                ),
               ],
             ),
           ),

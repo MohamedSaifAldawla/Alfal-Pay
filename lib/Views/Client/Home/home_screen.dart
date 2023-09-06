@@ -245,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 FadeAnimation2(
                   1.9,
                   Row(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       ServicesItem(
                         icon: "assets/icons/Money-Bag.svg",
@@ -255,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               transition: Transition.fadeIn);
                         },
                       ),
+                      Gap(getProportionateScreenHeight(3)),
                       ServicesItem(
                         icon: "assets/icons/Settings.svg",
                         service: "Settings".tr,

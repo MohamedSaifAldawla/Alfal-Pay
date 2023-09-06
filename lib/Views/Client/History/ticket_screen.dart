@@ -150,6 +150,23 @@ class TicketScreen extends StatelessWidget {
                         // ),
                       ],
                     ),
+                    Gap(getProportionateScreenHeight(20)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          logo,
+                          height: getProportionateScreenHeight(20),
+                          width: getProportionateScreenHeight(20),
+                        ),
+                        Gap(getProportionateScreenHeight(10)),
+                        NormalBodyText(
+                          text: "Alfal Payments".tr,
+                          fontSize: 15,
+                          color: AppColors.kSecondaryColor,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -202,8 +202,7 @@ class HewalaScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           Get.back();
-                          hewalaController.amount.text = '';
-                          hewalaController.comment.text = '';
+                          hewalaController.serial.text = '';
                         },
                         icon: SvgPicture.asset(
                           "assets/icons/Close.svg",

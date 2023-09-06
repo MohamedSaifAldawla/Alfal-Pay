@@ -96,7 +96,7 @@ class HewalasController extends GetxController with BaseController {
       hideLoading();
       mainController.snackBar(
           "Success".tr,
-          "${response.data['nick_name']}",
+          "${response.data['message']}",
           SvgPicture.asset(
             "assets/icons/Success2.svg",
             color: Colors.white,
@@ -104,6 +104,7 @@ class HewalasController extends GetxController with BaseController {
           AppColors.success,
           SnackPosition.TOP,
           3);
+      hewalaController.serial.text = '';
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       mainController.snackBar(
