@@ -3,6 +3,7 @@ import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
+import 'package:alfalPay/Views/Client/Home/hewala_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -181,11 +182,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/qr-code-scan.svg",
-                        service: "QR".tr,
+                        icon: "assets/icons/DebitCard.svg",
+                        service: "Hewala".tr,
                         size: getProportionateScreenHeight(35),
                         onTap: () {
-                          Get.toNamed(Routes.qrScanner);
+                          Get.to(() => HewalaScreen(),
+                              transition: Transition.fadeIn);
                         },
                       ),
                     ],
@@ -214,12 +216,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       //   onTap: () {},
                       // ),
                       ServicesItem(
-                        icon: "assets/icons/Map.svg",
-                        service: "Agents".tr,
+                        icon: "assets/icons/qr-code-scan.svg",
+                        service: "QR".tr,
+                        size: getProportionateScreenHeight(35),
                         onTap: () {
-                          agentsController.getAgents();
+                          Get.toNamed(Routes.qrScanner);
                         },
                       ),
+
                       ServicesItem(
                         icon: "assets/icons/UsersGroup.svg",
                         service: "Beneficiaries".tr,
@@ -228,11 +232,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       ServicesItem(
-                        icon: "assets/icons/Money-Bag.svg",
-                        service: "Currency".tr,
+                        icon: "assets/icons/Map.svg",
+                        service: "Agents".tr,
                         onTap: () {
-                          Get.to(() => const CurrencyRates(),
-                              transition: Transition.fadeIn);
+                          agentsController.getAgents();
                         },
                       ),
                     ],
@@ -242,8 +245,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 FadeAnimation2(
                   1.9,
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      ServicesItem(
+                        icon: "assets/icons/Money-Bag.svg",
+                        service: "Currency".tr,
+                        onTap: () {
+                          Get.to(() => const CurrencyRates(),
+                              transition: Transition.fadeIn);
+                        },
+                      ),
                       ServicesItem(
                         icon: "assets/icons/Settings.svg",
                         service: "Settings".tr,

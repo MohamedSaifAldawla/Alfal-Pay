@@ -217,4 +217,20 @@ class Api {
   static Future<Response> deleteBeneficiary({int? beneficiaryId}) async {
     return dio.delete('/my-beneficiaries/$beneficiaryId');
   } //end of Show Beneficiaries
+
+  //-------------------------- Hewala Operations --------------------------//
+  //--------------------- Get Hewala --------------------------//
+  static Future<Response> getHewala() async {
+    return dio.get('/transfers-with-number');
+  } //end of Get Hewala
+
+  //--------------------- Create Hewala --------------------------//
+  static Future<Response> createHewala({hewalaData}) async {
+    return dio.post('/transfers-with-number', data: hewalaData);
+  } //end of Create Hewala
+
+  //--------------------- Receive Hewala --------------------------//
+  static Future<Response> receiveHewala({receiveData}) async {
+    return dio.post('/transfers-with-number-recharge', data: receiveData);
+  } //end of Receive Hewala
 } //end of api

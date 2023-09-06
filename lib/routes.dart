@@ -2,6 +2,7 @@ import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
 import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
+import 'package:alfalPay/Views/Client/Home/hewala_screen.dart';
 import 'package:alfalPay/Views/Client/Home/home_screen.dart';
 import 'package:alfalPay/Views/Client/Home/trans_qr_scanner.dart';
 import 'package:alfalPay/Views/Client/Home/transfer_screen.dart';
@@ -40,6 +41,7 @@ class Routes {
   static String agents = '/agents';
   static String currency = '/currency';
   static String bills = '/bills';
+  static String hewala = '/hewala';
 }
 
 List<GetPage<dynamic>> routes = [
@@ -71,6 +73,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: Routes.agents, page: () => const AgentsScreen()),
   GetPage(name: Routes.currency, page: () => const CurrencyRates()),
   GetPage(name: Routes.bills, page: () => const BillsScreen()),
+  GetPage(name: Routes.hewala, page: () => HewalaScreen()),
   // GetPage(
   //     name: Routes.product, page: () => ProductScreen(product: Get.arguments)),
 ];

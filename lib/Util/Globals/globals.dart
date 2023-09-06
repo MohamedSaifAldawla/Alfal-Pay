@@ -1,5 +1,6 @@
 import 'package:alfalPay/Controllers/User/agents_controller.dart';
 import 'package:alfalPay/Controllers/User/beneficiaries_controller.dart';
+import 'package:alfalPay/Controllers/User/hewalas_controller.dart';
 import 'package:alfalPay/Controllers/User/transactions_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ AgentsController agentsController = Get.find<AgentsController>();
 TransactionsController transController = Get.find<TransactionsController>();
 BeneficiariesController beneficiaryController =
     Get.find<BeneficiariesController>();
+HewalasController hewalaController = Get.find<HewalasController>();
 
 //-------------------------- Variables -------------------//
 String logo = "assets/images/logo.png";

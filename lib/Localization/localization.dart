@@ -161,6 +161,16 @@ class Localization implements Translations {
           "Enter nick name": "Enter nick name",
           "Please Enter nick name": "Please Enter nick name",
 
+          //----------------------------------- Hewala Page -------------------------//
+          "Hewala": "Hewala",
+          "Add Hewala": "Add Hewala",
+          "Show Hewala": "Show Hewala",
+          "Receive Hewala": "Receive Hewala",
+          "Enter Serial": "Serial",
+          'Please Enter Serial': 'Please Enter Serial number',
+          "Delivered": "Delivered",
+          "Not Delivered": "Not Delivered",
+
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "Sorry the app is under maintenance",
           "No connection":
@@ -328,6 +338,15 @@ class Localization implements Translations {
           "Nick name": "إسم المستفيد",
           "Enter nick name": "أدخل إسم المستفيد",
           "Please Enter nick name": "الرجاء إدخال إسم المستفيد",
+          //----------------------------------- Hewala Page -------------------------//
+          "Hewala": "حوالآتي",
+          "Add Hewala": "إضافه حواله",
+          "Show Hewala": "حوالآتي",
+          "Receive Hewala": "إستلام حواله",
+          "Enter Serial": "رقم الحواله",
+          'Please Enter Serial': "الرجاء إدخال رقم الحواله",
+          "Delivered": "تم إستخدامها",
+          "Not Delivered": "لم تستخدم بعد",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "عذرآ التطبيق في وضع الصيانه",

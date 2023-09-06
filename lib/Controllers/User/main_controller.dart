@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:alfalPay/Controllers/User/agents_controller.dart';
 import 'package:alfalPay/Controllers/User/beneficiaries_controller.dart';
+import 'package:alfalPay/Controllers/User/hewalas_controller.dart';
 import 'package:alfalPay/Controllers/User/transactions_controller.dart';
 import 'package:alfalPay/Controllers/User/wallet_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class MainController extends GetxController {
   TransactionsController transController = Get.put(TransactionsController());
   BeneficiariesController beneficiaryController =
       Get.put(BeneficiariesController());
+  HewalasController hewalaController = Get.put(HewalasController());
 
   Locale? language;
   bool darkMode = false;
