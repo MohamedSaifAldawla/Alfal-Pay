@@ -1,8 +1,8 @@
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
-import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
+import 'package:alfalPay/Views/Client/Agents/agents_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
-import 'package:alfalPay/Views/Client/Home/hewala_screen.dart';
+import 'package:alfalPay/Views/Client/Hewala/hewala_screen.dart';
 import 'package:alfalPay/Views/Client/Home/home_screen.dart';
 import 'package:alfalPay/Views/Client/Home/trans_qr_scanner.dart';
 import 'package:alfalPay/Views/Client/Home/transfer_screen.dart';

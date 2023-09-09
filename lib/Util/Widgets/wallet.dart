@@ -17,7 +17,7 @@ class Wallet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final balance = GetStorage().read("balance");
+    var balance = GetStorage().read("balance");
     var isShow = GetStorage().read("walletIsShow");
     return Container(
       decoration: BoxDecoration(boxShadow: [

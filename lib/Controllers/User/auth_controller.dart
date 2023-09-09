@@ -37,7 +37,7 @@ class AuthController extends GetxController with BaseController {
       await saveUserData(user);
       isLoggedIn.value = true;
       hideLoading();
-      Get.off(() => const HomeScreen(), transition: Transition.fadeIn);
+      Get.offAll(() => const HomeScreen(), transition: Transition.fadeIn);
     } else if (user.value.statusCode == 1) {
       hideLoading();
       snackBar(

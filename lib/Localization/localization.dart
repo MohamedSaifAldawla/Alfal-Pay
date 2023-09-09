@@ -171,6 +171,10 @@ class Localization implements Translations {
           'Please Enter Serial': 'Please Enter Serial number',
           "Delivered": "Delivered",
           "Not Delivered": "Not Delivered",
+          "Serial": "Serial",
+          "Please Enter receiver name": "Please Enter receiver name",
+          "Please Enter receiver phone": "Please Enter receiver phone",
+          "Copied": "Copied",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "Sorry the app is under maintenance",
@@ -317,7 +321,7 @@ class Localization implements Translations {
           "Enter your Amount": "أدخل المبلغ",
           "Please Enter amount": "الرجاء إدخال المبلغ",
           "Account number": "رقم الحساب",
-          "Receiver name": "إسم الحساب",
+          "Receiver name": "إسم العميل",
           "Enter account number": "أدخل رقم الحساب",
           "Please Enter account": "الرجاء إدخال رقم الحساب",
           "Comment": "التعليق",
@@ -340,6 +344,7 @@ class Localization implements Translations {
           "Nick name": "إسم المستفيد",
           "Enter nick name": "أدخل إسم المستفيد",
           "Please Enter nick name": "الرجاء إدخال إسم المستفيد",
+
           //----------------------------------- Hewala Page -------------------------//
           "Hewala": "حوالآتي",
           "Add Hewala": "إضافه حواله",
@@ -349,6 +354,10 @@ class Localization implements Translations {
           'Please Enter Serial': "الرجاء إدخال رقم الحواله",
           "Delivered": "تم إستخدامها",
           "Not Delivered": "لم تستخدم بعد",
+          "Serial": "رقم الحواله",
+          "Please Enter receiver name": "الرجاء إدخال إسم المرسل إليه",
+          "Please Enter receiver phone": "الرجاء إدخال رقم هاتف المرسل إليه",
+          "Copied": "تم النسخ",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "عذرآ التطبيق في وضع الصيانه",

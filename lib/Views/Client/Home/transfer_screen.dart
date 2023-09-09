@@ -46,7 +46,7 @@ class TransferScreen extends StatelessWidget {
               InputField(
                 controller: walletController.receiverName,
                 label: "Receiver name".tr,
-                hint: "Enter receiver number".tr,
+                hint: "Enter receiver name".tr,
                 type: "Account",
                 icon: "assets/icons/Person.svg",
                 obscureText: false,
@@ -62,7 +62,7 @@ class TransferScreen extends StatelessWidget {
                 label: "Comment".tr,
                 hint: "Enter your comment".tr,
                 type: "Comment",
-                icon: "assets/icons/Person.svg",
+                icon: "assets/icons/comment.svg",
                 obscureText: false,
                 keyboardType: TextInputType.text,
               ),

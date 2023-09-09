@@ -1,5 +1,7 @@
 import 'package:alfalPay/Models/hewalas.dart';
+import 'package:alfalPay/Util/Globals/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -21,13 +23,10 @@ class HewalaCard extends StatelessWidget {
       margin: EdgeInsets.only(
         top: getProportionateScreenHeight(10),
       ),
-      padding: EdgeInsets.only(
-          left: getProportionateScreenHeight(13),
-          right: getProportionateScreenHeight(15),
-          top: getProportionateScreenHeight(10),
-          bottom: getProportionateScreenHeight(12)),
+      padding: EdgeInsetsDirectional.symmetric(
+          horizontal: getProportionateScreenHeight(13),
+          vertical: getProportionateScreenHeight(10)),
       width: double.infinity,
-      //height: getProportionateScreenHeight(90),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.light
             ? AppColors.kPrimaryLightColor
@@ -43,92 +42,147 @@ class HewalaCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(getProportionateScreenHeight(5)),
-            child: SvgPicture.asset(
-              'assets/icons/bag-dollar.svg',
-              width: getProportionateScreenWidth(40),
-              height: getProportionateScreenHeight(40),
-              color: Theme.of(context).brightness == Brightness.light
-                  ? AppColors.kPrimary2Color
-                  : Colors.white,
-            ),
-          ),
-          Gap(getProportionateScreenHeight(10)),
-          Flexible(
-            flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    BodyText(
-                      text: hewalas.hasBeenDelivered
-                          ? "Delivered".tr
-                          : "Not Delivered".tr,
-                      weight: FontWeight.w500,
-                    ),
-                  ],
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(getProportionateScreenHeight(5)),
+                child: SvgPicture.asset(
+                  'assets/icons/cashflow.svg',
+                  width: getProportionateScreenWidth(35),
+                  height: getProportionateScreenHeight(35),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.kPrimary2Color
+                      : Colors.white,
                 ),
-                Gap(getProportionateScreenHeight(5)),
-                Row(
-                  children: [
-                    BodyText(
-                      text: hewalas.comment,
-                      fontSize: getProportionateScreenHeight(13),
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? AppColors.kSecondaryColor
-                          : Colors.white70,
-                    ),
-                  ],
-                ),
-                Gap(getProportionateScreenHeight(5)),
-                Row(
-                  children: [
-                    BodyText(
-                      text: hewalas.createdAt,
-                      fontSize: getProportionateScreenHeight(13),
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? AppColors.kSecondaryColor
-                          : Colors.white70,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Flexible(
-            flex: 3,
-            child: Column(
-              children: [
-                Row(
+              ),
+              Gap(getProportionateScreenHeight(10)),
+              Flexible(
+                flex: 3,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: BodyText(
-                        text: '${hewalas.amount} ${'SDG'.tr}',
-                        weight: FontWeight.bold,
-                        color: AppColors.error,
-                      ),
+                    Row(
+                      children: [
+                        BodyText(
+                          text: hewalas.hasBeenDelivered
+                              ? "Delivered".tr
+                              : "Not Delivered".tr,
+                          weight: FontWeight.w500,
+                        ),
+                      ],
                     ),
-                    SvgPicture.asset('assets/icons/Arrow_Up_MD.svg',
-                        width: getProportionateScreenWidth(15),
-                        height: getProportionateScreenHeight(15),
-                        color: AppColors.error),
+                    Gap(getProportionateScreenHeight(5)),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: BodyText(
+                            text: hewalas.receiverName,
+                            fontSize: getProportionateScreenHeight(13),
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? AppColors.kSecondaryColor
+                                    : Colors.white70,
+                            maxLines: 2,
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Gap(getProportionateScreenHeight(5)),
+                    Row(
+                      children: [
+                        BodyText(
+                          text: hewalas.receiverPhone,
+                          fontSize: getProportionateScreenHeight(13),
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? AppColors.kSecondaryColor
+                                  : Colors.white70,
+                        ),
+                      ],
+                    ),
+                    Gap(getProportionateScreenHeight(5)),
+                    Row(
+                      children: [
+                        BodyText(
+                          text: hewalas.createdAt,
+                          fontSize: getProportionateScreenHeight(13),
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? AppColors.kSecondaryColor
+                                  : Colors.white70,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                Gap(getProportionateScreenHeight(5)),
-                BodyText(
-                  text: hewalas.serialNumber,
-                  fontSize: getProportionateScreenHeight(13),
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? AppColors.kSecondaryColor
-                      : Colors.white70,
+              ),
+              Flexible(
+                flex: 3,
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: BodyText(
+                            text: '${hewalas.amount} ${'SDG'.tr}',
+                            weight: FontWeight.bold,
+                            color: AppColors.error,
+                          ),
+                        ),
+                        SvgPicture.asset('assets/icons/Arrow_Up_MD.svg',
+                            width: getProportionateScreenWidth(15),
+                            height: getProportionateScreenHeight(15),
+                            color: AppColors.error),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          Gap(getProportionateScreenHeight(10)),
+          const Divider(
+            color: AppColors.kSecondaryColor,
+            thickness: 0.1,
+          ),
+          Gap(getProportionateScreenHeight(5)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BodyText(
+                text: "${"Serial".tr}: ",
+              ),
+              SelectableText(
+                hewalas.serialNumber,
+                style: TextStyle(
+                  fontSize: getProportionateScreenHeight(15),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Clipboard.setData(ClipboardData(text: hewalas.serialNumber));
+                  mainController.snackBar(
+                      "Success".tr,
+                      "Copied".tr,
+                      SvgPicture.asset(
+                        "assets/icons/Success2.svg",
+                        color: Colors.white,
+                      ),
+                      AppColors.success,
+                      SnackPosition.TOP,
+                      3);
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/Copy.svg',
+                  width: getProportionateScreenWidth(20),
+                  height: getProportionateScreenHeight(20),
+                ),
+              )
+            ],
           ),
         ],
       ),

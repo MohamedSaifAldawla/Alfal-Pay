@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../colors.dart';
 import '../size_config.dart';
 
@@ -15,7 +14,7 @@ class InputField extends StatelessWidget {
     this.maxLength,
     required this.icon,
     this.keyboardType,
-    required this.obscureText,
+    this.obscureText = false,
     this.enabled = false,
     this.onSaved,
     this.onChanged,

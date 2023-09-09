@@ -1,7 +1,7 @@
 import 'package:alfalPay/Controllers/User/base_controller.dart';
 import 'package:alfalPay/Models/agents.dart';
 import 'package:alfalPay/Util/Globals/globals.dart';
-import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
+import 'package:alfalPay/Views/Client/Agents/agents_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
