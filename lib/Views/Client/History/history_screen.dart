@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:alfalPay/Util/colors.dart';
 import 'package:alfalPay/Util/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -83,52 +86,117 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             height: getProportionateScreenHeight(52),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColors.kSecondaryColor,
-                                width: getProportionateScreenWidth(1.0),
-                              ),
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? AppColors.kPrimaryLightColor
+                                  : AppColors.kPrimaryDark3Color,
                               borderRadius: BorderRadius.circular(
-                                  getProportionateScreenHeight(25)),
+                                  getProportionateScreenHeight(15)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? AppColors.shadow
+                                      : AppColors.shadow2,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: getProportionateScreenHeight(13),
-                                  right: getProportionateScreenHeight(13)),
+                                  left: getProportionateScreenHeight(15),
+                                  right: getProportionateScreenHeight(15)),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SvgPicture.asset(
                                     "assets/icons/Calendar.svg",
-                                    height: getProportionateScreenHeight(30),
-                                    color: AppColors.kSecondaryColor,
+                                    height: getProportionateScreenHeight(45),
+                                    color: AppColors.kPrimaryColor,
                                   ),
-                                  Gap(getProportionateScreenHeight(50)),
-                                  InkWell(
-                                    onTap: () {
-                                      _selectDate(context);
-                                    },
-                                    child: BodyText(
-                                      text:
-                                          "${startDate.day}/${startDate.month}/${startDate.year}",
-                                      color: AppColors.kSecondaryColor,
-                                    ),
+                                  const Spacer(),
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          if (Platform.isIOS) {
+                                            showCupertinoModalPopup(
+                                              context: context,
+                                              builder: (_) => SizedBox(
+                                                height:
+                                                    getProportionateScreenHeight(
+                                                        200),
+                                                child: CupertinoDatePicker(
+                                                    mode:
+                                                        CupertinoDatePickerMode
+                                                            .date,
+                                                    initialDateTime: startDate,
+                                                    onDateTimeChanged: (
+                                                      DateTime newDate,
+                                                    ) {
+                                                      setState(() {
+                                                        startDate = newDate;
+                                                        debugPrint(
+                                                            '$startDate');
+                                                      });
+                                                    }),
+                                              ),
+                                            );
+                                          } else {
+                                            _selectDate(context);
+                                          }
+                                        },
+                                        child: BodyText(
+                                          text:
+                                              "${startDate.day}/${startDate.month}/${startDate.year}",
+                                          color: AppColors.kSecondaryColor,
+                                        ),
+                                      ),
+                                      Gap(getProportionateScreenHeight(10)),
+                                      BodyText(
+                                        text: "To2".tr,
+                                        color: AppColors.kSecondaryColor,
+                                      ),
+                                      Gap(getProportionateScreenHeight(10)),
+                                      InkWell(
+                                        onTap: () {
+                                          if (Platform.isIOS) {
+                                            showCupertinoModalPopup(
+                                              context: context,
+                                              builder: (_) => SizedBox(
+                                                height:
+                                                    getProportionateScreenHeight(
+                                                        200),
+                                                child: CupertinoDatePicker(
+                                                    mode:
+                                                        CupertinoDatePickerMode
+                                                            .date,
+                                                    initialDateTime: startDate,
+                                                    onDateTimeChanged: (
+                                                      DateTime newDate,
+                                                    ) {
+                                                      setState(() {
+                                                        endDate = newDate;
+                                                        debugPrint('$endDate');
+                                                      });
+                                                    }),
+                                              ),
+                                            );
+                                          } else {
+                                            _endDate(context);
+                                          }
+                                        },
+                                        child: BodyText(
+                                          text:
+                                              "${endDate.day}/${endDate.month}/${endDate.year}",
+                                          color: AppColors.kSecondaryColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Gap(getProportionateScreenHeight(10)),
-                                  BodyText(
-                                    text: "To".tr,
-                                    color: AppColors.kSecondaryColor,
-                                  ),
-                                  Gap(getProportionateScreenHeight(10)),
-                                  InkWell(
-                                    onTap: () {
-                                      _endDate(context);
-                                    },
-                                    child: BodyText(
-                                      text:
-                                          "${endDate.day}/${endDate.month}/${endDate.year}",
-                                      color: AppColors.kSecondaryColor,
-                                    ),
-                                  ),
+                                  const Spacer(),
                                 ],
                               ),
                             ),
@@ -196,7 +264,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       setState(
         () {
           endDate = selected;
-          debugPrint('$startDate');
+          debugPrint('$endDate');
           transController.getTransactions2(
               startDate: startDate, endDate: endDate);
         },

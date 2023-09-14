@@ -22,16 +22,17 @@ class TransactionsController extends GetxController with BaseController {
         await Api.getTransactions(startDate: startDate, endDate: endDate);
     debugPrint("${response.data['data']['data']}");
     if (response.data['status_code'] == 0) {
-      if (response.data['data']['total'] != 0) {
-        final res = Transactions.fromJson(response.data);
+      if (response.data['data']['data'].isNotEmpty) {
         hideLoading();
+        final res = Transactions.fromJson(response.data);
         isLoading.value = false;
         transactions.clear();
         transactions.addAll(res.data.data);
         debugPrint("$transactions");
         Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
       }
-      if (response.data['data']['total'] == 0) {
+      if (response.data['data']['data'].isEmpty) {
+        hideLoading();
         transactions.clear();
         isLoading.value = false;
         Get.to(() => HistoryScreen(), transition: Transition.fadeIn);
@@ -39,7 +40,7 @@ class TransactionsController extends GetxController with BaseController {
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       debugPrint("${response.data}");
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -76,7 +77,7 @@ class TransactionsController extends GetxController with BaseController {
       isLoading.value = false;
     } else if (response.data['status_code'] == 1) {
       debugPrint("${response.data}");
-      mainController.SnackBar(
+      mainController.snackBar(
           "Error".tr,
           "${response.data['message']}",
           SvgPicture.asset(

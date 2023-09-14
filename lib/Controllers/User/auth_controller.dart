@@ -1,3 +1,4 @@
+import 'package:alfalPay/Util/Globals/globals.dart';
 import 'package:alfalPay/Util/colors.dart';
 import 'package:alfalPay/Views/Client/Profile/edit_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,18 +30,19 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     debugPrint('$loginData');
     var response = await Api.login(loginData: loginData);
+    debugPrint('LoginData :$response');
     user.value = User.fromJson(response.data);
     debugPrint(user.value.fullName);
     if (user.value.statusCode == 0) {
-      await SaveUserData(user);
+      await saveUserData(user);
       isLoggedIn.value = true;
       hideLoading();
       Get.off(() => const HomeScreen(), transition: Transition.fadeIn);
     } else if (user.value.statusCode == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
-          '${user.value.error}',
+          '${user.value.message}',
           SvgPicture.asset(
             "assets/icons/Close.svg",
             color: Colors.white,
@@ -55,10 +57,11 @@ class AuthController extends GetxController with BaseController {
     showLoading();
     debugPrint('$registerData');
     var response = await Api.register(registerData: registerData);
+    debugPrint('RegisterData :$response');
     user.value = User.fromJson(response.data);
     if (user.value.statusCode == 0) {
       hideLoading();
-      SnackBar(
+      mainController.snackBar(
           "Success".tr,
           "${user.value.message}",
           SvgPicture.asset(
@@ -66,15 +69,17 @@ class AuthController extends GetxController with BaseController {
             color: Colors.white,
           ),
           AppColors.success,
-          SnackPosition.TOP);
-      await SaveUserData(user);
+          SnackPosition.TOP,
+          20);
+      await saveUserData(user);
       isLoggedIn.value = true;
+      Get.offAll(() => const LoginScreen(), transition: Transition.fadeIn);
     }
     if (user.value.statusCode == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
-          '${user.value.error}',
+          '${user.value.message}',
           SvgPicture.asset(
             "assets/icons/Close.svg",
             color: Colors.white,
@@ -110,7 +115,7 @@ class AuthController extends GetxController with BaseController {
     } catch (e) {
       hideLoading();
       debugPrint("$e");
-      SnackBar(
+      snackBar(
           "Error".tr,
           '$e',
           SvgPicture.asset(
@@ -132,7 +137,7 @@ class AuthController extends GetxController with BaseController {
     debugPrint("${response.data['status_code']}");
     if (response.data['status_code'] == 0) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -145,7 +150,7 @@ class AuthController extends GetxController with BaseController {
     }
     if (response.data['status_code'] == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
           '${response.data['message']}',
           SvgPicture.asset(
@@ -167,7 +172,7 @@ class AuthController extends GetxController with BaseController {
     debugPrint("${response.data['status_code']}");
     if (response.data['status_code'] == 0) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Success".tr,
           "${response.data['message']}",
           SvgPicture.asset(
@@ -179,7 +184,7 @@ class AuthController extends GetxController with BaseController {
     }
     if (response.data['status_code'] == 1) {
       hideLoading();
-      SnackBar(
+      snackBar(
           "Error".tr,
           '${response.data['message']}',
           SvgPicture.asset(
@@ -217,6 +222,8 @@ class AuthController extends GetxController with BaseController {
         GetStorage().remove('phone_number'),
         GetStorage().remove('balance'),
         GetStorage().remove('login_token'),
+        GetStorage().remove('type'),
+        GetStorage().remove('referralCode'),
         GetStorage().write("walletIsShow", true),
       ],
     );
@@ -227,7 +234,7 @@ class AuthController extends GetxController with BaseController {
 
 //--------------------- User Local Storage Saving --------------------------//
 
-  SaveUserData(Rx<User> user) async {
+  saveUserData(Rx<User> user) async {
     Future.wait(
       [
         GetStorage().write('id', user.value.accountNumber),
@@ -237,13 +244,15 @@ class AuthController extends GetxController with BaseController {
         GetStorage().write('phone_number', user.value.phoneNumber),
         GetStorage().write('balance', user.value.balance),
         GetStorage().write('profilePic', user.value.profilePic),
+        GetStorage().write('type', user.value.type),
+        GetStorage().write('referralCode', user.value.referralCode),
         GetStorage().write('login_token', user.value.token),
       ],
     );
   }
 
 //--------------------- Snack Bar --------------------------//
-  SnackbarController SnackBar(String title, String message, Widget icon,
+  SnackbarController snackBar(String title, String message, Widget icon,
       Color backgroundColor, SnackPosition? snackPosition) {
     return Get.snackbar(
       title,

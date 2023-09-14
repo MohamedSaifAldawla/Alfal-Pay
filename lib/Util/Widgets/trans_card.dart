@@ -8,6 +8,7 @@ import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
 
+// ignore: must_be_immutable
 class TransCard extends StatelessWidget {
   TransCard({
     super.key,
@@ -97,9 +98,13 @@ class TransCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      BodyText(
-                        text: transactions.typeLabel,
-                        weight: FontWeight.w500,
+                      Expanded(
+                        child: BodyText(
+                          text: transactions.typeLabel,
+                          weight: FontWeight.w500,
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                        ),
                       ),
                     ],
                   ),

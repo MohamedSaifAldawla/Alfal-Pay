@@ -97,8 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     horizontal: getProportionateScreenHeight(15)),
                 child: SvgPicture.asset(
                   "assets/icons/lang.svg",
-                  height: getProportionateScreenHeight(20),
-                  width: getProportionateScreenHeight(20),
+                  height: getProportionateScreenHeight(25),
+                  width: getProportionateScreenHeight(25),
                   color: AppColors.kPrimaryLightColor,
                 ),
               ),
@@ -113,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.only(
                   right: horizontalPadding,
                   left: horizontalPadding,
-                  top: 110,
-                  bottom: 20,
+                  top: getProportionateScreenHeight(120),
+                  bottom: getProportionateScreenHeight(20),
                 ),
                 child: Center(
                   child: Form(
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Gap(getProportionateScreenHeight(50)),
                         FadeAnimation(
-                          1.1,
+                          1,
                           Hero(
                             tag: "image",
                             child: Image.asset(
@@ -137,11 +137,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           children: [
                             FadeAnimation2(
-                              1.4,
+                              1.1,
                               InkWell(
                                 onTap: () {
-                                  _phoneController.text = "123588984";
-                                  _passwordController.text = "12345678";
+                                  // _phoneController.text = "123588984";
+                                  // _passwordController.text = "12345678";
                                 },
                                 child: BodyText(
                                   text: "Login2".tr,
@@ -155,16 +155,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Gap(getProportionateScreenHeight(5)),
                         FadeAnimation2(
-                          1.5,
-                          BodyText(
-                            text: "Log in to your account".tr,
-                            textAlign: TextAlign.start,
-                            maxLines: 2,
+                          1.2,
+                          Row(
+                            children: [
+                              BodyText(
+                                text: "Log in to your account".tr,
+                                textAlign: TextAlign.start,
+                                maxLines: 2,
+                              ),
+                            ],
                           ),
                         ),
                         Gap(getProportionateScreenHeight(30)),
                         FadeAnimation(
-                          1.6,
+                          1.3,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: FormError(errors: errors),
+                          ),
+                        ),
+                        FadeAnimation(
+                          1.4,
                           InputField(
                             controller: _phoneController,
                             hint: "Phone or Account".tr,
@@ -172,38 +183,32 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscureText: false,
                             keyboardType: TextInputType.number,
                             onSaved: (newValue) => phone = newValue,
-                            // onChanged: (value) {
-                            //   if (value == null || value.isNotEmpty) {
-                            //     removeError(
-                            //         error: "Please Enter your Phone".tr);
-                            //   }
-                            //   if (value!.length >= 9) {
-                            //     removeError(
-                            //         error: "Phone number is too short".tr);
-                            //   }
-                            //   if (value.isEmpty) {
-                            //     addError(error: "Please Enter your Phone".tr);
-                            //   }
-
-                            //   if (value.length < 9) {
-                            //     addError(error: "Phone number is too short".tr);
-                            //   }
-                            // },
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     addError(error: "Please Enter your Phone".tr);
-                            //     return "";
-                            //   } else if (value.length < 9) {
-                            //     addError(error: "Phone number is too short".tr);
-                            //     return "";
-                            //   }
-                            //   return null;
-                            // },
+                            onChanged: (value) {
+                              if (value!.isEmpty) {
+                                addError(
+                                    error: "Please Enter your Phone or Account"
+                                        .tr);
+                              }
+                              if (value.isNotEmpty) {
+                                removeError(
+                                    error: "Please Enter your Phone or Account"
+                                        .tr);
+                              }
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                addError(
+                                    error: "Please Enter your Phone or Account"
+                                        .tr);
+                                return "";
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         Gap(getProportionateScreenHeight(15)),
                         FadeAnimation(
-                          1.6,
+                          1.5,
                           SuffixInputField(
                             controller: _passwordController,
                             hint: "Password".tr,
@@ -252,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Gap(getProportionateScreenHeight(10)),
                         FadeAnimation(
-                          1.8,
+                          1.6,
                           Row(
                             children: [
                               Checkbox(
@@ -291,29 +296,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               const Spacer(),
-                              GestureDetector(
-                                onTap: (() => Get.to(
-                                    () => const ResetPassScreen(),
-                                    transition: Transition.fadeIn)),
-                                child: BodyText(
-                                  text: "Forgot Password".tr,
-                                  color: AppColors.kPrimaryColor,
-                                ),
-                              ),
+                              // GestureDetector(
+                              //   onTap: (() => Get.to(
+                              //       () => const ResetPassScreen(),
+                              //       transition: Transition.fadeIn)),
+                              //   child: BodyText(
+                              //     text: "Forgot Password".tr,
+                              //     color: AppColors.kPrimaryColor,
+                              //   ),
+                              // ),
                             ],
-                          ),
-                        ),
-                        FadeAnimation(
-                          1.8,
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 5),
-                            child: FormError(errors: errors),
                           ),
                         ),
                         Gap(getProportionateScreenHeight(10)),
                         FadeAnimation(
-                          1.9,
+                          1.7,
                           PrimaryButton(
                             text: "Login2".tr,
                             press: (() {
@@ -341,12 +338,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         Gap(getProportionateScreenHeight(50)),
-                        GestureDetector(
-                          onTap: (() => Get.to(() => const RegisterScreen(),
-                              transition: Transition.fadeIn)),
-                          child: BodyText(
-                            text: "Register".tr,
-                            color: AppColors.kPrimaryColor,
+                        FadeAnimation(
+                          1.8,
+                          GestureDetector(
+                            onTap: (() => Get.to(() => const RegisterScreen(),
+                                transition: Transition.fadeIn)),
+                            child: BodyText(
+                              text: "Register".tr,
+                              color: AppColors.kPrimaryColor,
+                            ),
                           ),
                         ),
                       ],

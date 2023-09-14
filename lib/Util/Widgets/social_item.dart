@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-
 import '../colors.dart';
 import '../size_config.dart';
 import 'intro.dart';
@@ -50,6 +48,7 @@ class SocialCard extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class SmallButtons extends StatelessWidget {
   SmallButtons({
     Key? key,
@@ -68,11 +67,11 @@ class SmallButtons extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        margin:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(10)),
+        // margin:
+        //     EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(10)),
         padding: EdgeInsets.all(getProportionateScreenHeight(10)),
         height: getProportionateScreenHeight(45),
-        width: getProportionateScreenWidth(105),
+        width: getProportionateScreenWidth(100),
         decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light
               ? AppColors.kPrimaryLightColor
@@ -95,8 +94,8 @@ class SmallButtons extends StatelessWidget {
             SvgPicture.asset(
               icon,
               color: color,
-              width: getProportionateScreenHeight(25),
-              height: getProportionateScreenHeight(25),
+              width: getProportionateScreenHeight(20),
+              height: getProportionateScreenHeight(20),
             ),
             Gap(getProportionateScreenHeight(5)),
             BodyText(

@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:alfalPay/Controllers/User/agents_controller.dart';
+import 'package:alfalPay/Controllers/User/beneficiaries_controller.dart';
+import 'package:alfalPay/Controllers/User/hewalas_controller.dart';
 import 'package:alfalPay/Controllers/User/transactions_controller.dart';
 import 'package:alfalPay/Controllers/User/wallet_controller.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +10,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../Util/Globals/globals.dart';
 import '../../Util/colors.dart';
 
@@ -15,6 +20,9 @@ class MainController extends GetxController {
   WalletController walletController = Get.put(WalletController());
   AgentsController agentsController = Get.put(AgentsController());
   TransactionsController transController = Get.put(TransactionsController());
+  BeneficiariesController beneficiaryController =
+      Get.put(BeneficiariesController());
+  HewalasController hewalaController = Get.put(HewalasController());
 
   Locale? language;
   bool darkMode = false;
@@ -54,7 +62,7 @@ class MainController extends GetxController {
     //debugPrint(result['isSuccess'].toString());
     if (result['isSuccess'] == true) {
       debugPrint(result['isSuccess'].toString());
-      SnackBar(
+      snackBar(
           "Success".tr,
           "Saved successfully".tr,
           SvgPicture.asset(
@@ -65,7 +73,47 @@ class MainController extends GetxController {
           SnackPosition.TOP,
           3);
     } else {
-      SnackBar(
+      snackBar(
+          "Error".tr,
+          '$result',
+          SvgPicture.asset(
+            "assets/icons/Close.svg",
+            color: Colors.white,
+          ),
+          AppColors.error,
+          SnackPosition.TOP,
+          3);
+    }
+  }
+
+  //--------------------- Share Image --------------------------//
+  Future saveAndShare(Uint8List image) async {
+    await [Permission.storage].request().then((value) => {});
+    final time = DateTime.now()
+        .toIso8601String()
+        .replaceAll('.', '_')
+        .replaceAll(':', '_');
+    final name = "screenshot_$time";
+    final result =
+        await ImageGallerySaver.saveImage(image, name: name, quality: 100);
+    if (result['isSuccess'] == true) {
+      debugPrint(result['isSuccess'].toString());
+      snackBar(
+          "Success".tr,
+          "Saved successfully".tr,
+          SvgPicture.asset(
+            "assets/icons/Success2.svg",
+            color: Colors.white,
+          ),
+          AppColors.success,
+          SnackPosition.TOP,
+          3);
+      final directory = await getApplicationDocumentsDirectory();
+      final sharedImage = File('${directory.path}/flutter.png');
+      sharedImage.writeAsBytesSync(image);
+      await Share.shareXFiles([XFile(sharedImage.path)]);
+    } else {
+      snackBar(
           "Error".tr,
           '$result',
           SvgPicture.asset(
@@ -102,8 +150,8 @@ class MainController extends GetxController {
   }
 
   //--------------------- Snack Bar --------------------------//
-  // ignore: non_constant_identifier_names
-  SnackbarController SnackBar(String title, String message, Widget icon,
+
+  SnackbarController snackBar(String title, String message, Widget icon,
       Color backgroundColor, SnackPosition? snackPosition, int duration) {
     return Get.snackbar(
       title,

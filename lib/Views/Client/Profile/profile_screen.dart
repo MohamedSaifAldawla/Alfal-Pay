@@ -16,7 +16,6 @@ import '../../../Util/Widgets/loader.dart';
 import '../../../Util/Widgets/profile_item.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
-import '../../../Util/theme.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -51,7 +50,8 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          padding: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenHeight(20)),
           child: Column(
             children: [
               Gap(getProportionateScreenHeight(50)),
@@ -100,12 +100,21 @@ class ProfileScreen extends StatelessWidget {
                         fontSize: getProportionateScreenHeight(14),
                       ),
                     ),
+                    if (GetStorage().read('type') == "agent")
+                      FadeAnimation(
+                        1.3,
+                        BodyText(
+                          text:
+                              '${"${"Referral code".tr}:"} ${GetStorage().read('referralCode')}',
+                          fontSize: getProportionateScreenHeight(14),
+                        ),
+                      ),
                   ],
                 ),
               ),
               Gap(getProportionateScreenHeight(150)),
               FadeAnimation(
-                1.3,
+                1.4,
                 ProfileItem(
                   firstIcon: "assets/icons/Reset.svg",
                   title: "Password Update".tr,
@@ -116,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               FadeAnimation(
-                1.4,
+                1.5,
                 ProfileItem(
                   firstIcon: "assets/icons/lang3.svg",
                   title: "Language".tr,
@@ -134,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               FadeAnimation(
-                1.5,
+                1.6,
                 ProfileItem(
                   firstIcon: "assets/icons/night.svg",
                   title: "Night mode".tr,
@@ -166,7 +175,7 @@ class ProfileScreen extends StatelessWidget {
               //   ),
               // ),
               FadeAnimation(
-                1.8,
+                1.7,
                 ProfileItem(
                   firstIcon: lang == "en"
                       ? "assets/icons/log.svg"

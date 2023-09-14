@@ -11,6 +11,7 @@ import '../intro.dart';
 
 cardDialog({
   required context,
+  required accountId,
 }) {
   return Get.dialog(
     FadeAnimation2(
@@ -28,7 +29,7 @@ cardDialog({
               right: getProportionateScreenHeight(5),
               bottom: getProportionateScreenHeight(10)),
           width: double.infinity,
-          height: getProportionateScreenHeight(300),
+          height: getProportionateScreenHeight(320),
           child: Column(
             children: [
               Row(
@@ -49,7 +50,7 @@ cardDialog({
               ),
               Center(
                 child: QrImage(
-                  data: GetStorage().read('id'),
+                  data: accountId,
                   backgroundColor: AppColors.kPrimaryLightColor,
                   version: QrVersions.auto,
                   size: getProportionateScreenHeight(200),
@@ -60,6 +61,16 @@ cardDialog({
                 text: 'Account number :'.tr + ' ' + GetStorage().read('id'),
                 fontSize: getProportionateScreenHeight(14),
               ),
+              Gap(getProportionateScreenHeight(10)),
+              if (GetStorage().read('type') == "agent")
+                FadeAnimation(
+                  1.3,
+                  BodyText(
+                    text:
+                        '${"${"Referral code".tr}:"} ${GetStorage().read('referralCode')}',
+                    fontSize: getProportionateScreenHeight(14),
+                  ),
+                ),
             ],
           ),
         ),

@@ -60,7 +60,7 @@ ThemeData theme() {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(28),
-        borderSide: const BorderSide(color: AppColors.kPrimaryColor),
+        borderSide: const BorderSide(color: Colors.blueAccent),
         gapPadding: 10,
       ),
       focusedErrorBorder: OutlineInputBorder(
@@ -125,7 +125,7 @@ ThemeData themeDark() {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(28),
-        borderSide: const BorderSide(color: AppColors.kPrimaryColor),
+        borderSide: const BorderSide(color: Colors.blueAccent),
         gapPadding: 10,
       ),
       focusedErrorBorder: OutlineInputBorder(

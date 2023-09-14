@@ -11,15 +11,16 @@ import '../../../Util/Widgets/primary_button.dart';
 import '../../../Util/colors.dart';
 import '../../../Util/size_config.dart';
 
-class TransferScreen extends StatelessWidget {
-  TransferScreen({super.key});
+class AddBeneficiaryScreen extends StatelessWidget {
+  AddBeneficiaryScreen({super.key});
   final formKey = GlobalKey<FormState>();
+  final Map<String, dynamic> addBeneficiariesData = {};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Transfer".tr),
+        title: Text("Add Beneficiary".tr),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -30,7 +31,7 @@ class TransferScreen extends StatelessWidget {
             FadeAnimation2(
               1,
               InputField(
-                controller: walletController.accountNumber,
+                controller: beneficiaryController.accountNumber,
                 label: "Account number".tr,
                 hint: "Enter account number".tr,
                 type: "Account",
@@ -44,7 +45,7 @@ class TransferScreen extends StatelessWidget {
             FadeAnimation2(
               1,
               InputField(
-                controller: walletController.receiverName,
+                controller: beneficiaryController.name,
                 label: "Receiver name".tr,
                 hint: "Enter receiver number".tr,
                 type: "Account",
@@ -58,26 +59,13 @@ class TransferScreen extends StatelessWidget {
             FadeAnimation2(
               1,
               InputField(
-                controller: walletController.comment,
-                label: "Comment".tr,
-                hint: "Enter your comment".tr,
-                type: "Comment",
+                controller: beneficiaryController.nickName,
+                label: "Nick name".tr,
+                hint: "Enter nick name".tr,
+                type: "Nick",
                 icon: "assets/icons/Person.svg",
                 obscureText: false,
                 keyboardType: TextInputType.text,
-              ),
-            ),
-            Gap(getProportionateScreenHeight(30)),
-            FadeAnimation2(
-              1.1,
-              InputField(
-                controller: walletController.amount,
-                label: "Enter your Amount".tr,
-                hint: "",
-                type: "Amount",
-                icon: "assets/icons/bag-dollar.svg",
-                obscureText: false,
-                keyboardType: TextInputType.number,
               ),
             ),
             Gap(getProportionateScreenHeight(40)),
@@ -86,10 +74,10 @@ class TransferScreen extends StatelessWidget {
               PrimaryButton(
                 text: "Continue".tr,
                 press: () {
-                  if (walletController.amount.text.isEmpty) {
+                  if (beneficiaryController.nickName.text.isEmpty) {
                     mainController.snackBar(
                         "Error".tr,
-                        'Please Enter amount'.tr,
+                        'Please Enter nick name'.tr,
                         SvgPicture.asset(
                           "assets/icons/Close.svg",
                           color: Colors.white,
@@ -98,19 +86,18 @@ class TransferScreen extends StatelessWidget {
                         SnackPosition.TOP,
                         2);
                   }
-
-                  if (walletController.amount.text.isNotEmpty) {
-                    walletController.transferData['account_number'] =
-                        walletController.accountNumber.text;
-                    walletController.transferData['amount'] =
-                        walletController.amount.text;
-                    walletController.transferData['comment'] =
-                        walletController.comment.text;
-                    walletController
-                        .transfer(transferData: walletController.transferData)
+                  if (beneficiaryController.nickName.text.isNotEmpty) {
+                    addBeneficiariesData['account_number'] =
+                        beneficiaryController.accountNumber.text;
+                    addBeneficiariesData['name'] =
+                        beneficiaryController.name.text;
+                    addBeneficiariesData['nick_name'] =
+                        beneficiaryController.nickName.text;
+                    beneficiaryController
+                        .addBeneficiary(
+                            addBeneficiariesData: addBeneficiariesData)
                         .then((value) => {
-                              walletController.amount.text = "",
-                              walletController.comment.text = "",
+                              beneficiaryController.nickName.text = "",
                             });
                   }
                 },

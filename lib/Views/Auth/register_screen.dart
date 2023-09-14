@@ -32,6 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _secondNameController = TextEditingController();
   final _thirdNameController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _referralCodeController = TextEditingController();
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -99,8 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   horizontal: getProportionateScreenHeight(15)),
               child: SvgPicture.asset(
                 "assets/icons/lang.svg",
-                height: getProportionateScreenHeight(20),
-                width: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(25),
+                width: getProportionateScreenHeight(25),
                 color: AppColors.kPrimaryLightColor,
               ),
             ),
@@ -130,13 +131,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             1,
                             InkWell(
                               onTap: () {
-                                _firstNameController.text = "moesaif";
-                                _secondNameController.text = "moesaif";
-                                _thirdNameController.text = "moesaif";
-                                _phoneController.text = "989876546";
-                                _addressController.text = "Khartoum";
-                                _passwordController.text = "12345678";
-                                _confirmPasswordController.text = "12345678";
+                                // _firstNameController.text = "moesaif";
+                                // _secondNameController.text = "moesaif";
+                                // _thirdNameController.text = "moesaif";
+                                // _phoneController.text = "989876546";
+                                // _addressController.text = "Khartoum";
+                                // _passwordController.text = "12345678";
+                                // _confirmPasswordController.text = "12345678";
                               },
                               child: Padding(
                                 padding:
@@ -165,6 +166,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       Gap(getProportionateScreenHeight(30)),
+                      FadeAnimation(
+                        1.5,
+                        InputField(
+                          controller: _phoneController,
+                          hint: "Phone".tr,
+                          icon: "assets/icons/Phone.svg",
+                          obscureText: false,
+                          maxLength: 9,
+                          keyboardType: TextInputType.number,
+                          onSaved: (newValue) => phone = newValue,
+                          onChanged: (value) {
+                            if (value == null || value.isNotEmpty) {
+                              removeError(error: "Please Enter your Phone".tr);
+                            }
+                            if (value!.length >= 9) {
+                              removeError(
+                                  error: "Phone number is too short".tr);
+                            }
+                            if (value.isEmpty) {
+                              addError(error: "Please Enter your Phone".tr);
+                            }
+
+                            if (value.length < 9) {
+                              addError(error: "Phone number is too short".tr);
+                            }
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              addError(error: "Please Enter your Phone".tr);
+                              return "";
+                            } else if (value.length < 9) {
+                              addError(error: "Phone number is too short".tr);
+                              return "";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Gap(getProportionateScreenHeight(5)),
                       FadeAnimation(
                         1.2,
                         InputField(
@@ -258,42 +298,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       FadeAnimation(
                         1.5,
                         InputField(
-                          controller: _phoneController,
-                          hint: "Phone".tr,
-                          icon: "assets/icons/Phone.svg",
+                          controller: _referralCodeController,
+                          hint: "Referral code".tr,
+                          icon: "assets/icons/ShieldUser.svg",
                           obscureText: false,
-                          maxLength: 9,
                           keyboardType: TextInputType.number,
-                          onSaved: (newValue) => phone = newValue,
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
-                              removeError(error: "Please Enter your Phone".tr);
-                            }
-                            if (value!.length >= 9) {
                               removeError(
-                                  error: "Phone number is too short".tr);
+                                  error: "Please Enter Referral code".tr);
                             }
-                            if (value.isEmpty) {
-                              addError(error: "Please Enter your Phone".tr);
-                            }
-
-                            if (value.length < 9) {
-                              addError(error: "Phone number is too short".tr);
+                            if (value == null || value.isEmpty) {
+                              addError(error: "Please Enter Referral code".tr);
                             }
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              addError(error: "Please Enter your Phone".tr);
-                              return "";
-                            } else if (value.length < 9) {
-                              addError(error: "Phone number is too short".tr);
+                              addError(error: "Please Enter Referral code".tr);
                               return "";
                             }
                             return null;
                           },
                         ),
                       ),
-                      Gap(getProportionateScreenHeight(5)),
+                      Gap(getProportionateScreenHeight(20)),
                       FadeAnimation(
                         1.6,
                         InputField(
@@ -330,16 +358,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           1.7,
                           Container(
                             padding:
-                                EdgeInsets.all(getProportionateScreenHeight(5)),
-                            height: getProportionateScreenHeight(52),
+                                EdgeInsets.all(getProportionateScreenHeight(9)),
+                            //height: getProportionateScreenHeight(20),
                             width: double.infinity,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: AppColors.kSecondaryColor,
-                                width: getProportionateScreenWidth(1.0),
                               ),
                               borderRadius: BorderRadius.circular(
-                                  getProportionateScreenHeight(25)),
+                                  getProportionateScreenHeight(20)),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -506,6 +533,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               _registerData['third_name'] =
                                   _thirdNameController.text;
                               _registerData['phone'] = _phoneController.text;
+                              _registerData['referral_code'] =
+                                  _referralCodeController.text;
                               _registerData['address'] =
                                   _addressController.text;
                               _registerData['date_of_birth'] = selectedDate;

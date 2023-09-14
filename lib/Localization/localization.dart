@@ -7,12 +7,15 @@ class Localization implements Translations {
           //----------------------------------- Auth Pages -------------------------//
           "Select Language": "Select Language",
           "AppName": "Alfal Pay",
+          "Alfal Payments": "Alfal Payments",
           "Welcome": "Welcome",
           "WelcomeText":
               "Welcome to Alfal Payment App for \n for money transactions",
           "Please Enter your First name": "Please Enter your First name",
           "Please Enter your Second name": "Please Enter your Second name",
           "Please Enter your Third name": "Please Enter your Third name",
+          "Please Enter your Phone or Account":
+              "Please enter your Phone or Account number",
           "Please Enter your Phone": "Please enter your Phone",
           "Please Enter your address": "Please Enter your address",
           "Phone number is too short": "Phone number is too short from 9",
@@ -43,15 +46,12 @@ class Localization implements Translations {
           //--------------------------- Welcome --------------//
           "Login": "Login",
           "Register": "Register",
-          "Delivery account": "Delivery account",
-          "Extra income":
-              "Or make extra income and start delivery and register now",
 
           //--------------------------- Login --------------//
           "Login2": "Login",
           "Log in to your account":
               "Log in to your account and make your transactions",
-          "Phone": "Phone number",
+          "Phone": "Phone number without 0",
           "Phone or Account": "Phone or account number",
           "Password": "Password",
           "Remember me": "Remember me",
@@ -64,6 +64,8 @@ class Localization implements Translations {
           "First name": "First name",
           "Second name": "Second name",
           "Third name": "Third name",
+          "Referral code": "Referral code",
+          "Please Enter Referral code": "Please Enter Referral code",
           "Address": "Address",
           "Date of birth": "Date of birth",
           "Re-Enter password": "Re-Enter password",
@@ -121,6 +123,7 @@ class Localization implements Translations {
           "Confirm Logout": "Are you sure \nyou wan't to Logout ?",
           "Confirm Deleting":
               "Are you sure you wan't to delete \nyour account ?",
+          "Confirm delete beneficiary": "Are you sure \nyou wan't to delete ?",
           "Yes": "Yes",
           "No": "No",
           "Cancel": "Cancel",
@@ -144,11 +147,30 @@ class Localization implements Translations {
           "Amount Error": "Operation Failure",
           "Transferred amount": "Transferred amount",
           "Transaction id": "Transaction id",
-          "no Transaction yet": "no Transaction yet",
+          "no Transaction yet": "No Transaction yet",
           "Type": "Type",
-          "From": "From",
-          "To": "To",
+          "From": "From account",
+          "To": "To account",
+          "To2": "To",
           "Date": "Date",
+          "Share": "Share",
+
+          //----------------------------------- Beneficiaries Page -------------------------//
+          "Add Beneficiary": "Add Beneficiary",
+          "No Beneficiaries yet": "No Beneficiaries yet",
+          "Nick name": "Nick name",
+          "Enter nick name": "Enter nick name",
+          "Please Enter nick name": "Please Enter nick name",
+
+          //----------------------------------- Hewala Page -------------------------//
+          "Hewala": "Hewala",
+          "Add Hewala": "Add Hewala",
+          "Show Hewala": "Show Hewala",
+          "Receive Hewala": "Receive Hewala",
+          "Enter Serial": "Serial",
+          'Please Enter Serial': 'Please Enter Serial number',
+          "Delivered": "Delivered",
+          "Not Delivered": "Not Delivered",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "Sorry the app is under maintenance",
@@ -166,11 +188,14 @@ class Localization implements Translations {
           //----------------------------------- Auth Pages -------------------------//
           "Select Language": "أختيار اللغة",
           "AppName": "الفال باي",
+          "Alfal Payments": "الفال للتحاويل الماليه",
           "Welcome": "مرحبا بك",
           "WelcomeText": "مرحبا بك في تطبيق الفال باي \n للتحاويل الماليه",
           "Please Enter your First name": "الرجاء إدخال الإسم الأول",
           "Please Enter your Second name": "الرجاء إدخال الإسم الثاني",
           "Please Enter your Third name": "الرجاء إدخال الإسم الثالث",
+          "Please Enter your Phone or Account":
+              "الرجاء قم بإدخال رقم هاتفك أو حسابك",
           "Please Enter your Phone": "الرجاء قم بإدخال رقم هاتفك",
           "Phone number is too short": "رقم الهاتف اقل من 9",
           "Please Enter your address": "الرجاء إدخال العنوان",
@@ -200,14 +225,12 @@ class Localization implements Translations {
 
           //--------------------------- Welcome --------------//
           "Login": "تسجيل دخول",
-          "Register": "إنشاء حساب جديد",
-          "Delivery account": "حساب توصيل",
-          "Extra income": "او حقق دخل اضافي وابدا التوصيل وسجل الأن",
+          "Register": "إنشاء حساب",
 
           //--------------------------- Login --------------//
           "Login2": "دخول",
           "Log in to your account": "قم بالدخول لحسابك لإجراء معاملاتك",
-          "Phone": "رقم الهاتف ",
+          "Phone": " رقم الهاتف بدون 0 ",
           "Phone or Account": "أدخل رقم الهاتف او الحساب",
           "Password": "كلمة المرور",
           "Remember me": "حفظ بيانات الدخول",
@@ -220,6 +243,8 @@ class Localization implements Translations {
           "First name": "الإسم الأول",
           "Second name": "الإسم الثاني",
           "Third name": "الإسم الثالث",
+          "Referral code": "رمز الإحاله",
+          "Please Enter Referral code": "الرجاء إدخال رمز الإحاله",
           "Address": "ألعنوان",
           "Date of birth": "تاريخ الميلاد",
           "Re-Enter password": "إعادة كلمة المرور",
@@ -277,6 +302,7 @@ class Localization implements Translations {
           "Save": "حفظ التعديلات",
           "Confirm Logout": "تأكيد تسجيل الخروج ؟",
           "Confirm Deleting": "تأكيد مسح الحساب الحالي ؟",
+          "Confirm delete beneficiary": "تأكيد مسح المستفيد ؟",
           "Yes": "نعم",
           "No": "لا",
           "Cancel": "إلغاء",
@@ -288,8 +314,8 @@ class Localization implements Translations {
           "Enter card": "ادخل رقم الكرت المراد شحنه الي المحفظة",
           "Please Enter card": "الرجاء إدخال رقم الكرت",
           "Ex:": "مثال:٦٥٧٤٦٥٧",
-          "Enter your Amount": "أدخل القيمة",
-          "Please Enter amount": "الرجاء إدخال القيمة",
+          "Enter your Amount": "أدخل المبلغ",
+          "Please Enter amount": "الرجاء إدخال المبلغ",
           "Account number": "رقم الحساب",
           "Receiver name": "إسم الحساب",
           "Enter account number": "أدخل رقم الحساب",
@@ -302,9 +328,27 @@ class Localization implements Translations {
           "Transaction id": "رقم المعامله",
           "no Transaction yet": "لاتوجد معاملات حاليآ",
           "Type": "نوع المعامله",
-          "From": "من",
-          "To": "إلى",
+          "From": "من حساب",
+          "To": "إلى حساب",
+          "To2": "إلى",
           "Date": "التاريخ",
+          "Share": "مشاركه",
+
+          //----------------------------------- Beneficiaries Page -------------------------//
+          "Add Beneficiary": "إضافه مستفيد",
+          "No Beneficiaries yet": "لا يوجد لديك مستفيدين حاليا",
+          "Nick name": "إسم المستفيد",
+          "Enter nick name": "أدخل إسم المستفيد",
+          "Please Enter nick name": "الرجاء إدخال إسم المستفيد",
+          //----------------------------------- Hewala Page -------------------------//
+          "Hewala": "حوالآتي",
+          "Add Hewala": "إضافه حواله",
+          "Show Hewala": "حوالآتي",
+          "Receive Hewala": "إستلام حواله",
+          "Enter Serial": "رقم الحواله",
+          'Please Enter Serial': "الرجاء إدخال رقم الحواله",
+          "Delivered": "تم إستخدامها",
+          "Not Delivered": "لم تستخدم بعد",
 
           //----------------------------------- Other Page -------------------------//
           "Maintenance": "عذرآ التطبيق في وضع الصيانه",

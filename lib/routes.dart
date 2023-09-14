@@ -1,8 +1,8 @@
-import 'package:alfalPay/Util/Middlewares/login_middlleware.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/History/history_screen.dart';
 import 'package:alfalPay/Views/Client/Home/agents_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
+import 'package:alfalPay/Views/Client/Home/hewala_screen.dart';
 import 'package:alfalPay/Views/Client/Home/home_screen.dart';
 import 'package:alfalPay/Views/Client/Home/trans_qr_scanner.dart';
 import 'package:alfalPay/Views/Client/Home/transfer_screen.dart';
@@ -10,7 +10,6 @@ import 'package:alfalPay/Views/Client/Profile/edit_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/password_update_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:get/get.dart';
-
 import 'Util/Middlewares/middleware.dart';
 import 'Views/Auth/intro_screen.dart';
 import 'Views/Auth/login_screen.dart';
@@ -20,7 +19,6 @@ import 'Views/Auth/register_screen.dart';
 import 'Views/Auth/resetpass_screen.dart';
 import 'Views/Auth/splash_screen.dart.dart';
 import 'Views/Auth/welcome_screen.dart';
-import 'Views/Client/History/ticket_screen.dart';
 
 /// Routes name to directly navigate the route by its name
 class Routes {
@@ -43,6 +41,7 @@ class Routes {
   static String agents = '/agents';
   static String currency = '/currency';
   static String bills = '/bills';
+  static String hewala = '/hewala';
 }
 
 List<GetPage<dynamic>> routes = [
@@ -74,6 +73,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(name: Routes.agents, page: () => const AgentsScreen()),
   GetPage(name: Routes.currency, page: () => const CurrencyRates()),
   GetPage(name: Routes.bills, page: () => const BillsScreen()),
+  GetPage(name: Routes.hewala, page: () => HewalaScreen()),
   // GetPage(
   //     name: Routes.product, page: () => ProductScreen(product: Get.arguments)),
 ];

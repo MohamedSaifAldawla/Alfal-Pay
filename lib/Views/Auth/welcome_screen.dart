@@ -47,8 +47,8 @@ class WelcomeScreen extends StatelessWidget {
                   horizontal: getProportionateScreenHeight(15)),
               child: SvgPicture.asset(
                 "assets/icons/lang.svg",
-                height: getProportionateScreenHeight(20),
-                width: getProportionateScreenHeight(20),
+                height: getProportionateScreenHeight(25),
+                width: getProportionateScreenHeight(25),
                 color: AppColors.kPrimaryLightColor,
               ),
             ),
@@ -58,16 +58,17 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           waveClipper(),
-          Container(
-            padding: EdgeInsets.only(
-              right: horizontalPadding,
-              left: horizontalPadding,
-              top: 100,
-              bottom: 100,
-            ),
-            child: Center(
+          Center(
+            child: Container(
+              padding: EdgeInsets.only(
+                right: horizontalPadding,
+                left: horizontalPadding,
+                // top: getProportionateScreenHeight(100),
+                bottom: getProportionateScreenHeight(50),
+              ),
               child: Column(
                 children: [
+                  const Spacer(),
                   FadeAnimation(
                     1.1,
                     Hero(
@@ -88,8 +89,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Login.svg",
                           service: "Login".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const LoginScreen(),
                                 transition: Transition.fadeIn);
@@ -98,8 +97,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/UserPlus.svg",
                           service: "Register".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const RegisterScreen(),
                                 transition: Transition.fadeIn);
@@ -117,8 +114,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Map.svg",
                           service: "Agents".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             agentsController.getAgents();
                           },
@@ -126,8 +121,6 @@ class WelcomeScreen extends StatelessWidget {
                         ServicesItem(
                           icon: "assets/icons/Money-Bag.svg",
                           service: "Currency".tr,
-                          cWidth: getProportionateScreenWidth(90),
-                          cHeight: getProportionateScreenHeight(90),
                           onTap: () {
                             Get.to(() => const CurrencyRates(),
                                 transition: Transition.fadeIn);

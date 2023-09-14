@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 class Api {
   static final dio = Dio(
     BaseOptions(
-      baseUrl: 'http://fal.dev-online.net/api',
+      baseUrl: 'http://fal-app.com/api',
       receiveDataWhenStatusError: true,
     ),
   );
@@ -181,9 +181,56 @@ class Api {
     DateTime? startDate,
     DateTime? endDate,
   }) async {
-    return dio.get('/my-transactions', queryParameters: {
-      'start_date': startDate,
-      'end_date': endDate,
-    });
+    return dio.get(
+      '/my-transactions',
+      queryParameters: {
+        'start_date': startDate,
+        'end_date': endDate,
+      },
+    );
   } //end of Get Transactions
+
+  //-------------------------- Beneficiaries Operations --------------------------//
+  //--------------------- Get Beneficiaries --------------------------//
+  static Future<Response> getBeneficiaries() async {
+    return dio.get('/my-beneficiaries');
+  } //end of Get Beneficiaries
+
+  //--------------------- Check Beneficiaries --------------------------//
+  static Future<Response> checkBeneficiary({accountData}) async {
+    return dio.post('/my-beneficiaries/check-account', data: {accountData});
+  } //end of Check Beneficiaries
+
+//--------------------- Show Beneficiaries --------------------------//
+  static Future<Response> showBeneficiary({String? id}) async {
+    return dio.get('/my-beneficiaries/$id');
+  } //end of Show Beneficiaries
+
+  //--------------------- Add Beneficiaries --------------------------//
+  static Future<Response> addBeneficiary(
+      {required addBeneficiariesData}) async {
+    FormData formData = FormData.fromMap(addBeneficiariesData);
+    return dio.post('/my-beneficiaries/store', data: formData);
+  } //end of Add Beneficiaries
+
+  //--------------------- Show Beneficiaries --------------------------//
+  static Future<Response> deleteBeneficiary({int? beneficiaryId}) async {
+    return dio.delete('/my-beneficiaries/$beneficiaryId');
+  } //end of Show Beneficiaries
+
+  //-------------------------- Hewala Operations --------------------------//
+  //--------------------- Get Hewala --------------------------//
+  static Future<Response> getHewala() async {
+    return dio.get('/transfers-with-number');
+  } //end of Get Hewala
+
+  //--------------------- Create Hewala --------------------------//
+  static Future<Response> createHewala({hewalaData}) async {
+    return dio.post('/transfers-with-number', data: hewalaData);
+  } //end of Create Hewala
+
+  //--------------------- Receive Hewala --------------------------//
+  static Future<Response> receiveHewala({receiveData}) async {
+    return dio.post('/transfers-with-number-recharge', data: receiveData);
+  } //end of Receive Hewala
 } //end of api

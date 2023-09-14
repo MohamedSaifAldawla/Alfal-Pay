@@ -14,7 +14,7 @@ class SectionsTitle extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
   String title;
-  String title2;
+  String? title2;
   void Function()? onTap;
 
   @override
@@ -30,7 +30,7 @@ class SectionsTitle extends StatelessWidget {
         InkWell(
           onTap: onTap,
           child: BodyText(
-            text: title2 == null ? '' : title2,
+            text: title2 ?? '',
             fontSize: getProportionateScreenWidth(13),
             color: Theme.of(context).brightness == Brightness.light
                 ? AppColors.kTextColor
