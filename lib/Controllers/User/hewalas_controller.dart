@@ -116,6 +116,7 @@ class HewalasController extends GetxController with BaseController {
           .write('balance', response.data['current_balance'].toString());
 
       hewalaController.serial.text = '';
+      hewalaController.phone.text = '';
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       mainController.snackBar(
