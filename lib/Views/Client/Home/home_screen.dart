@@ -501,7 +501,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> handleRefresh() async {
-    await GetStorage().read("balance");
+    walletController.getBalance();
     return await Future.delayed(const Duration(seconds: 2));
   }
 }

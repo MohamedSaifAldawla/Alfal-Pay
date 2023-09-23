@@ -16,6 +16,7 @@ class HewalasController extends GetxController with BaseController {
   final TextEditingController receiverName = TextEditingController();
   final TextEditingController receiverPhone = TextEditingController();
   final TextEditingController serial = TextEditingController();
+  final TextEditingController phone = TextEditingController();
 
   //--------------------- Get Hewala --------------------------//
   Future<void> getHewala() async {

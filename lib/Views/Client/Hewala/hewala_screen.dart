@@ -290,6 +290,18 @@ class HewalaScreen extends StatelessWidget {
                             keyboardType: TextInputType.number,
                           ),
                         ),
+                        Gap(getProportionateScreenHeight(20)),
+                        FadeAnimation2(
+                          1.1,
+                          InputField(
+                            controller: hewalaController.phone,
+                            label: "Phone".tr,
+                            hint: "",
+                            icon: "assets/icons/Phone.svg",
+                            maxLength: 9,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
                         Gap(getProportionateScreenHeight(40)),
                         FadeAnimation(
                           1.2,
@@ -308,10 +320,25 @@ class HewalaScreen extends StatelessWidget {
                                     SnackPosition.TOP,
                                     2);
                               }
+                              if (hewalaController.phone.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    "Please Enter phone".tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
 
-                              if (hewalaController.serial.text.isNotEmpty) {
+                              if (hewalaController.serial.text.isNotEmpty &&
+                                  hewalaController.phone.text.isNotEmpty) {
                                 receiveData['serial_number'] =
                                     hewalaController.serial.text;
+                                receiveData['receiver_phone'] =
+                                    hewalaController.phone.text;
                                 hewalaController.receiveHewala(
                                     receiveData: receiveData);
                               }

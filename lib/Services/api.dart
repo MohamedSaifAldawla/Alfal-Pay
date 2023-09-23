@@ -169,6 +169,16 @@ class Api {
     return dio.post('/balance-transfer-confirm', data: formData);
   } //end of Transfer
 
+  //--------------------- Get Balance --------------------------//
+  static Future<Response> getBalance() async {
+    FormData formData = FormData.fromMap(
+      {
+        'token': GetStorage().read("login_token"),
+      },
+    );
+    return dio.post('/current-balance', data: formData);
+  } //end of Get Agents
+
   //--------------------- Get Agents --------------------------//
   static Future<Response> getAgents() async {
     return dio.get('/agent-list');

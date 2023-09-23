@@ -265,7 +265,7 @@ class AuthController extends GetxController with BaseController {
       snackPosition: SnackPosition.TOP,
       backgroundColor: backgroundColor,
       colorText: Colors.white,
-      dismissDirection: DismissDirection.startToEnd,
+      dismissDirection: DismissDirection.up,
       forwardAnimationCurve: Curves.easeOutBack,
     );
   }

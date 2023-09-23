@@ -169,6 +169,7 @@ class Localization implements Translations {
           "Receive Hewala": "Receive Hewala",
           "Enter Serial": "Serial",
           'Please Enter Serial': 'Please Enter Serial number',
+          'Please Enter phone': 'Please Enter Phone number',
           "Delivered": "Delivered",
           "Not Delivered": "Not Delivered",
           "Serial": "Serial",
@@ -347,7 +348,7 @@ class Localization implements Translations {
 
           //----------------------------------- Hewala Page -------------------------//
           "Hewala": "حوالآتي",
-          "Add Hewala": "إضافه حواله",
+          "Add Hewala": "إصدار حواله",
           "Show Hewala": "حوالآتي",
           "Receive Hewala": "إستلام حواله",
           "Enter Serial": "رقم الحواله",
