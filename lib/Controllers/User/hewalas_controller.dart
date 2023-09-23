@@ -129,5 +129,5 @@ class HewalasController extends GetxController with BaseController {
           SnackPosition.TOP,
           3);
     }
-  } //end of Create Hewala
+  } //end of Receive Hewala
 }

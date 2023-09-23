@@ -149,7 +149,7 @@ class HewalaScreen extends StatelessWidget {
                           InputField(
                             controller: hewalaController.receiverPhone,
                             label: "Phone".tr,
-                            hint: "",
+                            hint: "912345678",
                             icon: "assets/icons/Phone.svg",
                             maxLength: 9,
                             keyboardType: TextInputType.number,
@@ -296,7 +296,7 @@ class HewalaScreen extends StatelessWidget {
                           InputField(
                             controller: hewalaController.phone,
                             label: "Phone".tr,
-                            hint: "",
+                            hint: "912345678",
                             icon: "assets/icons/Phone.svg",
                             maxLength: 9,
                             keyboardType: TextInputType.number,
