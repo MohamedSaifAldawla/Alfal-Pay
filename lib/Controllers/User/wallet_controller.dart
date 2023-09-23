@@ -44,8 +44,8 @@ class WalletController extends GetxController with BaseController {
           5);
     }
   } //end of Get Account
-  //--------------------- Recharge --------------------------//
 
+  //--------------------- Recharge --------------------------//
   Future<void> Recharge({required String serialNumber}) async {
     showLoading();
     var response = await Api.recharge(serialNumber: serialNumber);
@@ -83,6 +83,7 @@ class WalletController extends GetxController with BaseController {
     }
   } //end of Recharge
 
+  //--------------------- Transfer --------------------------//
   Future<void> transfer({required Map<String, dynamic> transferData}) async {
     debugPrint('Transfer Data :$transferData');
     showLoading();
@@ -122,6 +123,32 @@ class WalletController extends GetxController with BaseController {
       successShowDialog = false;
     }
   } //end of Transfer
+
+  //--------------------- Get Balance --------------------------//
+  Future<void> getBalance() async {
+    var response = await Api.getBalance();
+    debugPrint("${response.data}");
+    await GetStorage().write('balance', response.data.toString());
+    debugPrint("Balance : ${GetStorage().read("balance")}");
+    // if (response.data['status_code'] == 0) {
+    //   debugPrint("${response.data}");
+    //   await GetStorage()
+    //       .write('balance', response.data['current_balance'].toString());
+    //   debugPrint("Balance : ${GetStorage().read("balance")}");
+    // } else if (response.data['status_code'] == 1) {
+    //   debugPrint("${response.data}");
+    //   mainController.snackBar(
+    //       "Error".tr,
+    //       "${response.data['message']}",
+    //       SvgPicture.asset(
+    //         "assets/icons/Close.svg",
+    //         color: Colors.white,
+    //       ),
+    //       AppColors.error,
+    //       SnackPosition.TOP,
+    //       3);
+    // }
+  } //end of Get Balance
 
   //--------------------- showBalance --------------------------//
   Future<void> showBalance() async {

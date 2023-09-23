@@ -27,8 +27,10 @@ var lang = GetStorage().read("lang");
 var isDark = GetStorage().read('isDark');
 String appName = '';
 String version = '';
+
 Future<void> init() async {
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
   appName = packageInfo.appName;
   version = packageInfo.version;
   lang = await GetStorage().read("lang");

@@ -172,7 +172,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _phoneController,
                           hint: "Phone".tr,
                           icon: "assets/icons/Phone.svg",
-                          obscureText: false,
                           maxLength: 9,
                           keyboardType: TextInputType.number,
                           onSaved: (newValue) => phone = newValue,
@@ -211,7 +210,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _firstNameController,
                           hint: "First name".tr,
                           icon: "assets/icons/Person.svg",
-                          obscureText: false,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) => username = newValue,
                           onChanged: (value) {
@@ -241,7 +239,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _secondNameController,
                           hint: "Second name".tr,
                           icon: "assets/icons/Person.svg",
-                          obscureText: false,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) => username = newValue,
                           onChanged: (value) {
@@ -271,7 +268,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _thirdNameController,
                           hint: "Third name".tr,
                           icon: "assets/icons/Person.svg",
-                          obscureText: false,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) => username = newValue,
                           onChanged: (value) {
@@ -301,7 +297,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _referralCodeController,
                           hint: "Referral code".tr,
                           icon: "assets/icons/ShieldUser.svg",
-                          obscureText: false,
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             if (value == null || value.isNotEmpty) {
@@ -328,7 +323,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           controller: _addressController,
                           hint: "Address".tr,
                           icon: "assets/icons/Location.svg",
-                          obscureText: false,
                           keyboardType: TextInputType.text,
                           onSaved: (newValue) => address = newValue,
                           onChanged: (value) {

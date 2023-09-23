@@ -3,7 +3,7 @@ import 'package:alfalPay/Util/Widgets/Dialogs/my_card_dialog.dart';
 import 'package:alfalPay/Util/theme.dart';
 import 'package:alfalPay/Views/Client/Bills/bills_screen.dart';
 import 'package:alfalPay/Views/Client/Home/currency_screen.dart';
-import 'package:alfalPay/Views/Client/Home/hewala_screen.dart';
+import 'package:alfalPay/Views/Client/Hewala/hewala_screen.dart';
 import 'package:alfalPay/Views/Client/Profile/profile_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import '../../../Animations/FadeAnimation.dart';
 import '../../../Util/Globals/globals.dart';
 import '../../../Util/Widgets/inputField.dart';
@@ -41,233 +42,243 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(20),
-              vertical: horizontalPadding,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // FadeAnimation(
-                        //   1,
-                        //   BodyText(text: "Greeting".tr),
-                        // ),
-                        FadeAnimation(
-                          1,
-                          BodyText(
-                            text: GetStorage().read('first_name') +
-                                ' ' +
-                                GetStorage().read('second_name'),
-                            weight: FontWeight.bold,
-                            fontSize: getProportionateScreenHeight(25),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: getProportionateScreenWidth(30),
-                          height: getProportionateScreenHeight(30),
-                          child: FadeAnimation(
-                            1.3,
-                            GestureDetector(
-                              child: CachedNetworkImage(
-                                imageUrl: "${GetStorage().read("profilePic")}",
-                                placeholder: (context, url) => const Loader(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(
-                                  Icons.error,
-                                  size: 60,
-                                ),
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  width: getProportionateScreenWidth(100.0),
-                                  height: getProportionateScreenHeight(100.0),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                              ),
-                              onTap: () => cardDialog(
-                                  accountId: GetStorage().read('id'),
-                                  context: context),
+        child: LiquidPullToRefresh(
+          onRefresh: handleRefresh,
+          color: Theme.of(context).brightness == Brightness.light
+              ? AppColors.kPrimaryLightColor
+              : AppColors.kPrimaryDarkColor,
+          backgroundColor: AppColors.kPrimaryColor,
+          animSpeedFactor: 2,
+          height: getProportionateScreenWidth(200),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(15),
+                vertical: horizontalPadding,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // FadeAnimation(
+                          //   1,
+                          //   BodyText(text: "Greeting".tr),
+                          // ),
+                          FadeAnimation(
+                            1,
+                            BodyText(
+                              text: GetStorage().read('first_name') +
+                                  ' ' +
+                                  GetStorage().read('second_name'),
+                              weight: FontWeight.bold,
+                              fontSize: getProportionateScreenHeight(25),
                             ),
                           ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: getProportionateScreenWidth(30),
+                            height: getProportionateScreenHeight(30),
+                            child: FadeAnimation(
+                              1.3,
+                              GestureDetector(
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      "${GetStorage().read("profilePic")}",
+                                  placeholder: (context, url) => const Loader(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.error,
+                                    size: 60,
+                                  ),
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    width: getProportionateScreenWidth(100.0),
+                                    height: getProportionateScreenHeight(100.0),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                ),
+                                onTap: () => cardDialog(
+                                    accountId: GetStorage().read('id'),
+                                    context: context),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Gap(getProportionateScreenHeight(20)),
+                  FadeAnimation(
+                    1.4,
+                    Wallet(
+                      onTap: () {
+                        rechargeDialog(context);
+                      },
+                    ),
+                  ),
+                  Gap(getProportionateScreenHeight(40)),
+                  FadeAnimation(
+                    1.5,
+                    SectionsTitle(
+                      title: "All services".tr,
+                      title2: ''.tr,
+                    ),
+                  ),
+                  Gap(getProportionateScreenHeight(10)),
+                  FadeAnimation2(
+                    1.6,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ServicesItem(
+                          icon: "assets/icons/Wallet.svg",
+                          service: "Balance".tr,
+                          onTap: () {
+                            setState(() {
+                              walletController.showBalance();
+                            });
+                          },
+                        ),
+                        ServicesItem(
+                          icon: "assets/icons/Transfer.svg",
+                          service: "Transfer".tr,
+                          onTap: () {
+                            transferDialog(context);
+                          },
+                        ),
+                        ServicesItem(
+                          icon: "assets/icons/bag-dollar.svg",
+                          service: "Charge Wallet".tr,
+                          size: getProportionateScreenHeight(31),
+                          onTap: () {
+                            rechargeDialog(context);
+                          },
                         ),
                       ],
                     ),
-                  ],
-                ),
-                Gap(getProportionateScreenHeight(20)),
-                FadeAnimation(
-                  1.4,
-                  Wallet(
-                    onTap: () {
-                      rechargeDialog(context);
-                    },
                   ),
-                ),
-                Gap(getProportionateScreenHeight(40)),
-                FadeAnimation(
-                  1.5,
-                  SectionsTitle(
-                    title: "All services".tr,
-                    title2: ''.tr,
+                  Gap(getProportionateScreenHeight(20)),
+                  FadeAnimation2(
+                    1.7,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ServicesItem(
+                          icon: "assets/icons/Devices.svg",
+                          service: "Bills".tr,
+                          onTap: () {
+                            Get.to(() => const BillsScreen(),
+                                transition: Transition.fadeIn);
+                          },
+                        ),
+                        ServicesItem(
+                          icon: "assets/icons/Clipboard.svg",
+                          service: "History".tr,
+                          onTap: () {
+                            transController.getTransactions();
+                          },
+                        ),
+                        ServicesItem(
+                          icon: "assets/icons/cashflow.svg",
+                          service: "Hewala".tr,
+                          size: getProportionateScreenHeight(30),
+                          onTap: () {
+                            Get.to(() => HewalaScreen(),
+                                transition: Transition.fadeIn);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Gap(getProportionateScreenHeight(10)),
-                FadeAnimation2(
-                  1.6,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ServicesItem(
-                        icon: "assets/icons/Wallet.svg",
-                        service: "Balance".tr,
-                        onTap: () {
-                          setState(() {
-                            walletController.showBalance();
-                          });
-                        },
-                      ),
-                      ServicesItem(
-                        icon: "assets/icons/Transfer.svg",
-                        service: "Transfer".tr,
-                        onTap: () {
-                          transferDialog(context);
-                        },
-                      ),
-                      ServicesItem(
-                        icon: "assets/icons/bag-dollar.svg",
-                        service: "Charge Wallet".tr,
-                        size: getProportionateScreenHeight(33),
-                        onTap: () {
-                          rechargeDialog(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(getProportionateScreenHeight(20)),
-                FadeAnimation2(
-                  1.7,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ServicesItem(
-                        icon: "assets/icons/Devices.svg",
-                        service: "Bills".tr,
-                        onTap: () {
-                          Get.to(() => const BillsScreen(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
-                      ServicesItem(
-                        icon: "assets/icons/Clipboard.svg",
-                        service: "History".tr,
-                        onTap: () {
-                          transController.getTransactions();
-                        },
-                      ),
-                      ServicesItem(
-                        icon: "assets/icons/DebitCard.svg",
-                        service: "Hewala".tr,
-                        size: getProportionateScreenHeight(35),
-                        onTap: () {
-                          Get.to(() => HewalaScreen(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(getProportionateScreenHeight(20)),
-                FadeAnimation2(
-                  1.8,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // ServicesItem(
-                      //   icon: "assets/icons/Buildings.svg",
-                      //   service: "E-government".tr,
-                      //   onTap: () {},
-                      // ),
-                      // ServicesItem(
-                      //   icon: "assets/icons/DebitCard.svg",
-                      //   iconcolor: AppColors.kPrimaryColor,
-                      //   service: "Cards".tr,
-                      //   onTap: () {},
-                      // ),
-                      // ServicesItem(
-                      //   icon: "assets/icons/More.svg",
-                      //   service: "Other".tr,
-                      //   onTap: () {},
-                      // ),
-                      ServicesItem(
-                        icon: "assets/icons/qr-code-scan.svg",
-                        service: "QR".tr,
-                        size: getProportionateScreenHeight(35),
-                        onTap: () {
-                          Get.toNamed(Routes.qrScanner);
-                        },
-                      ),
+                  Gap(getProportionateScreenHeight(20)),
+                  FadeAnimation2(
+                    1.8,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // ServicesItem(
+                        //   icon: "assets/icons/Buildings.svg",
+                        //   service: "E-government".tr,
+                        //   onTap: () {},
+                        // ),
+                        // ServicesItem(
+                        //   icon: "assets/icons/DebitCard.svg",
+                        //   iconcolor: AppColors.kPrimaryColor,
+                        //   service: "Cards".tr,
+                        //   onTap: () {},
+                        // ),
+                        // ServicesItem(
+                        //   icon: "assets/icons/More.svg",
+                        //   service: "Other".tr,
+                        //   onTap: () {},
+                        // ),
+                        ServicesItem(
+                          icon: "assets/icons/qr-code-scan.svg",
+                          service: "QR".tr,
+                          size: getProportionateScreenHeight(35),
+                          onTap: () {
+                            Get.toNamed(Routes.qrScanner);
+                          },
+                        ),
 
-                      ServicesItem(
-                        icon: "assets/icons/UsersGroup.svg",
-                        service: "Beneficiaries".tr,
-                        onTap: () {
-                          beneficiaryController.getBeneficiaries();
-                        },
-                      ),
-                      ServicesItem(
-                        icon: "assets/icons/Map.svg",
-                        service: "Agents".tr,
-                        onTap: () {
-                          agentsController.getAgents();
-                        },
-                      ),
-                    ],
+                        ServicesItem(
+                          icon: "assets/icons/UsersGroup.svg",
+                          service: "Beneficiaries".tr,
+                          onTap: () {
+                            beneficiaryController.getBeneficiaries();
+                          },
+                        ),
+                        ServicesItem(
+                          icon: "assets/icons/Map.svg",
+                          service: "Agents".tr,
+                          onTap: () {
+                            agentsController.getAgents();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Gap(getProportionateScreenHeight(20)),
-                FadeAnimation2(
-                  1.9,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ServicesItem(
-                        icon: "assets/icons/Money-Bag.svg",
-                        service: "Currency".tr,
-                        onTap: () {
-                          Get.to(() => const CurrencyRates(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
-                      Gap(getProportionateScreenHeight(3)),
-                      ServicesItem(
-                        icon: "assets/icons/Settings.svg",
-                        service: "Settings".tr,
-                        onTap: () {
-                          Get.to(() => const ProfileScreen(),
-                              transition: Transition.fadeIn);
-                        },
-                      ),
-                    ],
+                  Gap(getProportionateScreenHeight(20)),
+                  FadeAnimation2(
+                    1.9,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ServicesItem(
+                          icon: "assets/icons/Money-Bag.svg",
+                          service: "Currency".tr,
+                          onTap: () {
+                            Get.to(() => const CurrencyRates(),
+                                transition: Transition.fadeIn);
+                          },
+                        ),
+                        Gap(getProportionateScreenHeight(8)),
+                        ServicesItem(
+                          icon: "assets/icons/Settings.svg",
+                          service: "Settings".tr,
+                          onTap: () {
+                            Get.to(() => const ProfileScreen(),
+                                transition: Transition.fadeIn);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -343,7 +354,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             hint: "Ex:".tr,
                             type: "Amount",
                             icon: "assets/icons/top-up.svg",
-                            obscureText: false,
                             keyboardType: TextInputType.number,
                             onSaved: (newValue) => serialNumber = newValue,
                           ),
@@ -445,7 +455,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             hint: "Enter account number".tr,
                             type: "Account",
                             icon: "assets/icons/Person.svg",
-                            obscureText: false,
                             keyboardType: TextInputType.number,
                             onSaved: (newValue) => accountNumber = newValue,
                           ),
@@ -489,5 +498,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> handleRefresh() async {
+    walletController.getBalance();
+    return await Future.delayed(const Duration(seconds: 2));
   }
 }

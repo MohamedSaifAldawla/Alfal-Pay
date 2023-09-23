@@ -1,8 +1,8 @@
 import 'package:alfalPay/Controllers/User/base_controller.dart';
 import 'package:alfalPay/Models/beneficiaries.dart';
 import 'package:alfalPay/Util/Globals/globals.dart';
-import 'package:alfalPay/Views/Client/Home/add_beneficiary_screen.dart';
-import 'package:alfalPay/Views/Client/Home/beneficiaries_screen.dart';
+import 'package:alfalPay/Views/Client/Beneficiaries/add_beneficiary_screen.dart';
+import 'package:alfalPay/Views/Client/Beneficiaries/beneficiaries_screen.dart';
 import 'package:alfalPay/Views/Client/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

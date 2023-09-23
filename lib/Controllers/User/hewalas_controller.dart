@@ -1,10 +1,11 @@
 import 'package:alfalPay/Controllers/User/base_controller.dart';
 import 'package:alfalPay/Models/hewalas.dart';
 import 'package:alfalPay/Util/Globals/globals.dart';
-import 'package:alfalPay/Views/Client/Home/show_hewala_screen.dart';
+import 'package:alfalPay/Views/Client/Hewala/show_hewala_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../Services/api.dart';
 import '../../Util/colors.dart';
 
@@ -12,7 +13,10 @@ class HewalasController extends GetxController with BaseController {
   List<Hewalas> hewala = <Hewalas>[].obs;
   final TextEditingController comment = TextEditingController();
   final TextEditingController amount = TextEditingController();
+  final TextEditingController receiverName = TextEditingController();
+  final TextEditingController receiverPhone = TextEditingController();
   final TextEditingController serial = TextEditingController();
+  final TextEditingController phone = TextEditingController();
 
   //--------------------- Get Hewala --------------------------//
   Future<void> getHewala() async {
@@ -27,12 +31,12 @@ class HewalasController extends GetxController with BaseController {
         hewala.clear();
         hewala.addAll(res.data.data);
         debugPrint("$hewala");
-        Get.to(() => ShowHewalaScreen(), transition: Transition.fadeIn);
+        Get.to(() => const ShowHewalaScreen(), transition: Transition.fadeIn);
       }
       if (response.data['data'].isEmpty) {
         hideLoading();
         hewala.clear();
-        Get.to(() => ShowHewalaScreen(), transition: Transition.fadeIn);
+        Get.to(() => const ShowHewalaScreen(), transition: Transition.fadeIn);
       }
     } else if (response.data['status_code'] == 1) {
       hideLoading();
@@ -68,8 +72,12 @@ class HewalasController extends GetxController with BaseController {
           AppColors.success,
           SnackPosition.TOP,
           3);
+      await GetStorage()
+          .write('balance', response.data['current_balance'].toString());
       amount.text = '';
       comment.text = '';
+      receiverName.text = '';
+      receiverPhone.text = '';
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       mainController.snackBar(
@@ -104,7 +112,11 @@ class HewalasController extends GetxController with BaseController {
           AppColors.success,
           SnackPosition.TOP,
           3);
+      await GetStorage()
+          .write('balance', response.data['current_balance'].toString());
+
       hewalaController.serial.text = '';
+      hewalaController.phone.text = '';
     } else if (response.data['status_code'] == 1) {
       hideLoading();
       mainController.snackBar(
@@ -118,5 +130,5 @@ class HewalasController extends GetxController with BaseController {
           SnackPosition.TOP,
           3);
     }
-  } //end of Create Hewala
+  } //end of Receive Hewala
 }

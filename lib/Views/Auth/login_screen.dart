@@ -180,7 +180,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _phoneController,
                             hint: "Phone or Account".tr,
                             icon: "assets/icons/Phone.svg",
-                            obscureText: false,
                             keyboardType: TextInputType.number,
                             onSaved: (newValue) => phone = newValue,
                             onChanged: (value) {

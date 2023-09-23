@@ -77,6 +77,8 @@ class Hewalas {
   bool hasBeenDelivered;
   String createdAt;
   String serialNumber;
+  String receiverName;
+  String receiverPhone;
 
   Hewalas({
     required this.id,
@@ -85,6 +87,8 @@ class Hewalas {
     required this.hasBeenDelivered,
     required this.createdAt,
     required this.serialNumber,
+    required this.receiverName,
+    required this.receiverPhone,
   });
 
   factory Hewalas.fromJson(Map<String, dynamic> json) => Hewalas(
@@ -94,6 +98,8 @@ class Hewalas {
         hasBeenDelivered: json["has_been_delivered"],
         createdAt: json["created_at"],
         serialNumber: json["serial_number"],
+        receiverName: json["receiver_name"],
+        receiverPhone: json["receiver_phone"],
       );
 }
 

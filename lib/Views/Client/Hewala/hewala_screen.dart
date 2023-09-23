@@ -24,36 +24,33 @@ class HewalaScreen extends StatelessWidget {
         title: Text("Hewala".tr),
       ),
       body: FadeAnimation2(
-        1.7,
-        Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ServicesItem(
-                icon: "assets/icons/UserPlus.svg",
-                service: "Add Hewala".tr,
-                onTap: () {
-                  createHewalaDialog(context);
-                },
-              ),
-              ServicesItem(
-                icon: "assets/icons/DebitCard.svg",
-                service: "Show Hewala".tr,
-                size: getProportionateScreenHeight(35),
-                onTap: () {
-                  hewalaController.getHewala();
-                },
-              ),
-              ServicesItem(
-                icon: "assets/icons/DebitCard.svg",
-                service: "Receive Hewala".tr,
-                size: getProportionateScreenHeight(35),
-                onTap: () {
-                  receiveHewalaDialog(context);
-                },
-              ),
-            ],
-          ),
+        1,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ServicesItem(
+              icon: "assets/icons/UserPlus.svg",
+              service: "Add Hewala".tr,
+              onTap: () {
+                createHewalaDialog(context);
+              },
+            ),
+            ServicesItem(
+              icon: "assets/icons/cashflow.svg",
+              service: "Show Hewala".tr,
+              size: getProportionateScreenHeight(31),
+              onTap: () {
+                hewalaController.getHewala();
+              },
+            ),
+            ServicesItem(
+              icon: "assets/icons/Receive.svg",
+              service: "Receive Hewala".tr,
+              onTap: () {
+                receiveHewalaDialog(context);
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -86,6 +83,8 @@ class HewalaScreen extends StatelessWidget {
                           Get.back();
                           hewalaController.amount.text = '';
                           hewalaController.comment.text = '';
+                          hewalaController.receiverName.text = '';
+                          hewalaController.receiverPhone.text = '';
                         },
                         icon: SvgPicture.asset(
                           "assets/icons/Close.svg",
@@ -114,24 +113,46 @@ class HewalaScreen extends StatelessWidget {
                           InputField(
                             controller: hewalaController.amount,
                             label: "Enter your Amount".tr,
-                            hint: "Please Enter amount",
+                            hint: "",
                             type: "Amount",
                             icon: "assets/icons/bag-dollar.svg",
-                            obscureText: false,
                             keyboardType: TextInputType.number,
                           ),
                         ),
-                        Gap(getProportionateScreenHeight(25)),
+                        Gap(getProportionateScreenHeight(20)),
                         FadeAnimation2(
                           1.1,
                           InputField(
                             controller: hewalaController.comment,
                             label: "Comment".tr,
-                            hint: "Enter your comment".tr,
+                            hint: "",
                             type: "Comment",
-                            icon: "assets/icons/Person.svg",
-                            obscureText: false,
+                            icon: "assets/icons/comment.svg",
                             keyboardType: TextInputType.text,
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(20)),
+                        FadeAnimation2(
+                          1.2,
+                          InputField(
+                            controller: hewalaController.receiverName,
+                            label: "Receiver name".tr,
+                            hint: "",
+                            type: "Account",
+                            icon: "assets/icons/Person.svg",
+                            keyboardType: TextInputType.text,
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(20)),
+                        FadeAnimation2(
+                          1.3,
+                          InputField(
+                            controller: hewalaController.receiverPhone,
+                            label: "Phone".tr,
+                            hint: "912345678",
+                            icon: "assets/icons/Phone.svg",
+                            maxLength: 9,
+                            keyboardType: TextInputType.number,
                           ),
                         ),
                         Gap(getProportionateScreenHeight(40)),
@@ -152,12 +173,44 @@ class HewalaScreen extends StatelessWidget {
                                     SnackPosition.TOP,
                                     2);
                               }
+                              if (hewalaController.receiverName.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    "Please Enter receiver name".tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
+                              if (hewalaController.receiverPhone.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    "Please Enter receiver phone".tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
 
-                              if (hewalaController.amount.text.isNotEmpty) {
+                              if (hewalaController.amount.text.isNotEmpty &&
+                                  hewalaController
+                                      .receiverName.text.isNotEmpty &&
+                                  hewalaController
+                                      .receiverPhone.text.isNotEmpty) {
                                 hewalaData['amount'] =
                                     hewalaController.amount.text;
                                 hewalaData['comment'] =
                                     hewalaController.comment.text;
+                                hewalaData['receiver_name'] =
+                                    hewalaController.receiverName.text;
+                                hewalaData['receiver_phone'] =
+                                    hewalaController.receiverPhone.text;
                                 hewalaController.createHewala(
                                     hewalaData: hewalaData);
                               }
@@ -234,7 +287,18 @@ class HewalaScreen extends StatelessWidget {
                             hint: "",
                             type: "Serial",
                             icon: "assets/icons/bag-dollar.svg",
-                            obscureText: false,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                        Gap(getProportionateScreenHeight(20)),
+                        FadeAnimation2(
+                          1.1,
+                          InputField(
+                            controller: hewalaController.phone,
+                            label: "Phone".tr,
+                            hint: "912345678",
+                            icon: "assets/icons/Phone.svg",
+                            maxLength: 9,
                             keyboardType: TextInputType.number,
                           ),
                         ),
@@ -256,10 +320,25 @@ class HewalaScreen extends StatelessWidget {
                                     SnackPosition.TOP,
                                     2);
                               }
+                              if (hewalaController.phone.text.isEmpty) {
+                                mainController.snackBar(
+                                    "Error".tr,
+                                    "Please Enter phone".tr,
+                                    SvgPicture.asset(
+                                      "assets/icons/Close.svg",
+                                      color: Colors.white,
+                                    ),
+                                    AppColors.error,
+                                    SnackPosition.TOP,
+                                    2);
+                              }
 
-                              if (hewalaController.serial.text.isNotEmpty) {
+                              if (hewalaController.serial.text.isNotEmpty &&
+                                  hewalaController.phone.text.isNotEmpty) {
                                 receiveData['serial_number'] =
                                     hewalaController.serial.text;
+                                receiveData['receiver_phone'] =
+                                    hewalaController.phone.text;
                                 hewalaController.receiveHewala(
                                     receiveData: receiveData);
                               }
