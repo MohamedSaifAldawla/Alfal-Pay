@@ -83,5 +83,10 @@
         "هاتف",
         "والأحكام",
         "يوجد"
-    ]
+    ],
+    "dart.flutterSdkPaths": [
+        "C:\\src\\flutter_windows_3.16.4-stable\\flutter 3.16.4",
+        "C:\\src\\flutter"
+    ],
+    "dart.flutterSdkPath": "C:\\src\\flutter_windows_3.16.4-stable\\flutter 3.16.4"
 }
