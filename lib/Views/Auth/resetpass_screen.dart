@@ -29,7 +29,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   String? phone;
 
   final List<String> errors = [];
-  Map<String, dynamic> _resetData = {};
+  //Map<String, dynamic> _resetData = {};
 
   void addError({required String error}) {
     if (!errors.contains(error)) {
